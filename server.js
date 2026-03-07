@@ -181,7 +181,11 @@ app.post('/api/contact', (req, res) => {
     res.json({ success: true, message: "Thank you for contacting us!" });
 });
 
-// Start Server
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
-});
+// Start Server (local dev) or export for Vercel (serverless)
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Server running at http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;
