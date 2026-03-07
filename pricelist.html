@@ -86,9 +86,7 @@
 
     <main class="container" style="padding: 4rem 2rem;">
         <div class="pricing-controls"
-            style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-            <input type="text" id="searchPrice" placeholder="Search by Code or Type..."
-                style="padding: 0.8rem; border-radius: 8px; border: 1px solid #ddd; width: 100%; max-width: 300px;">
+            style="margin-bottom: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;">
             <select id="filterCategory"
                 style="padding: 0.8rem; border-radius: 8px; border: 1px solid #ddd; width: 100%; max-width: 250px;">
                 <option value="all">All Categories</option>
@@ -101,6 +99,8 @@
                 <option value="WATI">Wati</option>
                 <option value="OTHER">Others (Trays, Teacups)</option>
             </select>
+            <input type="text" id="searchPrice" placeholder="Search by Code or Type..."
+                style="padding: 0.8rem; border-radius: 8px; border: 1px solid #ddd; width: 100%; max-width: 300px;">
         </div>
 
         <div class="table-responsive"
