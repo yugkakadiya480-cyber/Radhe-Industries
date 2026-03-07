@@ -9,7 +9,7 @@ const PORT = 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('.')); // Serve static files
+app.use(express.static(__dirname)); // Serve static files
 app.use('/uploads', express.static(path.join(__dirname, 'images', 'uploads'))); // Serve uploads
 
 const DATA_FILE = path.join(__dirname, 'data', 'products.json');
