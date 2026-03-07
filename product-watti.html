@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WATTI Products | Disposable CUPS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: 0.5rem;
+        }
+
+        .promo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        .page-header {
+            padding: 1rem 0 0.5rem !important;
+        }
+
+        .promo-card {
+            background: #fff;
+            width: 100%;
+            border-radius: 40px;
+            overflow: hidden;
+            border: 1px solid #eaeaea;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border-bottom-right-radius: 120px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .promo-card .img-wrapper {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .promo-card .img-wrapper img,
+        .zoom-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            padding: 5px;
+            transition: transform 0.5s ease;
+        }
+
+        .promo-card:hover .zoom-img,
+        .product-card:hover .zoom-img {
+            transform: scale(1.1);
+            cursor: zoom-in;
+        }
+
+        /* Lightbox Styles */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            cursor: default;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: 100%;
+            max-height: 70vh;
+            display: block;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--color-accent);
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-content {
+                max-width: 95%;
+                padding: 10px;
+            }
+
+            .lightbox-close {
+                top: -40px;
+                right: 0;
+            }
+        }
+
+        .promo-footer {
+            background: #50a18e;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            margin-top: auto;
+        }
+
+        .promo-footer h3 {
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-family: 'Outfit', sans-serif;
+            color: #fff;
+        }
+
+        @media (max-width: 992px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Top -->
+    <header class="header-top">
+        <div class="container header-top-content">
+            <a href="index.html" class="logo"
+                style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+                <img src="images/company-logo.png" alt="Radhe Disposable Logo" style="height: 60px; width: auto;">
+                <div style="line-height: 1.1;">
+                    <span
+                        style="display: block; font-size: 1.6rem; color: #333; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase;">RADHE</span>
+                    <span
+                        style="display: block; font-size: 0.9rem; color: var(--color-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Disposable</span>
+                </div>
+            </a>
+            <div class="header-contact-info">
+                <div class="contact-block">
+                    <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="contact-text">
+                        <h4>Call us</h4>
+                        <p>+91 99136 00800</p>
+                        <p>+91 94268 16321</p>
+                    </div>
+                </div>
+                <div class="contact-block">
+                    <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="contact-text">
+                        <h4>Email us</h4>
+                        <p>radheindustries8@gmail.com</p>
+                        <p>radhedisposable8@gmail.com</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <a href="#" class="social-link-in"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-content">
+                <button class="menu-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="company-profile.html" class="nav-link">Company Profile</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link active">Products</a></li>
+                    <li class="nav-item"><a href="strategy.html" class="nav-link">Strategy</a></li>
+                    <li class="nav-item"><a href="material.html" class="nav-link">Material</a></li>
+                    <li class="nav-item"><a href="quality.html" class="nav-link">Quality</a></li>
+                    <li class="nav-item"><a href="certificate.html" class="nav-link">Certificate</a></li>
+                    <li class="nav-item"><a href="export.html" class="nav-link">Exports</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header" style="background: linear-gradient(135deg, #1a4d3e 0%, #2e7d32 100%);">
+        <div class="container">
+            <h1 class="section-title" style="color: white; text-transform: uppercase;">WATTI Category</h1>
+            <p>Premium WATTI disposable cups designed according to your preference</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container main-layout">
+        <div class="content-area">
+            <div style="margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+                <a href="products.html" class="btn btn-outline"
+                    style="display: inline-flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-arrow-left"></i> Back to All Categories
+                </a>
+            </div>
+            <!-- Category Grid -->
+            <section class="promo-grid">
+                <div class="promo-card">
+                    <div class="card-image-wrapper img-wrapper">
+                        <img src="images/uploads/WATTI 300-ML.png" alt="WATTI Cup" class="zoom-img lightbox-trigger">
+                    </div>
+                    <div class="promo-footer">
+                        <h3>WATTI</h3>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col">
+                    <h3>RADHE INDUSTRIES</h3>
+                    <p class="footer-description">
+                        Radhe Industries is a leading manufacturer of high-quality disposable cups, established in 2012.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h3>QUICK LINKS</h3>
+                    <div class="links-grid">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="products.html">Products</a></li>
+                            <li><a href="process.html">Process</a></li>
+                            <li><a href="material.html">Material</a></li>
+                            <li><a href="blogs.html">Blogs</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="quality.html">Quality</a></li>
+                            <li><a href="certificate.html">Certificate</a></li>
+                            <li><a href="export.html">Exports</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>OUR PRODUCTS</h3>
+                    <ul>
+                        <li><a href="#">Plastic Cups</a></li>
+                        <li><a href="#">Vending Cups</a></li>
+                        <li><a href="#">Printed Cups</a></li>
+                        <li><a href="#">Ice Cream Cups</a></li>
+                        <li><a href="#">Customized Cups</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col factory-address">
+                    <h3>FACTORY ADDRESSES</h3>
+                    <div style="margin-bottom: 1rem;">
+                        <p
+                            style="font-size: 0.85rem; color: var(--color-accent); margin-bottom: 0.2rem; font-weight: 700;">
+                            UNIT1:-RADHE DISPOSABLE</p>
+                        <p style="margin-bottom: 0;">RADHE DISPOSABLE PLOT NUMBER:- G1972<br>ROAD K/7D METODA ALL BY THE
+                            GATE</p>
+                    </div>
+                    <div>
+                        <p
+                            style="font-size: 0.85rem; color: var(--color-accent); margin-bottom: 0.2rem; font-weight: 700;">
+                            UNIT2:-RADHE INDUSTRIES</p>
+                        <p>SURVEY NO 101, PLOT NO 14, AT DEVDA,<br>SHIVAM INDUSTRIAL ZONE 7A, DIST RAJKOT,<br>TALUKA
+                            LODIKA, DEVDA, RAJKOT, GUJRAT, 360021</p>
+                    </div>
+                    <a href="#" class="btn-brochure">Download Brochure</a>
+                </div>
+            </div>
+            <div class="footer-contact-blocks">
+                <div class="contact-info-box">
+                    <div class="contact-info-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="contact-info-text">
+                        <span>Give us a call</span>
+                        <a href="tel:+919913600800">+91 99136 00800</a>
+                        <a href="tel:+919426816321">+91 94268 16321</a>
+                    </div>
+                </div>
+                <div class="contact-info-box">
+                    <div class="contact-info-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="contact-info-text">
+                        <span>Drop us a line</span>
+                        <a href="mailto:radheindustries8@gmail.com">radheindustries8@gmail.com</a>
+                        <a href="mailto:radhedisposable8@gmail.com">radhedisposable8@gmail.com</a>
+                    </div>
+                </div>
+                <div class="social-follow-box">
+                    <div class="social-group">
+                        <span>Follow us on</span>
+                        <a href="#" class="btn-social-in"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                    <a href="#" class="back-to-top"><i class="fa-solid fa-chevron-up"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img id="lightbox-img" src="" alt="Enlarged product image">
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/responsive.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.querySelector('.lightbox-close');
+
+            const openLightbox = (src) => {
+                lightboxImg.src = src;
+                lightbox.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeLightbox = () => {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = '';
+            };
+
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('zoom-img') || e.target.classList.contains('lightbox-trigger')) {
+                    if (e.target.closest('.promo-card') || e.target.closest('.product-card')) {
+                        openLightbox(e.target.src);
+                    }
+                }
+            });
+
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeLightbox();
+            });
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

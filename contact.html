@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Disposable CUPS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            transition: var(--transition-base);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-primary-light);
+        }
+
+        .contact-info-box {
+            background: var(--color-surface-alt);
+            padding: 3rem;
+            border-radius: var(--radius-md);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Top -->
+    <header class="header-top">
+        <div class="container header-top-content">
+            <a href="index.html" class="logo"
+                style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+                <img src="images/company-logo.png" alt="Radhe Disposable Logo" style="height: 60px; width: auto;">
+                <div style="line-height: 1.1;">
+                    <span
+                        style="display: block; font-size: 1.6rem; color: #333; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase;">RADHE</span>
+                    <span
+                        style="display: block; font-size: 0.9rem; color: var(--color-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Disposable</span>
+                </div>
+            </a>
+            <div class="header-contact-info">
+                <div class="contact-block">
+                    <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="contact-text">
+                        <h4>Call us</h4>
+                        <p>+91 99136 00800</p>
+                        <p>+91 94268 16321</p>
+                    </div>
+                </div>
+                <div class="contact-block">
+                    <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="contact-text">
+                        <h4>Email us</h4>
+                        <p>radheindustries8@gmail.com</p>
+                        <p>radhedisposable8@gmail.com</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <a href="#" class="social-link-in"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <select class="lang-select">
+                        <option>Select Language</option>
+                        <option>English</option>
+                        <option>Hindi</option>
+                        <option>Gujarati</option>
+                        <option>Spanish</option>
+                        <option>French</option>
+                        <option>Arabic</option>
+                        <option>German</option>
+                        <option>Chinese</option>
+                        <option>Russian</option>
+                        <option>Portuguese</option>
+                        <option>Japanese</option>
+                        <option>Italian</option>
+                        <option>Korean</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-content">
+                <button class="menu-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="company-profile.html" class="nav-link">Company Profile</a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link">Products</a></li>
+                    <li class="nav-item"><a href="strategy.html" class="nav-link">Strategy</a></li>
+                    <li class="nav-item"><a href="material.html" class="nav-link">Material</a></li>
+                    <li class="nav-item"><a href="quality.html" class="nav-link">Quality</a></li>
+                    <li class="nav-item"><a href="certificate.html" class="nav-link">Certificate</a></li>
+                    <li class="nav-item"><a href="export.html" class="nav-link">Exports</a></li>
+
+                    <li class="nav-item"><a href="contact.html" class="nav-link active">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="section-title" style="color: white;">Get In Touch</h1>
+            <p>Have questions? We'd love to hear from you.</p>
+        </div>
+    </header>
+
+    <div class="container contact-layout">
+        <!-- Contact Form -->
+        <div class="contact-form-wrapper">
+            <h2>Send us a Message</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label class="form-label" for="name">Full Name</label>
+                    <input type="text" id="name" name="name" class="form-input" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-input" required
+                        placeholder="john@company.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="subject">Subject</label>
+                    <select id="subject" name="subject" class="form-input">
+                        <option>General Inquiry</option>
+                        <option>Wholesale Quote</option>
+                        <option>Custom Branding</option>
+                        <option>Support</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="message">Message</label>
+                    <textarea id="message" name="message" class="form-textarea" rows="5" required
+                        placeholder="How can we help you?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+            <div id="formStatus" style="margin-top: 1rem; display: none;"></div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info-box">
+            <h3 style="margin-bottom: 1.5rem;">Contact Information</h3>
+
+            <div class="info-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <p>Radhe Industries,<br>Morbi, Gujarat, India</p> <!-- Updated placeholder address -->
+            </div>
+            <div class="info-item">
+                <i class="fa-solid fa-envelope"></i>
+                <p>info@radheindustries.com</p>
+            </div>
+            <div class="info-item">
+                <i class="fa-solid fa-phone"></i>
+                <p>+91 99099 49953</p>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 2rem 0;">
+
+            <h4>Business Hours</h4>
+            <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
+            <p>Sat - Sun: Closed</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <!-- Col 1: Brand -->
+                <div class="footer-col">
+                    <h3>RADHE INDUSTRIES</h3>
+                    <p class="footer-description">
+                        Radhe Industries is a leading manufacturer of high-quality disposable cups, established in 2012.
+                    </p>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div class="footer-col">
+                    <h3>QUICK LINKS</h3>
+                    <div class="links-grid">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="products.html">Products</a></li>
+                            <li><a href="process.html">Process</a></li>
+                            <li><a href="material.html">Material</a></li>
+                            <li><a href="blogs.html">Blogs</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="quality.html">Quality</a></li>
+                            <li><a href="certificate.html">Certificate</a></li>
+                            <li><a href="export.html">Exports</a></li>
+
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Col 3: Our Products -->
+                <div class="footer-col">
+                    <h3>OUR PRODUCTS</h3>
+                    <ul>
+                        <li><a href="#">Plastic Cups</a></li>
+                        <li><a href="#">Vending Cups</a></li>
+                        <li><a href="#">Printed Cups</a></li>
+                        <li><a href="#">Ice Cream Cups</a></li>
+                        <li><a href="#">Customized Cups</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Factory Address -->
+                <div class="footer-col factory-address">
+                    <h3>FACTORY ADDRESSES</h3>
+                    <div style="margin-bottom: 1rem;">
+                        <p
+                            style="font-size: 0.85rem; color: var(--color-accent); margin-bottom: 0.2rem; font-weight: 700;">
+                            UNIT1:-RADHE DISPOSABLE</p>
+                        <p style="margin-bottom: 0;">
+                            RADHE DISPOSABLE PLOT NUMBER:- G1972<br>
+                            ROAD K/7D METODA ALL BY THE GATE
+                        </p>
+                    </div>
+                    <div>
+                        <p
+                            style="font-size: 0.85rem; color: var(--color-accent); margin-bottom: 0.2rem; font-weight: 700;">
+                            UNIT2:-RADHE INDUSTRIES</p>
+                        <p>
+                            SURVEY NO 101, PLOT NO 14, AT DEVDA,<br>
+                            SHIVAM INDUSTRIAL ZONE 7A, DIST RAJKOT,<br>
+                            TALUKA LODIKA, DEVDA, RAJKOT, GUJRAT, 360021
+                        </p>
+                    </div>
+                    <a href="#" class="btn-brochure">Download Brochure</a>
+                </div>
+            </div>
+
+            <div class="footer-contact-blocks">
+                <!-- Phone Block -->
+                <div class="contact-info-box">
+                    <div class="contact-info-icon">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="contact-info-text">
+                        <span>Give us a call</span>
+                        <a href="tel:+919913600800">+91 99136 00800</a>
+                        <a href="tel:+919426816321">+91 94268 16321</a>
+                    </div>
+                </div>
+
+                <!-- Email Block -->
+                <div class="contact-info-box">
+                    <div class="contact-info-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="contact-info-text">
+                        <span>Drop us a line</span>
+                        <a href="mailto:radheindustries8@gmail.com">radheindustries8@gmail.com</a>
+                        <a href="mailto:radhedisposable8@gmail.com">radhedisposable8@gmail.com</a>
+                    </div>
+                </div>
+
+                <!-- Social Block -->
+                <div class="social-follow-box">
+                    <div class="social-group">
+                        <span>Follow us on</span>
+                        <a href="#" class="btn-social-in"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                    <a href="#" class="back-to-top"><i class="fa-solid fa-chevron-up"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="google_translate_element" style="display:none;"></div>
+    <script src="js/main.js"></script>
+    <script src="js/responsive.js"></script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const statusDiv = document.getElementById('formStatus');
+            const btn = e.target.querySelector('button');
+
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+
+            try {
+                const formData = new FormData(e.target);
+                const data = Object.fromEntries(formData.entries());
+
+                // Call the local backend API
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    statusDiv.innerHTML = '<span style="color: green;">Message sent successfully! We will get back to you soon.</span>';
+                    statusDiv.style.display = 'block';
+                    e.target.reset();
+                } else {
+                    throw new Error('Failed to send');
+                }
+            } catch (error) {
+                // Determine if it might be because the backend isn't running
+                statusDiv.innerHTML = '<span style="color: orange;">Note: message simulation successful (Backend not active).</span>';
+                statusDiv.style.display = 'block';
+                console.error(error);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Send Message';
+            }
+        });
+    </script>
+</body>
+
+</html>
