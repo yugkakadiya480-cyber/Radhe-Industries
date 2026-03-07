@@ -181,6 +181,28 @@ app.post('/api/contact', (req, res) => {
     res.json({ success: true, message: "Thank you for contacting us!" });
 });
 
+// Explicit root route - serves index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Catch-all: serve any .html file by name, fallback to index.html
+app.get('*', (req, res) => {
+    const reqPath = req.path;
+    // Try to serve the exact file first
+    const filePath = path.join(__dirname, reqPath);
+    if (reqPath.endsWith('.html') || reqPath.endsWith('.png') || reqPath.endsWith('.jpg') ||
+        reqPath.endsWith('.jpeg') || reqPath.endsWith('.webp') || reqPath.endsWith('.css') ||
+        reqPath.endsWith('.js') || reqPath.endsWith('.gif') || reqPath.endsWith('.ico') ||
+        reqPath.endsWith('.json') || reqPath.endsWith('.svg')) {
+        res.sendFile(filePath, (err) => {
+            if (err) res.status(404).send('File not found');
+        });
+    } else {
+        res.sendFile(path.join(__dirname, 'index.html'));
+    }
+});
+
 // Start Server (local dev) or export for Vercel (serverless)
 if (require.main === module) {
     app.listen(PORT, () => {
