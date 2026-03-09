@@ -4,20 +4,30 @@ const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 const app = express();
-const PORT = process.env.PORT || 3000;
+
+// Pathing adjustment for Vercel: use process.cwd() to reach project root
+const ROOT_DIR = process.cwd();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static(__dirname)); // Serve static files
-app.use('/uploads', express.static(path.join(__dirname, 'images', 'uploads'))); // Serve uploads
 
-const DATA_FILE = path.join(__dirname, 'data', 'products.json');
-const UPLOAD_DIR = path.join(__dirname, 'images', 'uploads');
+// Serve static files from the project root
+// Note: Vercel normally serves these automatically if they are in the root, 
+// but we keep this for local development compatibility.
+app.use(express.static(ROOT_DIR));
+app.use('/uploads', express.static(path.join(ROOT_DIR, 'images', 'uploads')));
 
-// Ensure upload directory exists
+const DATA_FILE = path.join(ROOT_DIR, 'data', 'products.json');
+const UPLOAD_DIR = path.join(ROOT_DIR, 'images', 'uploads');
+
+// Ensure upload directory exists (Note: this will only work in local dev or with persistent storage)
 if (!fs.existsSync(UPLOAD_DIR)) {
-    fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+    try {
+        fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+    } catch (e) {
+        console.warn("Could not create upload directory (expected on Vercel):", e.message);
+    }
 }
 
 // Multer Storage Configuration
@@ -36,7 +46,6 @@ const upload = multer({ storage: storage });
 const readData = () => {
     try {
         if (!fs.existsSync(DATA_FILE)) {
-            // Initialize with default data if missing
             const defaultData = [];
             fs.writeFileSync(DATA_FILE, JSON.stringify(defaultData, null, 2));
             return defaultData;
@@ -65,9 +74,7 @@ const writeData = (data) => {
 // Login Endpoint
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
-    // Hardcoded credentials as requested
     if (username === 'admin' && password === 'admin') {
-        // Simple token for demo purposes
         res.json({ success: true, token: 'admin-token-' + Date.now() });
     } else {
         res.status(401).json({ success: false, message: 'Invalid credentials' });
@@ -82,7 +89,6 @@ app.get('/api/products', (req, res) => {
 
 // POST /api/products (Admin only)
 app.post('/api/products', upload.single('image'), (req, res) => {
-    // Check Auth (Simple Header check)
     const token = req.headers['authorization'];
     if (!token || !token.startsWith('Bearer admin-token-')) {
         return res.status(403).json({ error: "Unauthorized" });
@@ -102,7 +108,7 @@ app.post('/api/products', upload.single('image'), (req, res) => {
         price: parseFloat(price),
         discount: discount ? parseFloat(discount) : 0,
         description: description || "",
-        image: req.file ? `images/uploads/${req.file.filename}` : "images/accessories.svg" // Fallback if no image
+        image: req.file ? `images/uploads/${req.file.filename}` : "images/accessories.svg"
     };
 
     products.push(newProduct);
@@ -113,7 +119,6 @@ app.post('/api/products', upload.single('image'), (req, res) => {
 
 // PUT /api/products/:id (Admin only)
 app.put('/api/products/:id', upload.single('image'), (req, res) => {
-    // Check Auth
     const token = req.headers['authorization'];
     if (!token || !token.startsWith('Bearer admin-token-')) {
         return res.status(403).json({ error: "Unauthorized" });
@@ -129,7 +134,6 @@ app.put('/api/products/:id', upload.single('image'), (req, res) => {
         return res.status(404).json({ error: "Product not found" });
     }
 
-    // Update fields
     const updatedProduct = {
         ...products[productIndex],
         name: name || products[productIndex].name,
@@ -148,7 +152,6 @@ app.put('/api/products/:id', upload.single('image'), (req, res) => {
 
 // DELETE /api/products/:id (Admin only)
 app.delete('/api/products/:id', (req, res) => {
-    // Check Auth
     const token = req.headers['authorization'];
     if (!token || !token.startsWith('Bearer admin-token-')) {
         return res.status(403).json({ error: "Unauthorized" });
@@ -171,43 +174,8 @@ app.delete('/api/products/:id', (req, res) => {
 // POST /api/contact
 app.post('/api/contact', (req, res) => {
     const { name, email, subject, message } = req.body;
-    console.log("New Contact Form Submission:");
-    console.log(`From: ${name} <${email}>`);
-    console.log(`Subject: ${subject}`);
-    console.log(`Message: ${message}`);
-
-    // In a real app, send email here
-
     res.json({ success: true, message: "Thank you for contacting us!" });
 });
 
-// Explicit root route - serves index.html
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-// Catch-all: serve any .html file by name, fallback to index.html
-app.get('*', (req, res) => {
-    const reqPath = req.path;
-    // Try to serve the exact file first
-    const filePath = path.join(__dirname, reqPath);
-    if (reqPath.endsWith('.html') || reqPath.endsWith('.png') || reqPath.endsWith('.jpg') ||
-        reqPath.endsWith('.jpeg') || reqPath.endsWith('.webp') || reqPath.endsWith('.css') ||
-        reqPath.endsWith('.js') || reqPath.endsWith('.gif') || reqPath.endsWith('.ico') ||
-        reqPath.endsWith('.json') || reqPath.endsWith('.svg')) {
-        res.sendFile(filePath, (err) => {
-            if (err) res.status(404).send('File not found');
-        });
-    } else {
-        res.sendFile(path.join(__dirname, 'index.html'));
-    }
-});
-
-// Start Server (local dev) or export for Vercel (serverless)
-if (require.main === module) {
-    app.listen(PORT, () => {
-        console.log(`Server running at http://localhost:${PORT}`);
-    });
-}
-
+// Export for Vercel
 module.exports = app;
