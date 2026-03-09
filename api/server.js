@@ -7,19 +7,18 @@ const app = express();
 
 // Pathing adjustment for Vercel: use process.cwd() to reach project root
 const ROOT_DIR = process.cwd();
+const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the project root
-// Note: Vercel normally serves these automatically if they are in the root, 
-// but we keep this for local development compatibility.
-app.use(express.static(ROOT_DIR));
-app.use('/uploads', express.static(path.join(ROOT_DIR, 'images', 'uploads')));
+// Serve static files (mostly for local development)
+app.use(express.static(PUBLIC_DIR));
+app.use('/uploads', express.static(path.join(PUBLIC_DIR, 'images', 'uploads')));
 
-const DATA_FILE = path.join(ROOT_DIR, 'data', 'products.json');
-const UPLOAD_DIR = path.join(ROOT_DIR, 'images', 'uploads');
+const DATA_FILE = path.join(PUBLIC_DIR, 'data', 'products.json');
+const UPLOAD_DIR = path.join(PUBLIC_DIR, 'images', 'uploads');
 
 // Ensure upload directory exists (Note: this will only work in local dev or with persistent storage)
 if (!fs.existsSync(UPLOAD_DIR)) {
