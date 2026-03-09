@@ -12,9 +12,12 @@ const ROOT_DIR = process.cwd();
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the project root
-app.use(express.static(ROOT_DIR));
-app.use('/uploads', express.static(path.join(ROOT_DIR, 'images', 'uploads')));
+// Serve static files ONLY in local development
+// On Vercel, static files are served natively by the Vercel CDN from the root.
+if (!process.env.VERCEL) {
+    app.use(express.static(ROOT_DIR));
+    app.use('/uploads', express.static(path.join(ROOT_DIR, 'images', 'uploads')));
+}
 
 const DATA_FILE = path.join(ROOT_DIR, 'data', 'products.json');
 const UPLOAD_DIR = path.join(ROOT_DIR, 'images', 'uploads');
