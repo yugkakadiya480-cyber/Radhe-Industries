@@ -2,7 +2,7 @@
   "name": "disposable-cups-backend",
   "version": "1.0.0",
   "description": "Backend API for Disposable CUPS website",
-  "main": "server.js",
+  "main": "api/server.js",
   "scripts": {
     "start": "node api/server.js",
     "dev": "node --watch api/server.js"
