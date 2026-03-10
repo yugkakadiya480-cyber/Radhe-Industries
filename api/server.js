@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
@@ -172,11 +173,77 @@ app.delete('/api/products/:id', (req, res) => {
     res.json({ success: true, message: "Product deleted" });
 });
 
+// --- Email Configuration ---
+const nodemailer = require('nodemailer');
+
+// These should be set in environment variables for security
+const SENDER_EMAIL = process.env.SENDER_EMAIL || 'your-email@gmail.com';
+const SENDER_PASSWORD = process.env.SENDER_PASSWORD || 'your-app-password'; 
+const RECEIVER_EMAIL = 'radheindustries8@gmail.com';
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: SENDER_EMAIL,
+        pass: SENDER_PASSWORD
+    }
+});
+
 // POST /api/contact
-app.post('/api/contact', (req, res) => {
-    const { name, email, subject, message } = req.body;
-    res.json({ success: true, message: "Thank you for contacting us!" });
+app.post('/api/contact', async (req, res) => {
+    const { name, email, phone, country, message } = req.body;
+    
+    console.log(`Received contact request from ${name} (${email})`);
+
+    const mailOptions = {
+        from: SENDER_EMAIL,
+        to: RECEIVER_EMAIL,
+        subject: `New Contact Request from ${name}`,
+        text: `
+            New inquiry received from contact form:
+            
+            Name: ${name}
+            Email: ${email}
+            Phone: ${phone}
+            Country: ${country}
+            
+            Message:
+            ${message}
+        `,
+        html: `
+            <h3>New Inquiry Received</h3>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
+            <p><strong>Country:</strong> ${country}</p>
+            <p><strong>Message:</strong></p>
+            <p>${message}</p>
+        `
+    };
+
+    try {
+        // Only attempt to send if credentials look somewhat valid
+        if (SENDER_EMAIL !== 'your-email@gmail.com' && SENDER_PASSWORD !== 'your-app-password') {
+            await transporter.sendMail(mailOptions);
+            console.log("Email sent successfully!");
+        } else {
+            console.warn("Email NOT sent: SENDER_EMAIL or SENDER_PASSWORD not configured. Logging to console instead.");
+            console.log("Simulated Email Content:", mailOptions.text);
+        }
+        res.json({ success: true, message: "Thank you for contacting us! Your message has been received." });
+    } catch (error) {
+        console.error("Error sending email:", error);
+        res.status(500).json({ success: false, message: "Failed to send message. Please try again later." });
+    }
 });
 
 // Export for Vercel
 module.exports = app;
+
+// Add this for local development
+if (require.main === module) {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`Server is running locally at http://localhost:${PORT}`);
+    });
+}
