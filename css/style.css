@@ -21,6 +21,14 @@
     --color-text: hsl(var(--primary-hue), 10%, 15%);
     --color-text-light: hsl(var(--primary-hue), 5%, 40%);
 
+    /* Brand Logo Colors */
+    --color-brand-red: #d32f2f; /* A standard deep red */
+    --color-brand-gray: #424242; /* A matching dark gray for 'DISPOSABLE' */
+    
+    /* CSS Filter to turn black logo into --color-brand-red */
+    /* Generated using https://isotropic.co/tool/hex-color-to-css-filter/ */
+    --filter-brand-red: invert(24%) sepia(85%) saturate(2716%) hue-rotate(345deg) brightness(96%) contrast(93%);
+
     /* Typography */
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Outfit', sans-serif;
@@ -304,6 +312,19 @@ section {
     /* Exact height for logo */
     width: auto;
     object-fit: contain;
+}
+
+/* Brand Logo Utilities */
+.brand-logo-img {
+    filter: var(--filter-brand-red);
+}
+
+.brand-text-primary {
+    color: var(--color-brand-red) !important;
+}
+
+.brand-text-secondary {
+    color: var(--color-brand-gray) !important;
 }
 
 .text-accent {
