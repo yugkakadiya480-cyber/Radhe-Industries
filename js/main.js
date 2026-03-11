@@ -52,10 +52,16 @@ function googleTranslateElementInit() {
 }
 
 function translatePage(langCode) {
+    // Set Google Translate cookies so preferences persist across pages
+    const cookieString = `/en/${langCode}`;
+    document.cookie = `googtrans=${cookieString}; path=/`;
+    document.cookie = `googtrans=${cookieString}; domain=${window.location.hostname}; path=/`;
+
     const googleSelect = document.querySelector('.goog-te-combo');
     if (googleSelect) {
         googleSelect.value = langCode;
-        googleSelect.dispatchEvent(new Event('change'));
+        // The event must bubble for Google Translate to detect it
+        googleSelect.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
     } else {
         // If Google hasn't loaded yet, try again in a moment
         setTimeout(() => translatePage(langCode), 500);
