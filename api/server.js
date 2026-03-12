@@ -222,18 +222,23 @@ app.post('/api/contact', async (req, res) => {
     };
 
     try {
+        console.log(`Sending email from ${SENDER_EMAIL} to ${RECEIVER_EMAIL}...`);
+        
         // Only attempt to send if credentials look somewhat valid
-        if (SENDER_EMAIL !== 'your-email@gmail.com' && SENDER_PASSWORD !== 'your-app-password') {
-            await transporter.sendMail(mailOptions);
-            console.log("Email sent successfully!");
+        if (SENDER_EMAIL !== 'your-email@gmail.com' && SENDER_PASSWORD !== 'your-app-password' && SENDER_EMAIL && SENDER_PASSWORD) {
+            const info = await transporter.sendMail(mailOptions);
+            console.log("Email sent successfully! Message ID:", info.messageId);
         } else {
             console.warn("Email NOT sent: SENDER_EMAIL or SENDER_PASSWORD not configured. Logging to console instead.");
             console.log("Simulated Email Content:", mailOptions.text);
         }
         res.json({ success: true, message: "Thank you for contacting us! Your message has been received." });
     } catch (error) {
-        console.error("Error sending email:", error);
-        res.status(500).json({ success: false, message: "Failed to send message. Please try again later." });
+        console.error("CRITICAL ERROR sending email:", error);
+        res.status(500).json({ 
+            success: false, 
+            message: "Failed to send message. Please try again later."
+        });
     }
 });
 
