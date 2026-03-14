@@ -221,7 +221,7 @@
                             data-title="WATTI 50-ML"
                             data-category="WATTI"
                             data-diameter="67MM"
-                            data-length="23MM"
+                            data-height="23MM"
                             data-code="PL5080">
                     </div>
                     <div class="promo-footer">
@@ -322,7 +322,7 @@
     <div id="lightbox">
         <div class="lightbox-content split-layout">
             <span class="lightbox-close">&times;</span>
-            <div class="lightbox-image-container" id="lightbox-image-panel" style="position:relative;">
+            <div class="lightbox-image-container" id="lightbox-image-panel" style="position:relative; background: #000;">
                 <img id="lightbox-img" src="" alt="Enlarged product image">
                 <!-- SVG dimension overlay injected by JS -->
                 <svg id="dim-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"
@@ -336,17 +336,17 @@
                         </marker>
                     </defs>
                     <!-- Diameter arrow (horizontal, top) -->
-                    <line x1="80" y1="55" x2="220" y2="55" stroke="#1a7a4a" stroke-width="1.5"
+                    <line x1="60" y1="65" x2="240" y2="65" stroke="#1a7a4a" stroke-width="2"
                         marker-start="url(#ah2)" marker-end="url(#ah)"/>
-                    <line x1="80" y1="48" x2="80" y2="62" stroke="#1a7a4a" stroke-width="1.5"/>
-                    <line x1="220" y1="48" x2="220" y2="62" stroke="#1a7a4a" stroke-width="1.5"/>
-                    <text id="dim-h-label" x="150" y="42" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a7a4a" font-family="Arial,sans-serif">DIAMETER 67MM</text>
+                    <line x1="60" y1="58" x2="60" y2="72" stroke="#1a7a4a" stroke-width="2"/>
+                    <line x1="240" y1="58" x2="240" y2="72" stroke="#1a7a4a" stroke-width="2"/>
+                    <text id="dim-h-label" x="150" y="52" text-anchor="middle" font-size="14" font-weight="900" fill="#1a7a4a" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif">DIAMETER 67MM</text>
                     <!-- Height arrow (vertical, right) -->
-                    <line x1="245" y1="80" x2="245" y2="225" stroke="#1a7a4a" stroke-width="1.5"
+                    <line x1="265" y1="100" x2="265" y2="240" stroke="#1a7a4a" stroke-width="2"
                         marker-start="url(#ah2)" marker-end="url(#ah)"/>
-                    <line x1="238" y1="80" x2="252" y2="80" stroke="#1a7a4a" stroke-width="1.5"/>
-                    <line x1="238" y1="225" x2="252" y2="225" stroke="#1a7a4a" stroke-width="1.5"/>
-                    <text id="dim-v-label" x="270" y="155" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a7a4a" font-family="Arial,sans-serif" transform="rotate(90,270,155)">HEIGHT 23MM</text>
+                    <line x1="258" y1="100" x2="272" y1="100" stroke="#1a7a4a" stroke-width="2"/>
+                    <line x1="258" y1="240" x2="272" y2="240" stroke="#1a7a4a" stroke-width="2"/>
+                    <text id="dim-v-label" x="285" y="170" text-anchor="middle" font-size="14" font-weight="900" fill="#1a7a4a" font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" transform="rotate(90,285,170)">HEIGHT 23MM</text>
                 </svg>
             </div>
             <div class="lightbox-details-container">
@@ -356,12 +356,11 @@
                     <span id="lightbox-price" class="price-tag">Contact for Price</span>
                 </div>
                 <div class="lightbox-description">
-                    <h3>Product Overview</h3>
-                    <p id="lightbox-desc-text">This is a placeholder description for the product. Detailed specifications, material information, and usage guidelines will be updated here once available.</p>
+                    <h3>PRODUCT DETAILS</h3>
                     <ul class="detail-list" id="lightbox-detail-list">
-                        <li><strong>Material:</strong> Food-grade Premium Quality</li>
-                        <li><strong>Features:</strong> Eco-friendly, Durable, Hygienic</li>
-                        <li><strong>Usage:</strong> Ideal for cafes, events, and daily use</li>
+                        <li><strong>MATERIAL:</strong> FOOD-GRADE PREMIUM QUALITY</li>
+                        <li><strong>FEATURES:</strong> ECO-FRIENDLY, DURABLE, HYGIENIC</li>
+                        <li><strong>USAGE:</strong> IDEAL FOR CAFES, EVENTS, AND DAILY USE</li>
                     </ul>
                 </div>
                 <div class="lightbox-actions">
@@ -388,6 +387,8 @@
             const closeLightbox = () => {
                 lightbox.style.display = 'none';
                 document.body.style.overflow = '';
+                const dimSvg = document.getElementById('dim-svg');
+                if (dimSvg) dimSvg.style.display = 'none';
             };
 
             document.addEventListener('click', (e) => {
@@ -413,18 +414,20 @@
 
                         // Rebuild detail list from data attributes
                         const dimSvg = document.getElementById('dim-svg');
-                        if (img.dataset.diameter || img.dataset.height || img.dataset.code) {
+                        if (img.dataset.diameter || img.dataset.height || img.dataset.length || img.dataset.code) {
                             let listHtml = '';
                             if (img.dataset.diameter) listHtml += `<li><strong>DIAMETER:</strong> ${img.dataset.diameter.toUpperCase()}</li>`;
-                            if (img.dataset.length) listHtml += `<li><strong>HEIGHT:</strong> ${img.dataset.length.toUpperCase()}</li>`;
+                            if (img.dataset.height || img.dataset.length) listHtml += `<li><strong>HEIGHT:</strong> ${(img.dataset.height || img.dataset.length).toUpperCase()}</li>`;
                             if (img.dataset.code) listHtml += `<li><strong>CODE:</strong> ${img.dataset.code.toUpperCase()}</li>`;
                             detailList.innerHTML = listHtml;
+                            
                             // Show SVG dimension overlay
                             dimSvg.style.display = 'block';
                             // Update labels from actual data attributes
                             if (img.dataset.diameter) document.getElementById('dim-h-label').textContent = 'DIAMETER ' + img.dataset.diameter.toUpperCase();
-                            if (img.dataset.length) document.getElementById('dim-v-label').textContent = 'HEIGHT ' + img.dataset.length.toUpperCase();
+                            if (img.dataset.height || img.dataset.length) document.getElementById('dim-v-label').textContent = 'HEIGHT ' + (img.dataset.height || img.dataset.length).toUpperCase();
                         } else {
+                            if (dimSvg) dimSvg.style.display = 'none';
                             detailList.innerHTML = `
                                 <li><strong>MATERIAL:</strong> FOOD-GRADE PREMIUM QUALITY</li>
                                 <li><strong>FEATURES:</strong> ECO-FRIENDLY, DURABLE, HYGIENIC</li>
