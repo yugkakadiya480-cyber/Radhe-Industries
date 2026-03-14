@@ -322,26 +322,24 @@
     <div id="lightbox">
         <div class="lightbox-content split-layout">
             <span class="lightbox-close">&times;</span>
-            <div class="lightbox-image-container" id="lightbox-image-panel" style="position:relative; background: #fbfbfb;">
+            <div class="lightbox-image-container" id="lightbox-image-panel" style="position:relative; background: #000;">
                 <img id="lightbox-img" src="" alt="Enlarged product image">
-                <!-- Premium SVG dimension overlay -->
+                <!-- High-Contrast SVG dimension overlay -->
                 <svg id="dim-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"
                     style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;">
                     <!-- Elegant horizontal line (Diameter) -->
-                    <g id="h-spec" opacity="0.9">
-                        <line x1="80" y1="60" x2="320" y2="60" stroke="#50a18e" stroke-width="1.2"/>
-                        <line x1="80" y1="55" x2="80" y2="65" stroke="#50a18e" stroke-width="1.2"/>
-                        <line x1="320" y1="55" x2="320" y2="65" stroke="#50a18e" stroke-width="1.2"/>
-                        <rect x="140" y="45" width="120" height="30" rx="15" fill="rgba(80, 161, 142, 0.1)"/>
-                        <text id="dim-h-label" x="200" y="65" text-anchor="middle" font-size="14" font-weight="700" fill="#1a4d3e" font-family="'Inter', sans-serif">DIAMETER 67MM</text>
+                    <g id="h-spec">
+                        <line x1="60" y1="50" x2="340" y2="50" stroke="#fff" stroke-width="1.5"/>
+                        <line x1="60" y1="45" x2="60" y2="55" stroke="#fff" stroke-width="1.5"/>
+                        <line x1="340" y1="45" x2="340" y2="55" stroke="#fff" stroke-width="1.5"/>
+                        <text id="dim-h-label" x="200" y="40" text-anchor="middle" font-size="16" font-weight="800" fill="#fff" font-family="'Inter', sans-serif">DIAMETER 67MM</text>
                     </g>
                     <!-- Elegant vertical line (Height) -->
-                    <g id="v-spec" opacity="0.9">
-                        <line x1="340" y1="120" x2="340" y2="280" stroke="#50a18e" stroke-width="1.2"/>
-                        <line x1="335" y1="120" x2="345" y2="120" stroke="#50a18e" stroke-width="1.2"/>
-                        <line x1="335" y1="280" x2="345" y2="280" stroke="#50a18e" stroke-width="1.2"/>
-                        <rect x="330" y="160" width="80" height="25" rx="12" fill="rgba(80, 161, 142, 0.1)" transform="rotate(90, 340, 160)"/>
-                        <text id="dim-v-label" x="355" y="200" text-anchor="middle" font-size="14" font-weight="700" fill="#1a4d3e" font-family="'Inter', sans-serif" transform="rotate(90, 355, 200)">HEIGHT 23MM</text>
+                    <g id="v-spec">
+                        <line x1="365" y1="100" x2="365" y2="300" stroke="#fff" stroke-width="1.5"/>
+                        <line x1="360" y1="100" x2="370" y2="100" stroke="#fff" stroke-width="1.5"/>
+                        <line x1="360" y1="300" x2="370" y2="300" stroke="#fff" stroke-width="1.5"/>
+                        <text id="dim-v-label" x="380" y="200" text-anchor="middle" font-size="16" font-weight="800" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 380, 200)">HEIGHT 23MM</text>
                     </g>
                 </svg>
             </div>
