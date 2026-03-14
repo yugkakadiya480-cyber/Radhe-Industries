@@ -220,6 +220,7 @@
                             class="zoom-img lightbox-trigger"
                             data-title="WATTI 50-ML"
                             data-category="WATTI"
+                            data-name="WATTI SMALL SIZE"
                             data-diameter="67MM"
                             data-height="23MM"
                             data-code="PL5080">
@@ -408,8 +409,9 @@
 
                         // Rebuild detail list from data attributes
                         const dimSvg = document.getElementById('dim-svg');
-                        if (img.dataset.diameter || img.dataset.height || img.dataset.length || img.dataset.code) {
+                        if (img.dataset.diameter || img.dataset.height || img.dataset.length || img.dataset.code || img.dataset.name) {
                             let listHtml = '';
+                            if (img.dataset.name) listHtml += `<li><strong>NAME:</strong> ${img.dataset.name.toUpperCase()}</li>`;
                             if (img.dataset.diameter) listHtml += `<li><strong>DIAMETER:</strong> ${img.dataset.diameter.toUpperCase()}</li>`;
                             if (img.dataset.height || img.dataset.length) listHtml += `<li><strong>HEIGHT:</strong> ${(img.dataset.height || img.dataset.length).toUpperCase()}</li>`;
                             if (img.dataset.code) listHtml += `<li><strong>CODE:</strong> ${img.dataset.code.toUpperCase()}</li>`;
