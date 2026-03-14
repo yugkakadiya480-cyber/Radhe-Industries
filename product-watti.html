@@ -216,7 +216,13 @@
 
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
-                        <img src="images/uploads/50-ML WATTI.png" alt="WATTI 50-ML" class="zoom-img lightbox-trigger">
+                        <img src="images/uploads/50-ML WATTI.png" alt="WATTI 50-ML"
+                            class="zoom-img lightbox-trigger"
+                            data-title="WATTI 50-ML"
+                            data-category="WATTI"
+                            data-diameter="67MM"
+                            data-length="23MM"
+                            data-code="PL5080">
                     </div>
                     <div class="promo-footer">
                         <h3>WATTI 50-ML</h3>
@@ -363,7 +369,40 @@
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('zoom-img') || e.target.classList.contains('lightbox-trigger')) {
                     if (e.target.closest('.promo-card') || e.target.closest('.product-card')) {
-                        openLightbox(e.target.src);
+                        const img = e.target;
+                        lightboxImg.src = img.src;
+
+                        // Populate title
+                        const titleEl = document.getElementById('lightbox-title');
+                        const categoryEl = document.getElementById('lightbox-category');
+                        const detailList = document.getElementById('lightbox-detail-list');
+
+                        if (img.dataset.title) {
+                            titleEl.textContent = img.dataset.title.toUpperCase();
+                        } else {
+                            titleEl.textContent = 'PREMIUM PRODUCT';
+                        }
+
+                        if (img.dataset.category) {
+                            categoryEl.textContent = img.dataset.category.toUpperCase();
+                        }
+
+                        // Rebuild detail list from data attributes
+                        if (img.dataset.diameter || img.dataset.length || img.dataset.code) {
+                            let listHtml = '';
+                            if (img.dataset.diameter) listHtml += `<li><strong>DIAMETER:</strong> ${img.dataset.diameter.toUpperCase()}</li>`;
+                            if (img.dataset.length) listHtml += `<li><strong>LENGTH:</strong> ${img.dataset.length.toUpperCase()}</li>`;
+                            if (img.dataset.code) listHtml += `<li><strong>CODE:</strong> ${img.dataset.code.toUpperCase()}</li>`;
+                            detailList.innerHTML = listHtml;
+                        } else {
+                            detailList.innerHTML = `
+                                <li><strong>MATERIAL:</strong> FOOD-GRADE PREMIUM QUALITY</li>
+                                <li><strong>FEATURES:</strong> ECO-FRIENDLY, DURABLE, HYGIENIC</li>
+                                <li><strong>USAGE:</strong> IDEAL FOR CAFES, EVENTS, AND DAILY USE</li>`;
+                        }
+
+                        lightbox.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
                     }
                 }
             });
