@@ -623,7 +623,7 @@ section {
 }
 
 .swiper-pagination-bullet-active {
-    background: var(--color-accent);
+    background: white;
     opacity: 1;
 }
 
