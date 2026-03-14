@@ -102,7 +102,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="hero" id="hero-section" style="position: relative; overflow: hidden;">
+    <header class="hero">
         <div class="swiper hero-carousel">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -331,7 +331,6 @@
     <script src="js/responsive.js"></script>
     <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="js/dot-grid.js"></script>
     <script>
         const swiper = new Swiper('.hero-carousel', {
             loop: true,
@@ -351,21 +350,6 @@
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
-        });
-
-        // DotGrid mouse effect on hero
-        new DotGrid(document.getElementById('hero-section'), {
-            dotSize: 6,
-            gap: 14,
-            baseColor: '#800000',
-            activeColor: '#ff0000',
-            proximity: 120,
-            speedTrigger: 100,
-            shockRadius: 250,
-            shockStrength: 5,
-            maxSpeed: 5000,
-            resistance: 750,
-            returnDuration: 1.5
         });
     </script>
 </body>
