@@ -17,7 +17,7 @@
 
         .promo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-bottom: 1.5rem;
             width: 100%;
@@ -59,7 +59,67 @@
         .product-card:hover .zoom-img {
             transform: scale(1.1);
             cursor: zoom-in;
-        }\n    </style>
+        }
+
+        .product-card .card-image-wrapper {
+            overflow: hidden;
+        }
+
+
+        .promo-footer {
+            background: #50a18e;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            margin-top: auto;
+        }
+
+        .promo-footer h3 {
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+
+        @media (max-width: 992px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .sidebar-promo {
+                position: static;
+                order: -1;
+            }
+
+            .promo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .promo-card .img-wrapper {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .promo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .promo-card .img-wrapper {
+                height: 160px;
+            }
+
+            .promo-footer h3 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
