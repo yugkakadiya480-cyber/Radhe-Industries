@@ -68,101 +68,6 @@
             transform: scale(1.1);
             cursor: zoom-in;
         }
-
-        /* Lightbox Styles */
-        #lightbox {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .lightbox-content {
-            position: relative;
-            width: 90%;
-            max-width: 800px;
-            max-height: 80vh;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-            cursor: default;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox-content img {
-            width: 100%;
-            height: 100%;
-            max-height: 70vh;
-            display: block;
-            object-fit: contain;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .lightbox-close:hover {
-            color: var(--color-accent);
-        }
-
-        @media (max-width: 768px) {
-            .lightbox-content {
-                max-width: 95%;
-                padding: 10px;
-            }
-
-            .lightbox-close {
-                top: -40px;
-                right: 0;
-            }
-        }
-
-        .promo-footer {
-            background: #50a18e;
-            padding: 1.2rem 1.5rem;
-            /* Reverted from 2.5rem */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            margin-top: auto;
-        }
-
-        .promo-footer h3 {
-            margin: 0;
-            font-size: 1.6rem;
-            /* Reverted from 2.2rem */
-            font-weight: 500;
-            /* Reverted from 700 */
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            font-family: 'Outfit', sans-serif;
-            color: #fff;
-        }
-
-        @media (max-width: 992px) {
-            .main-layout {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
     </style>
 </head>
 
@@ -370,12 +275,32 @@
             </div>
         </div>
     </footer>
-
     <!-- Lightbox Modal -->
     <div id="lightbox">
-        <div class="lightbox-content">
+        <div class="lightbox-content split-layout">
             <span class="lightbox-close">&times;</span>
-            <img id="lightbox-img" src="" alt="Enlarged product image">
+            <div class="lightbox-image-container">
+                <img id="lightbox-img" src="" alt="Enlarged product image">
+            </div>
+            <div class="lightbox-details-container">
+                <h2 id="lightbox-title">Premium Product</h2>
+                <div class="lightbox-meta">
+                    <span id="lightbox-category" class="category-badge">Category</span>
+                    <span id="lightbox-price" class="price-tag">Contact for Price</span>
+                </div>
+                <div class="lightbox-description">
+                    <h3>Product Overview</h3>
+                    <p id="lightbox-desc-text">This is a placeholder description for the product. Detailed specifications, material information, and usage guidelines will be updated here once available.</p>
+                    <ul class="detail-list">
+                        <li><strong>Material:</strong> Food-grade Premium Quality</li>
+                        <li><strong>Features:</strong> Eco-friendly, Durable, Hygienic</li>
+                        <li><strong>Usage:</strong> Ideal for cafes, events, and daily use</li>
+                    </ul>
+                </div>
+                <div class="lightbox-actions">
+                    <a href="place-order.html" class="btn btn-primary" style="width: 100%; border-radius: 50px;">Contact to Order</a>
+                </div>
+            </div>
         </div>
     </div>
 
