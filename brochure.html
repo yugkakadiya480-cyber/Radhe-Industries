@@ -488,6 +488,69 @@
             letter-spacing: 1px;
         }
 
+        /* ── RESPONSIVE STYLES ── */
+        @media (max-width: 768px) {
+            .brochure {
+                margin: 60px auto 40px;
+                box-shadow: none;
+            }
+            .cover-top {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px 30px;
+            }
+            .cover-main {
+                grid-template-columns: 1fr;
+                padding: 30px;
+                text-align: center;
+            }
+            .cover-title {
+                font-size: 2.2rem;
+            }
+            .cover-desc {
+                margin: 0 auto 30px;
+            }
+            .cover-stats {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            .cover-footer {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px 30px;
+                text-align: center;
+            }
+            .footer-contact-group {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .section {
+                padding: 40px 30px;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .sizes-section {
+                padding: 40px 30px;
+            }
+            .sizes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .back-cover {
+                grid-template-columns: 1fr;
+                padding: 40px 30px;
+                gap: 40px;
+            }
+        }
+
         /* ── PRINT STYLES ── */
         @media print {
             .print-bar { display: none !important; }
