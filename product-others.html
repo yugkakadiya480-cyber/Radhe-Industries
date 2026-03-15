@@ -121,6 +121,13 @@
                 font-size: 1.1rem;
             }
         }
+
+        /* Specific zoom for BRU as requested */
+        .bru-zoom {
+            transform: scale(1.3);
+            transform-origin: center center;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
     </style>
 </head>
 
@@ -211,10 +218,33 @@
             <section class="promo-grid">
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
-                        <img src="images/uploads/BRU.png" alt="Others Product" class="zoom-img">
+                        <img src="images/uploads/BRU.png" alt="Others Product" class="zoom-img lightbox-trigger"
+                            data-title="BRU"
+                            data-category="Others"
+                            data-name="BRU"
+                            data-capacity="120ML"
+                            data-diameter="62MM"
+                            data-height="65MM"
+                            data-code="T 1270">
                     </div>
                     <div class="promo-footer">
                         <h3>BRU</h3>
+                    </div>
+                </div>
+
+
+                <div class="promo-card">
+                    <div class="card-image-wrapper img-wrapper">
+                        <img src="images/uploads/TOWER2 120-ML.png" alt="TOWER CUP" class="zoom-img lightbox-trigger"
+                            data-title="TOWER CUP"
+                            data-category="Others"
+                            data-name="TOWER CUP"
+                            data-diameter="62MM"
+                            data-height="65MM"
+                            data-code="T 1271">
+                    </div>
+                    <div class="promo-footer">
+                        <h3>TOWER</h3>
                     </div>
                 </div>
             </section>
@@ -337,26 +367,43 @@
     <div id="lightbox">
         <div class="lightbox-content split-layout">
             <span class="lightbox-close">&times;</span>
-            <div class="lightbox-image-container">
+            <div class="lightbox-image-container" style="position:relative;">
                 <img id="lightbox-img" src="" alt="Enlarged product image">
+                <!-- High-Contrast SVG dimension overlay -->
+                <svg id="dim-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto">
+                            <polygon points="0 0, 8 2.5, 0 5" fill="#fff" />
+                        </marker>
+                        <marker id="arrowhead-reverse" markerWidth="8" markerHeight="5" refX="0" refY="2.5" orient="auto">
+                            <polygon points="8 0, 0 2.5, 8 5" fill="#fff" />
+                        </marker>
+                    </defs>
+                    <!-- Elegant horizontal line (Diameter) - Floating Style -->
+                    <g id="h-spec">
+                        <line x1="82" y1="100" x2="318" y2="100" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <text id="dim-h-label" x="200" y="85" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif">DIAMETER</text>
+                    </g>
+                    <!-- Elegant vertical line (Height) - Floating Style -->
+                    <g id="v-spec">
+                        <line x1="315" y1="125" x2="315" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <text id="dim-v-label" x="335" y="230" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 335, 230)">HEIGHT</text>
+                    </g>
+                </svg>
             </div>
             <div class="lightbox-details-container">
                 <h2 id="lightbox-title">Premium Product</h2>
                 <div class="lightbox-meta">
                     <span id="lightbox-category" class="category-badge">Category</span>
-                    <span id="lightbox-price" class="price-tag">Contact for Price</span>
                 </div>
                 <div class="lightbox-description">
-                    <h3>Product Overview</h3>
-                    <p id="lightbox-desc-text">High-quality disposable product for multipurpose use. Durable and stylish.</p>
-                    <ul class="detail-list">
+                    <h3>PRODUCT DETAILS</h3>
+                    <ul class="detail-list" id="lightbox-detail-list">
                         <li><strong>Material:</strong> Food-grade Premium Quality</li>
                         <li><strong>Features:</strong> Eco-friendly, Durable, Hygienic</li>
                         <li><strong>Usage:</strong> Ideal for cafes, events, and daily use</li>
                     </ul>
-                </div>
-                <div class="lightbox-actions">
-                    <a href="place-order.html" class="btn btn-primary" style="width: 100%; border-radius: 50px;">Contact to Order</a>
                 </div>
             </div>
         </div>
@@ -409,19 +456,63 @@
                 grid.innerHTML = '<p style="text-align:center; color:red; width:100%; padding: 4rem;">Currently offline. Please try again later.</p>';
             }
 
-            // Lightbox Logic
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const closeBtn = document.querySelector('.lightbox-close');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxCategory = document.getElementById('lightbox-category');
+            const detailList = document.getElementById('lightbox-detail-list');
+            const dimSvg = document.getElementById('dim-svg');
+            const dimHLabel = document.getElementById('dim-h-label');
+            const dimVLabel = document.getElementById('dim-v-label');
 
-            const openLightbox = (src) => {
-                lightboxImg.src = src;
+            const openLightbox = (img) => {
+                const name = img.getAttribute('data-name');
+                const capacity = img.getAttribute('data-capacity');
+                const diameter = img.getAttribute('data-diameter');
+                const height = img.getAttribute('data-height');
+                const code = img.getAttribute('data-code');
+
+                lightboxImg.src = img.src;
+                lightboxTitle.textContent = name || 'Premium Product';
+                lightboxCategory.textContent = img.getAttribute('data-category') || 'Others';
+
+                // Repopulate details if data exists
+                if (name || capacity || diameter || height || code) {
+                    let detailsHtml = '';
+                    if (name) detailsHtml += `<li><strong>NAME:</strong> ${name}</li>`;
+                    if (capacity) detailsHtml += `<li><strong>CAPACITY:</strong> ${capacity}</li>`;
+                    if (diameter) detailsHtml += `<li><strong>DIAMETER:</strong> ${diameter}</li>`;
+                    if (height) detailsHtml += `<li><strong>HEIGHT:</strong> ${height}</li>`;
+                    if (code) detailsHtml += `<li><strong>CODE:</strong> ${code}</li>`;
+                    detailList.innerHTML = detailsHtml;
+
+                    // Update SVG Dimensions
+                    if (diameter || height) {
+                        dimSvg.style.display = 'block';
+                        if (diameter) dimHLabel.textContent = `DIAMETER ${diameter}`;
+                        if (height) dimVLabel.textContent = `HEIGHT ${height}`;
+                    } else {
+                        dimSvg.style.display = 'none';
+                    }
+                } else {
+                    dimSvg.style.display = 'none';
+                }
+
+                if (name === 'BRU') {
+                    lightboxImg.classList.add('bru-zoom');
+                } else {
+                    lightboxImg.classList.remove('bru-zoom');
+                }
+
                 lightbox.style.display = 'flex';
                 document.body.style.overflow = 'hidden'; // Prevent scroll
             };
 
             const closeLightbox = () => {
                 lightbox.style.display = 'none';
+                dimSvg.style.display = 'none';
+                lightboxImg.classList.remove('bru-zoom');
                 document.body.style.overflow = ''; // Restore scroll
             };
 
@@ -429,7 +520,7 @@
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('zoom-img') || e.target.classList.contains('lightbox-trigger')) {
                     if (e.target.closest('.promo-card') || e.target.closest('.product-card')) {
-                        openLightbox(e.target.src);
+                        openLightbox(e.target);
                     }
                 }
             });

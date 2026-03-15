@@ -207,7 +207,14 @@
             <section class="promo-grid">
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
-                        <img src="images/uploads/WATTI 100-ML.png" alt="WATTI Cup" class="zoom-img lightbox-trigger">
+                        <img src="images/uploads/WATTI 100-ML.png" alt="WATTI Cup" class="zoom-img lightbox-trigger"
+                            data-title="WATTI"
+                            data-category="WATTI"
+                            data-name="WATTI"
+                            data-capacity="100-ML"
+                            data-diameter="80MM"
+                            data-height="45MM"
+                            data-code="PL 1018">
                     </div>
                     <div class="promo-footer">
                         <h3>WATTI 100-ML</h3>
@@ -231,7 +238,14 @@
                 </div>
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
-                        <img src="images/uploads/SQUARE WATTI.png" alt="SQUARE WATTI-100-ML" class="zoom-img lightbox-trigger">
+                        <img src="images/uploads/SQUARE WATTI.png" alt="SQUARE WATTI-100-ML" class="zoom-img lightbox-trigger"
+                            data-title="SQUARE WATTI"
+                            data-category="WATTI"
+                            data-name="SQUARE WATTI"
+                            data-capacity="100ML"
+                            data-diameter="68×68MM"
+                            data-height="40MM"
+                            data-code="SQ1010">
                     </div>
                     <div class="promo-footer">
                         <h3>SQUARE WATTI-100-ML</h3>
@@ -239,7 +253,14 @@
                 </div>
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
-                        <img src="images/uploads/Sunday cup.png" alt="SUNDAY CUP" class="zoom-img lightbox-trigger">
+                        <img src="images/uploads/Sunday cup.png" alt="SUNDAY CUP" class="zoom-img lightbox-trigger"
+                            data-title="SUNDAY CUP"
+                            data-category="WATTI"
+                            data-name="SUNDAY CUP"
+                            data-capacity="100ML"
+                            data-diameter="80MM"
+                            data-height="45MM"
+                            data-code="PL 1027">
                     </div>
                     <div class="promo-footer">
                         <h3>SUNDAY CUP</h3>
@@ -344,19 +365,27 @@
                 <!-- High-Contrast SVG dimension overlay -->
                 <svg id="dim-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"
                     style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto">
+                            <polygon points="0 0, 8 2.5, 0 5" fill="#fff" />
+                        </marker>
+                        <marker id="arrowhead-reverse" markerWidth="8" markerHeight="5" refX="0" refY="2.5" orient="auto">
+                            <polygon points="8 0, 0 2.5, 8 5" fill="#fff" />
+                        </marker>
+                    </defs>
                     <!-- Elegant horizontal line (Diameter) -->
                     <g id="h-spec">
-                        <line x1="60" y1="50" x2="340" y2="50" stroke="#fff" stroke-width="1.5"/>
-                        <line x1="60" y1="45" x2="60" y2="55" stroke="#fff" stroke-width="1.5"/>
-                        <line x1="340" y1="45" x2="340" y2="55" stroke="#fff" stroke-width="1.5"/>
-                        <text id="dim-h-label" x="200" y="40" text-anchor="middle" font-size="16" font-weight="800" fill="#fff" font-family="'Inter', sans-serif">DIAMETER 67MM</text>
+                        <line x1="80" y1="100" x2="320" y2="100" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <line x1="80" y1="95" x2="80" y2="105" stroke="#fff" stroke-width="1"/>
+                        <line x1="320" y1="95" x2="320" y2="105" stroke="#fff" stroke-width="1"/>
+                        <text id="dim-h-label" x="200" y="85" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif">DIAMETER</text>
                     </g>
                     <!-- Elegant vertical line (Height) -->
                     <g id="v-spec">
-                        <line x1="365" y1="100" x2="365" y2="300" stroke="#fff" stroke-width="1.5"/>
-                        <line x1="360" y1="100" x2="370" y2="100" stroke="#fff" stroke-width="1.5"/>
-                        <line x1="360" y1="300" x2="370" y2="300" stroke="#fff" stroke-width="1.5"/>
-                        <text id="dim-v-label" x="380" y="200" text-anchor="middle" font-size="16" font-weight="800" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 380, 200)">HEIGHT 23MM</text>
+                        <line x1="315" y1="125" x2="315" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <line x1="310" y1="125" x2="320" y2="125" stroke="#fff" stroke-width="1"/>
+                        <line x1="310" y1="335" x2="320" y2="335" stroke="#fff" stroke-width="1"/>
+                        <text id="dim-v-label" x="335" y="230" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 335, 230)">HEIGHT</text>
                     </g>
                 </svg>
             </div>
@@ -364,7 +393,6 @@
                 <h2 id="lightbox-title">Premium Product</h2>
                 <div class="lightbox-meta">
                     <span id="lightbox-category" class="category-badge">Category</span>
-                    <span id="lightbox-price" class="price-tag">Contact for Price</span>
                 </div>
                 <div class="lightbox-description">
                     <h3>PRODUCT DETAILS</h3>
@@ -373,9 +401,6 @@
                         <li><strong>FEATURES:</strong> ECO-FRIENDLY, DURABLE, HYGIENIC</li>
                         <li><strong>USAGE:</strong> IDEAL FOR CAFES, EVENTS, AND DAILY USE</li>
                     </ul>
-                </div>
-                <div class="lightbox-actions">
-                    <a href="place-order.html" class="btn btn-primary" style="width: 100%; border-radius: 50px;">Contact to Order</a>
                 </div>
             </div>
         </div>
@@ -425,9 +450,10 @@
 
                         // Rebuild detail list from data attributes
                         const dimSvg = document.getElementById('dim-svg');
-                        if (img.dataset.diameter || img.dataset.height || img.dataset.length || img.dataset.code || img.dataset.name) {
+                        if (img.dataset.diameter || img.dataset.height || img.dataset.length || img.dataset.code || img.dataset.name || img.dataset.capacity) {
                             let listHtml = '';
                             if (img.dataset.name) listHtml += `<li><strong>NAME:</strong> ${img.dataset.name.toUpperCase()}</li>`;
+                            if (img.dataset.capacity) listHtml += `<li><strong>CAPACITY:</strong> ${img.dataset.capacity.toUpperCase()}</li>`;
                             if (img.dataset.diameter) listHtml += `<li><strong>DIAMETER:</strong> ${img.dataset.diameter.toUpperCase()}</li>`;
                             if (img.dataset.height || img.dataset.length) listHtml += `<li><strong>HEIGHT:</strong> ${(img.dataset.height || img.dataset.length).toUpperCase()}</li>`;
                             if (img.dataset.code) listHtml += `<li><strong>CODE:</strong> ${img.dataset.code.toUpperCase()}</li>`;

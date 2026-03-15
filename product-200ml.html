@@ -208,7 +208,28 @@
             <section class="promo-grid">
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
-                        <img src="images/uploads/TOWER 225-ML.png" alt="200-ML TOWER" class="zoom-img">
+                        <img src="images/uploads/TOWER 225-ML.png" alt="200-ML TOWER" class="zoom-img lightbox-trigger"
+                            data-name="TOWER"
+                            data-diameter="80MM"
+                            data-height="78MM"
+                            data-code="TW2025"
+                            data-category="200ml">
+                    </div>
+                    <div class="promo-footer">
+                        <h3>TOWER</h3>
+                    </div>
+                </div>
+
+                <div class="promo-card">
+                    <div class="card-image-wrapper img-wrapper" style="overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                        <div style="width: 100%; height: 100%; transform: scale(1.5);">
+                            <img src="images/uploads/TOWER 200-ML.png" alt="200-ML TOWER" class="zoom-img lightbox-trigger"
+                                data-name="TOWER"
+                                data-diameter="80MM"
+                                data-height="78MM"
+                                data-code="TW2025"
+                                data-category="200ml">
+                        </div>
                     </div>
                     <div class="promo-footer">
                         <h3>TOWER</h3>
@@ -245,6 +266,51 @@
                     </div>
                     <div class="promo-footer">
                         <h3>HEXA</h3>
+                    </div>
+                </div>
+
+                <div class="promo-card">
+                    <div class="card-image-wrapper img-wrapper">
+                        <div class="img-zoom-lens"></div>
+                        <img src="images/uploads/HEXA4 180-ML.jpeg" alt="HEXA FULL SIZE" class="zoom-img lightbox-trigger"
+                            data-name="HEXA FULL SIZE"
+                            data-diameter="74MM"
+                            data-height="75MM"
+                            data-code="HX2012"
+                            data-category="200ml">
+                    </div>
+                    <div class="promo-footer">
+                        <h3>HEXA FULL SIZE</h3>
+                    </div>
+                </div>
+
+                <div class="promo-card">
+                    <div class="card-image-wrapper img-wrapper">
+                        <div class="img-zoom-lens"></div>
+                        <img src="images/uploads/HEXA5 180-ML.jpeg" alt="HEXA FULL SIZE" class="zoom-img lightbox-trigger"
+                            data-name="HEXA FULL SIZE"
+                            data-diameter="74MM"
+                            data-height="75MM"
+                            data-code="HX2022"
+                            data-category="200ml">
+                    </div>
+                    <div class="promo-footer">
+                        <h3>HEXA FULL SIZE</h3>
+                    </div>
+                </div>
+
+                <div class="promo-card">
+                    <div class="card-image-wrapper img-wrapper">
+                        <div class="img-zoom-lens"></div>
+                        <img src="images/uploads/HEXA6 180-ML.jpg" alt="HEXA LARGE SIZE" class="zoom-img lightbox-trigger"
+                            data-name="HEXA LARGE SIZE"
+                            data-diameter="80MM"
+                            data-height="85MM"
+                            data-code="HX2029"
+                            data-category="200ml">
+                    </div>
+                    <div class="promo-footer">
+                        <h3>HEXA LARGE SIZE</h3>
                     </div>
                 </div>
 
@@ -349,19 +415,43 @@
     <div id="lightbox">
         <div class="lightbox-content split-layout">
             <span class="lightbox-close">&times;</span>
-            <div class="lightbox-image-container">
+            <div class="lightbox-image-container" style="position:relative; background: #000;">
                 <img id="lightbox-img" src="" alt="Enlarged product image">
+                <!-- High-Contrast SVG dimension overlay -->
+                <svg id="dim-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto">
+                            <polygon points="0 0, 8 2.5, 0 5" fill="#fff" />
+                        </marker>
+                        <marker id="arrowhead-reverse" markerWidth="8" markerHeight="5" refX="0" refY="2.5" orient="auto">
+                            <polygon points="8 0, 0 2.5, 8 5" fill="#fff" />
+                        </marker>
+                    </defs>
+                    <!-- Elegant horizontal line (Diameter) -->
+                    <g id="h-spec">
+                        <line x1="60" y1="60" x2="340" y2="60" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <line x1="60" y1="55" x2="60" y2="65" stroke="#fff" stroke-width="1"/>
+                        <line x1="340" y1="55" x2="340" y2="65" stroke="#fff" stroke-width="1"/>
+                        <text id="dim-h-label" x="200" y="45" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif">DIAMETER</text>
+                    </g>
+                    <!-- Elegant vertical line (Height) -->
+                    <g id="v-spec">
+                        <line x1="315" y1="125" x2="315" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <line x1="310" y1="125" x2="320" y2="125" stroke="#fff" stroke-width="1"/>
+                        <line x1="310" y1="335" x2="320" y2="335" stroke="#fff" stroke-width="1"/>
+                        <text id="dim-v-label" x="335" y="230" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 335, 230)">HEIGHT</text>
+                    </g>
+                </svg>
             </div>
             <div class="lightbox-details-container">
                 <h2 id="lightbox-title">Premium Product</h2>
                 <div class="lightbox-meta">
                     <span id="lightbox-category" class="category-badge">Category</span>
-                    <span id="lightbox-price" class="price-tag">Contact for Price</span>
                 </div>
                 <div class="lightbox-description">
-                    <h3>Product Overview</h3>
-                    <p id="lightbox-desc-text">This is a placeholder description for the product. Detailed specifications, material information, and usage guidelines will be updated here once available.</p>
-                    <ul class="detail-list">
+                    <h3>PRODUCT DETAILS</h3>
+                    <ul class="detail-list" id="lightbox-detail-list">
                         <li><strong>Material:</strong> Food-grade Premium Quality</li>
                         <li><strong>Features:</strong> Eco-friendly, Durable, Hygienic</li>
                         <li><strong>Usage:</strong> Ideal for cafes, events, and daily use</li>
@@ -373,6 +463,7 @@
             </div>
         </div>
     </div>
+
 
     <script src="js/main.js"></script>
     <script src="js/responsive.js"></script>
@@ -425,15 +516,60 @@
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const closeBtn = document.querySelector('.lightbox-close');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxCategory = document.getElementById('lightbox-category');
+            const detailList = document.getElementById('lightbox-detail-list');
+            const dimSvg = document.getElementById('dim-svg');
+            const dimHLabel = document.getElementById('dim-h-label');
+            const dimVLabel = document.getElementById('dim-v-label');
 
-            const openLightbox = (src) => {
-                lightboxImg.src = src;
+            const openLightbox = (img) => {
+                const name = img.getAttribute('data-name');
+                const capacity = img.getAttribute('data-capacity');
+                const diameter = img.getAttribute('data-diameter');
+                const height = img.getAttribute('data-height');
+                const code = img.getAttribute('data-code');
+
+                lightboxImg.src = img.src;
+                if (lightboxTitle) lightboxTitle.textContent = name || 'Premium Product';
+                if (lightboxCategory) lightboxCategory.textContent = img.getAttribute('data-category') || '200ml';
+
+                // Repopulate details if data exists
+                if (name || capacity || diameter || height || code) {
+                    let detailsHtml = '';
+                    if (name) detailsHtml += `<li><strong>NAME:</strong> ${name}</li>`;
+                    if (capacity) detailsHtml += `<li><strong>CAPACITY:</strong> ${capacity}</li>`;
+                    if (diameter) detailsHtml += `<li><strong>DIAMETER:</strong> ${diameter}</li>`;
+                    if (height) detailsHtml += `<li><strong>HEIGHT:</strong> ${height}</li>`;
+                    if (code) detailsHtml += `<li><strong>CODE:</strong> ${code}</li>`;
+                    if (detailList) detailList.innerHTML = detailsHtml;
+
+                    // Update SVG Dimensions
+                    if (diameter || height) {
+                        dimSvg.style.display = 'block';
+                        if (diameter) dimHLabel.textContent = `DIAMETER ${diameter}`;
+                        if (height) dimVLabel.textContent = `HEIGHT ${height}`;
+                    } else {
+                        dimSvg.style.display = 'none';
+                    }
+                } else {
+                    dimSvg.style.display = 'none';
+                    if (detailList) {
+                        detailList.innerHTML = `
+                            <li><strong>Material:</strong> Food-grade Premium Quality</li>
+                            <li><strong>Features:</strong> Eco-friendly, Durable, Hygienic</li>
+                            <li><strong>Usage:</strong> Ideal for cafes, events, and daily use</li>
+                        `;
+                    }
+                }
+
                 lightbox.style.display = 'flex';
                 document.body.style.overflow = 'hidden'; // Prevent scroll
             };
 
             const closeLightbox = () => {
                 lightbox.style.display = 'none';
+                dimSvg.style.display = 'none';
                 document.body.style.overflow = ''; // Restore scroll
             };
 
@@ -441,7 +577,7 @@
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('zoom-img') || e.target.classList.contains('lightbox-trigger')) {
                     if (e.target.closest('.promo-card') || e.target.closest('.product-card')) {
-                        openLightbox(e.target.src);
+                        openLightbox(e.target);
                     }
                 }
             });

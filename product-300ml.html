@@ -209,10 +209,16 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/300-ML plain.png" alt="300-ML Plain Cup"
-                            class="zoom-img lightbox-trigger">
+                            class="zoom-img lightbox-trigger"
+                            data-title="PLAIN MEDIUM"
+                            data-category="300ml"
+                            data-name="PLAIN MEDIUM"
+                            data-diameter="80MM"
+                            data-height="110MM"
+                            data-code="PL3050">
                     </div>
                     <div class="promo-footer">
-                        <h3>PLAIN</h3>
+                        <h3>PLAIN MEDIUM</h3>
                     </div>
                 </div>
                 <!-- SPIRAL Cup Section -->
@@ -229,10 +235,32 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/300-ML TOWER.png" alt="300-ML Tower Cup"
-                            class="zoom-img lightbox-trigger">
+                            class="zoom-img lightbox-trigger"
+                            data-title="TOWER"
+                            data-name="TOWER"
+                            data-diameter="80MM"
+                            data-height="105MM"
+                            data-code="3070"
+                            data-category="300ml">
                     </div>
                     <div class="promo-footer">
                         <h3>TOWER</h3>
+                    </div>
+                </div>
+                <!-- PLAIN HEAVY Cup Section -->
+                <div class="promo-card">
+                    <div class="card-image-wrapper img-wrapper">
+                        <img src="images/uploads/PLAIN 300.png" alt="300-ML Plain Heavy Cup"
+                            class="zoom-img lightbox-trigger"
+                            data-title="PLAIN HEAVY"
+                            data-name="PLAIN HEAVY"
+                            data-diameter="80MM"
+                            data-height="110MM"
+                            data-code="PL3040"
+                            data-category="300ml">
+                    </div>
+                    <div class="promo-footer">
+                        <h3>PLAIN HEAVY</h3>
                     </div>
                 </div>
             </section>
@@ -330,22 +358,46 @@
     <div id="lightbox">
         <div class="lightbox-content split-layout">
             <span class="lightbox-close">&times;</span>
-            <div class="lightbox-image-container">
+            <div class="lightbox-image-container" id="lightbox-image-panel" style="position:relative; background: #000;">
                 <img id="lightbox-img" src="" alt="Enlarged product image">
+                <!-- High-Contrast SVG dimension overlay -->
+                <svg id="dim-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto">
+                            <polygon points="0 0, 8 2.5, 0 5" fill="#fff" />
+                        </marker>
+                        <marker id="arrowhead-reverse" markerWidth="8" markerHeight="5" refX="0" refY="2.5" orient="auto">
+                            <polygon points="8 0, 0 2.5, 8 5" fill="#fff" />
+                        </marker>
+                    </defs>
+                    <!-- Elegant horizontal line (Diameter) -->
+                    <g id="h-spec">
+                        <line x1="60" y1="60" x2="340" y2="60" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <line x1="60" y1="55" x2="60" y2="65" stroke="#fff" stroke-width="1"/>
+                        <line x1="340" y1="55" x2="340" y2="65" stroke="#fff" stroke-width="1"/>
+                        <text id="dim-h-label" x="200" y="45" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif">DIAMETER</text>
+                    </g>
+                    <!-- Elegant vertical line (Height) -->
+                    <g id="v-spec">
+                        <line x1="315" y1="125" x2="315" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <line x1="310" y1="125" x2="320" y2="125" stroke="#fff" stroke-width="1"/>
+                        <line x1="310" y1="335" x2="320" y2="335" stroke="#fff" stroke-width="1"/>
+                        <text id="dim-v-label" x="335" y="230" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 335, 230)">HEIGHT</text>
+                    </g>
+                </svg>
             </div>
             <div class="lightbox-details-container">
                 <h2 id="lightbox-title">Premium Product</h2>
                 <div class="lightbox-meta">
                     <span id="lightbox-category" class="category-badge">Category</span>
-                    <span id="lightbox-price" class="price-tag">Contact for Price</span>
                 </div>
                 <div class="lightbox-description">
-                    <h3>Product Overview</h3>
-                    <p id="lightbox-desc-text">This is a placeholder description for the product. Detailed specifications, material information, and usage guidelines will be updated here once available.</p>
-                    <ul class="detail-list">
-                        <li><strong>Material:</strong> Food-grade Premium Quality</li>
-                        <li><strong>Features:</strong> Eco-friendly, Durable, Hygienic</li>
-                        <li><strong>Usage:</strong> Ideal for cafes, events, and daily use</li>
+                    <h3>PRODUCT DETAILS</h3>
+                    <ul class="detail-list" id="lightbox-detail-list">
+                        <li><strong>MATERIAL:</strong> FOOD-GRADE PREMIUM QUALITY</li>
+                        <li><strong>FEATURES:</strong> ECO-FRIENDLY, DURABLE, HYGIENIC</li>
+                        <li><strong>USAGE:</strong> IDEAL FOR CAFES, EVENTS, AND DAILY USE</li>
                     </ul>
                 </div>
                 <div class="lightbox-actions">
@@ -359,35 +411,79 @@
     <script src="js/responsive.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Lightbox Logic
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const closeBtn = document.querySelector('.lightbox-close');
 
             const openLightbox = (src) => {
                 lightboxImg.src = src;
-                lightbox.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Prevent scroll
+                document.body.style.overflow = 'hidden'; 
             };
 
             const closeLightbox = () => {
                 lightbox.style.display = 'none';
-                document.body.style.overflow = ''; // Restore scroll
+                document.body.style.overflow = ''; 
+                const dimSvg = document.getElementById('dim-svg');
+                if (dimSvg) dimSvg.style.display = 'none';
             };
 
-            // Delegate clicks for both static and dynamic images
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('zoom-img') || e.target.classList.contains('lightbox-trigger')) {
                     if (e.target.closest('.promo-card') || e.target.closest('.product-card')) {
-                        openLightbox(e.target.src);
+                        const img = e.target;
+                        lightboxImg.src = img.src;
+
+                        const titleEl = document.getElementById('lightbox-title');
+                        const categoryEl = document.getElementById('lightbox-category');
+                        const detailList = document.getElementById('lightbox-detail-list');
+
+                        if (img.dataset.title) {
+                            titleEl.textContent = img.dataset.title.toUpperCase();
+                        } else {
+                            titleEl.textContent = 'PREMIUM PRODUCT';
+                        }
+
+                        if (img.dataset.category) {
+                            categoryEl.textContent = img.dataset.category.toUpperCase();
+                        }
+
+                        const dimSvg = document.getElementById('dim-svg');
+                        if (img.dataset.diameter || img.dataset.height || img.dataset.length || img.dataset.code || img.dataset.name || img.dataset.capacity) {
+                            let listHtml = '';
+                            if (img.dataset.name) listHtml += `<li><strong>NAME:</strong> ${img.dataset.name.toUpperCase()}</li>`;
+                            if (img.dataset.capacity) listHtml += `<li><strong>CAPACITY:</strong> ${img.dataset.capacity.toUpperCase()}</li>`;
+                            if (img.dataset.diameter) listHtml += `<li><strong>DIAMETER:</strong> ${img.dataset.diameter.toUpperCase()}</li>`;
+                            if (img.dataset.height || img.dataset.length) listHtml += `<li><strong>HEIGHT:</strong> ${(img.dataset.height || img.dataset.length).toUpperCase()}</li>`;
+                            if (img.dataset.code) listHtml += `<li><strong>CODE:</strong> ${img.dataset.code.toUpperCase()}</li>`;
+                            if (detailList) detailList.innerHTML = listHtml;
+                            
+                            if (dimSvg) {
+                                dimSvg.style.display = 'block';
+                                if (img.dataset.diameter) document.getElementById('dim-h-label').textContent = 'DIAMETER ' + img.dataset.diameter.toUpperCase();
+                                if (img.dataset.height || img.dataset.length) document.getElementById('dim-v-label').textContent = 'HEIGHT ' + (img.dataset.height || img.dataset.length).toUpperCase();
+                            }
+                        } else {
+                            if (dimSvg) dimSvg.style.display = 'none';
+                            if (detailList) {
+                                detailList.innerHTML = `
+                                    <li><strong>MATERIAL:</strong> FOOD-GRADE PREMIUM QUALITY</li>
+                                    <li><strong>FEATURES:</strong> ECO-FRIENDLY, DURABLE, HYGIENIC</li>
+                                    <li><strong>USAGE:</strong> IDEAL FOR CAFES, EVENTS, AND DAILY USE</li>`;
+                            }
+                        }
+
+                        lightbox.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
                     }
                 }
             });
 
-            closeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                closeLightbox();
-            });
+            if(closeBtn) {
+                closeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    closeLightbox();
+                });
+            }
 
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox) {
@@ -395,7 +491,6 @@
                 }
             });
 
-            // ESC key to close
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && lightbox.style.display === 'flex') {
                     closeLightbox();
