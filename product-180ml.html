@@ -62,7 +62,7 @@
         }
 
         .spiral-image-zoom {
-            transform: scale(1.4) !important;
+            transform: scale(1.1) !important;
         }
 
         .promo-card:hover .spiral-image-zoom {
@@ -189,7 +189,7 @@
                     <li class="nav-item"><a href="material.html" class="nav-link">Material</a></li>
                     <li class="nav-item"><a href="pricelist.html" class="nav-link">Price List</a></li>
                     <li class="nav-item"><a href="certificate.html" class="nav-link">Certificate</a></li>
-                    <li class="nav-item"><a href="export.html" class="nav-link">Exports</a></li>
+
 
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
                     <li class="nav-item"><a href="place-order.html" class="nav-link">Place Order</a></li>
@@ -316,19 +316,6 @@
                 </div>
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
-                        <img src="images/uploads/CKECKS FULL.png" alt="CHECKS Presentation" class="zoom-img lightbox-trigger"
-                            data-name="CHECKS FULL SIZE"
-                            data-diameter="74MM"
-                            data-height="80MM"
-                            data-code="CH1817"
-                            data-category="180ml">
-                    </div>
-                    <div class="promo-footer">
-                        <h3>CHECKS FULL SIZE</h3>
-                    </div>
-                </div>
-                <div class="promo-card">
-                    <div class="card-image-wrapper img-wrapper">
                         <div class="img-zoom-lens"></div>
                         <img src="images/plain-180ml.png" alt="PLAIN Presentation" class="zoom-img"
                             data-name="PLAIN"
@@ -351,7 +338,12 @@
                 </div>
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
-                        <img src="images/MOCKTAIL.png" alt="MOCKTAIL Presentation" class="zoom-img">
+                        <img src="images/MOCKTAIL.png" alt="MOCKTAIL Presentation" class="zoom-img lightbox-trigger"
+                            data-name="MOCKTAIL"
+                            data-diameter="75MM"
+                            data-height="87MM"
+                            data-code="TW1823"
+                            data-category="180ml">
                     </div>
                     <div class="promo-footer">
                         <h3>MOCKTAIL</h3>
@@ -394,7 +386,6 @@
                         <ul>
                             <li><a href="pricelist.html">Price List</a></li>
                             <li><a href="certificate.html">Certificate</a></li>
-                            <li><a href="export.html">Exports</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
                             <li><a href="place-order.html">Place Order</a></li>
                         </ul>
@@ -502,15 +493,18 @@
                     </g>
                     <!-- Elegant vertical line (Height) -->
                     <g id="v-spec">
-                        <line x1="315" y1="125" x2="315" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
-                        <line x1="310" y1="125" x2="320" y2="125" stroke="#fff" stroke-width="1"/>
-                        <line x1="310" y1="335" x2="320" y2="335" stroke="#fff" stroke-width="1"/>
-                        <text id="dim-v-label" x="335" y="230" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 335, 230)">HEIGHT</text>
+                        <line x1="355" y1="125" x2="355" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <line x1="350" y1="125" x2="360" y2="125" stroke="#fff" stroke-width="1"/>
+                        <line x1="350" y1="335" x2="360" y2="335" stroke="#fff" stroke-width="1"/>
+                        <text id="dim-v-label" x="375" y="230" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 375, 230)">HEIGHT</text>
                     </g>
                 </svg>
             </div>
             <div class="lightbox-details-container">
-                <h2 id="lightbox-title">Premium Product</h2>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+                    <h2 id="lightbox-title" style="margin: 0;">Premium Product</h2>
+                    <span id="lightbox-code" style="color: #ff3b30; font-weight: 800; font-size: 1.2rem; text-transform: uppercase;"></span>
+                </div>
                 <div class="lightbox-meta">
                     <span id="lightbox-category" class="category-badge">Category</span>
                 </div>
@@ -596,10 +590,12 @@
 
                 // Update text elements
                 const titleEl = document.getElementById('lightbox-title');
+                const codeHeaderEl = document.getElementById('lightbox-code');
                 const categoryEl = document.getElementById('lightbox-category');
                 const detailList = document.querySelector('.detail-list');
 
                 if (titleEl) titleEl.textContent = name || 'Premium Product';
+                if (codeHeaderEl) codeHeaderEl.textContent = code ? 'CODE: ' + code.toUpperCase() : '';
                 if (categoryEl) categoryEl.textContent = category;
 
                 if (name || capacity || diameter || height || code) {

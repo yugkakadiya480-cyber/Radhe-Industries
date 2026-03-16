@@ -61,6 +61,18 @@
             cursor: zoom-in;
         }
 
+        .spiral-image-zoom {
+            transform: scale(1.1) !important;
+        }
+
+        .promo-card:hover .spiral-image-zoom {
+            transform: scale(1.55) !important;
+        }
+
+        .lightbox-zoom {
+            transform: scale(1.6) !important;
+        }
+
         .product-card .card-image-wrapper {
             overflow: hidden;
         }
@@ -177,7 +189,7 @@
                     <li class="nav-item"><a href="material.html" class="nav-link">Material</a></li>
                     <li class="nav-item"><a href="pricelist.html" class="nav-link">Price List</a></li>
                     <li class="nav-item"><a href="certificate.html" class="nav-link">Certificate</a></li>
-                    <li class="nav-item"><a href="export.html" class="nav-link">Exports</a></li>
+
 
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
                     <li class="nav-item"><a href="place-order.html" class="nav-link">Place Order</a></li>
@@ -244,6 +256,20 @@
                         <h3>CHECKS</h3>
                     </div>
                 </div>
+
+                <div class="promo-card">
+                    <div class="card-image-wrapper img-wrapper">
+                        <img src="images/uploads/CKECKS FULL.png" alt="CHECKS Presentation" class="zoom-img lightbox-trigger"
+                            data-name="CHECKS FULL SIZE"
+                            data-diameter="74MM"
+                            data-height="80MM"
+                            data-code="CH1817"
+                            data-category="200ml">
+                    </div>
+                    <div class="promo-footer">
+                        <h3>CHECKS FULL SIZE</h3>
+                    </div>
+                </div>
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/PLAIN 200-ML.png" alt="200-ML PLAIN" class="zoom-img">
@@ -254,7 +280,12 @@
                 </div>
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
-                        <img src="images/uploads/SPIRAL 200-ML.png" alt="200-ML SPIRAL" class="zoom-img">
+                        <img src="images/uploads/SPIRAL 200-ML.png" alt="200-ML SPIRAL" class="zoom-img lightbox-trigger spiral-image-zoom"
+                            data-name="SPIRAL"
+                            data-diameter="70MM"
+                            data-height="80MM"
+                            data-code="SP2020"
+                            data-category="200ml">
                     </div>
                     <div class="promo-footer">
                         <h3>SPIRAL</h3>
@@ -314,6 +345,7 @@
                     </div>
                 </div>
 
+
             </section>
 
             <main class="product-grid" id="productGrid" style="width: 100%;">
@@ -348,7 +380,6 @@
                         <ul>
                             <li><a href="pricelist.html">Price List</a></li>
                             <li><a href="certificate.html">Certificate</a></li>
-                            <li><a href="export.html">Exports</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
                             <li><a href="place-order.html">Place Order</a></li>
                         </ul>
@@ -437,15 +468,18 @@
                     </g>
                     <!-- Elegant vertical line (Height) -->
                     <g id="v-spec">
-                        <line x1="315" y1="125" x2="315" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
-                        <line x1="310" y1="125" x2="320" y2="125" stroke="#fff" stroke-width="1"/>
-                        <line x1="310" y1="335" x2="320" y2="335" stroke="#fff" stroke-width="1"/>
-                        <text id="dim-v-label" x="335" y="230" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 335, 230)">HEIGHT</text>
+                        <line x1="355" y1="125" x2="355" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <line x1="350" y1="125" x2="360" y2="125" stroke="#fff" stroke-width="1"/>
+                        <line x1="350" y1="335" x2="360" y2="335" stroke="#fff" stroke-width="1"/>
+                        <text id="dim-v-label" x="375" y="230" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 375, 230)">HEIGHT</text>
                     </g>
                 </svg>
             </div>
             <div class="lightbox-details-container">
-                <h2 id="lightbox-title">Premium Product</h2>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+                    <h2 id="lightbox-title" style="margin: 0;">Premium Product</h2>
+                    <span id="lightbox-code" style="color: #ff3b30; font-weight: 800; font-size: 1.2rem; text-transform: uppercase;"></span>
+                </div>
                 <div class="lightbox-meta">
                     <span id="lightbox-category" class="category-badge">Category</span>
                 </div>
@@ -457,9 +491,7 @@
                         <li><strong>Usage:</strong> Ideal for cafes, events, and daily use</li>
                     </ul>
                 </div>
-                <div class="lightbox-actions">
-                    <a href="place-order.html" class="btn btn-primary" style="width: 100%; border-radius: 50px;">Contact to Order</a>
-                </div>
+
             </div>
         </div>
     </div>
@@ -516,33 +548,42 @@
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const closeBtn = document.querySelector('.lightbox-close');
-            const lightboxTitle = document.getElementById('lightbox-title');
-            const lightboxCategory = document.getElementById('lightbox-category');
+                        const titleEl = document.getElementById('lightbox-title');
+                        const codeHeaderEl = document.getElementById('lightbox-code');
+                        const categoryEl = document.getElementById('lightbox-category');
             const detailList = document.getElementById('lightbox-detail-list');
             const dimSvg = document.getElementById('dim-svg');
             const dimHLabel = document.getElementById('dim-h-label');
             const dimVLabel = document.getElementById('dim-v-label');
-
             const openLightbox = (img) => {
                 const name = img.getAttribute('data-name');
                 const capacity = img.getAttribute('data-capacity');
                 const diameter = img.getAttribute('data-diameter');
                 const height = img.getAttribute('data-height');
+                const isSpiral = img.classList.contains('spiral-image-zoom');
                 const code = img.getAttribute('data-code');
 
                 lightboxImg.src = img.src;
-                if (lightboxTitle) lightboxTitle.textContent = name || 'Premium Product';
-                if (lightboxCategory) lightboxCategory.textContent = img.getAttribute('data-category') || '200ml';
+
+                if (isSpiral) {
+                    lightboxImg.classList.add('lightbox-zoom');
+                } else {
+                    lightboxImg.classList.remove('lightbox-zoom');
+                }
+                if (titleEl) titleEl.textContent = name || 'Premium Product';
+                if (categoryEl) categoryEl.textContent = img.getAttribute('data-category') || '200ml';
 
                 // Repopulate details if data exists
                 if (name || capacity || diameter || height || code) {
-                    let detailsHtml = '';
-                    if (name) detailsHtml += `<li><strong>NAME:</strong> ${name}</li>`;
-                    if (capacity) detailsHtml += `<li><strong>CAPACITY:</strong> ${capacity}</li>`;
-                    if (diameter) detailsHtml += `<li><strong>DIAMETER:</strong> ${diameter}</li>`;
-                    if (height) detailsHtml += `<li><strong>HEIGHT:</strong> ${height}</li>`;
-                    if (code) detailsHtml += `<li><strong>CODE:</strong> ${code}</li>`;
-                    if (detailList) detailList.innerHTML = detailsHtml;
+                    let listHtml = '';
+                    if (name) listHtml += `<li><strong>NAME:</strong> ${name}</li>`;
+                    if (capacity) listHtml += `<li><strong>CAPACITY:</strong> ${capacity}</li>`;
+                    if (diameter) listHtml += `<li><strong>DIAMETER:</strong> ${diameter}</li>`;
+                    if (height) listHtml += `<li><strong>HEIGHT:</strong> ${height}</li>`;
+                            if (img.dataset.code) listHtml += `<li><strong>CODE:</strong> ${img.dataset.code.toUpperCase()}</li>`;
+                            if (detailList) detailList.innerHTML = listHtml;
+
+                            if (codeHeaderEl) codeHeaderEl.textContent = img.dataset.code ? 'CODE: ' + img.dataset.code.toUpperCase() : '';
 
                     // Update SVG Dimensions
                     if (diameter || height) {

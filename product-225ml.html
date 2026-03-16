@@ -61,6 +61,18 @@
             cursor: zoom-in;
         }
 
+        .spiral-image-zoom {
+            transform: scale(1.1) !important;
+        }
+
+        .promo-card:hover .spiral-image-zoom {
+            transform: scale(1.55) !important;
+        }
+
+        .lightbox-zoom {
+            transform: scale(1.6) !important;
+        }
+
         .product-card .card-image-wrapper {
             overflow: hidden;
         }
@@ -177,7 +189,7 @@
                     <li class="nav-item"><a href="material.html" class="nav-link">Material</a></li>
                     <li class="nav-item"><a href="pricelist.html" class="nav-link">Price List</a></li>
                     <li class="nav-item"><a href="certificate.html" class="nav-link">Certificate</a></li>
-                    <li class="nav-item"><a href="export.html" class="nav-link">Exports</a></li>
+
 
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
                     <li class="nav-item"><a href="place-order.html" class="nav-link">Place Order</a></li>
@@ -225,7 +237,8 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/SPIRAL 225-ML.png" alt="225-ML SPIRAL"
-                            class="zoom-img lightbox-trigger">
+                            class="zoom-img lightbox-trigger spiral-image-zoom"
+>
                     </div>
                     <div class="promo-footer">
                         <h3>SPIRAL</h3>
@@ -258,7 +271,6 @@
                         <ul>
                             <li><a href="pricelist.html">Price List</a></li>
                             <li><a href="certificate.html">Certificate</a></li>
-                            <li><a href="export.html">Exports</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
                             <li><a href="place-order.html">Place Order</a></li>
                         </ul>
@@ -329,7 +341,10 @@
                 <img id="lightbox-img" src="" alt="Enlarged product image">
             </div>
             <div class="lightbox-details-container">
-                <h2 id="lightbox-title">Premium Product</h2>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+                    <h2 id="lightbox-title" style="margin: 0;">Premium Product</h2>
+                    <span id="lightbox-code" style="color: #ff3b30; font-weight: 800; font-size: 1.2rem; text-transform: uppercase;"></span>
+                </div>
                 <div class="lightbox-meta">
                     <span id="lightbox-category" class="category-badge">Category</span>
                     <span id="lightbox-price" class="price-tag">Contact for Price</span>
@@ -342,9 +357,7 @@
                         <li><strong>Usage:</strong> Ideal for cafes, events, and daily use</li>
                     </ul>
                 </div>
-                <div class="lightbox-actions">
-                    <a href="place-order.html" class="btn btn-primary" style="width: 100%; border-radius: 50px;">Contact to Order</a>
-                </div>
+
             </div>
         </div>
     </div>
@@ -357,9 +370,47 @@
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const closeBtn = document.querySelector('.lightbox-close');
+            const titleEl = document.getElementById('lightbox-title');
+            const codeHeaderEl = document.getElementById('lightbox-code');
+            const categoryEl = document.getElementById('lightbox-category');
+            const detailList = document.querySelector('.detail-list');
 
-            const openLightbox = (src) => {
-                lightboxImg.src = src;
+            const openLightbox = (img) => {
+                const name = img.getAttribute('data-name');
+                const capacity = img.getAttribute('data-capacity');
+                const diameter = img.getAttribute('data-diameter');
+                const height = img.getAttribute('data-height');
+                const isSpiral = img.classList.contains('spiral-image-zoom');
+                const code = img.getAttribute('data-code');
+                const category = img.getAttribute('data-category') || '225ml';
+
+                lightboxImg.src = img.src;
+
+                if (isSpiral) {
+                    lightboxImg.classList.add('lightbox-zoom');
+                } else {
+                    lightboxImg.classList.remove('lightbox-zoom');
+                }
+                if (titleEl) titleEl.textContent = name || 'Premium Product';
+                if (codeHeaderEl) codeHeaderEl.textContent = code ? 'CODE: ' + code.toUpperCase() : '';
+                if (categoryEl) categoryEl.textContent = category.toUpperCase();
+
+                if (name || capacity || diameter || height || code) {
+                    let detailsHtml = '';
+                    if (name) detailsHtml += `<li><strong>NAME:</strong> ${name.toUpperCase()}</li>`;
+                    if (capacity) detailsHtml += `<li><strong>CAPACITY:</strong> ${capacity.toUpperCase()}</li>`;
+                    if (diameter) detailsHtml += `<li><strong>DIAMETER:</strong> ${diameter.toUpperCase()}</li>`;
+                    if (height) detailsHtml += `<li><strong>HEIGHT:</strong> ${height.toUpperCase()}</li>`;
+                    if (code) detailsHtml += `<li><strong>CODE:</strong> ${code.toUpperCase()}</li>`;
+                    if (detailList) detailList.innerHTML = detailsHtml;
+                } else {
+                    if (detailList) detailList.innerHTML = `
+                        <li><strong>Material:</strong> Food-grade Premium Quality</li>
+                        <li><strong>Features:</strong> Eco-friendly, Durable, Hygienic</li>
+                        <li><strong>Usage:</strong> Ideal for cafes, events, and daily use</li>
+                    `;
+                }
+
                 lightbox.style.display = 'flex';
                 document.body.style.overflow = 'hidden'; // Prevent scroll
             };
@@ -372,7 +423,7 @@
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('zoom-img') || e.target.classList.contains('lightbox-trigger')) {
                     if (e.target.closest('.promo-card') || e.target.closest('.product-card')) {
-                        openLightbox(e.target.src);
+                        openLightbox(e.target);
                     }
                 }
             });

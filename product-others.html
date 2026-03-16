@@ -186,7 +186,7 @@
                     <li class="nav-item"><a href="material.html" class="nav-link">Material</a></li>
                     <li class="nav-item"><a href="pricelist.html" class="nav-link">Price List</a></li>
                     <li class="nav-item"><a href="certificate.html" class="nav-link">Certificate</a></li>
-                    <li class="nav-item"><a href="export.html" class="nav-link">Exports</a></li>
+
 
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
                     <li class="nav-item"><a href="place-order.html" class="nav-link">Place Order</a></li>
@@ -281,7 +281,6 @@
                         <ul>
                             <li><a href="pricelist.html">Price List</a></li>
                             <li><a href="certificate.html">Certificate</a></li>
-                            <li><a href="export.html">Exports</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
                             <li><a href="place-order.html">Place Order</a></li>
                         </ul>
@@ -387,13 +386,18 @@
                     </g>
                     <!-- Elegant vertical line (Height) - Floating Style -->
                     <g id="v-spec">
-                        <line x1="315" y1="125" x2="315" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
-                        <text id="dim-v-label" x="335" y="230" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 335, 230)">HEIGHT</text>
+                        <line x1="355" y1="125" x2="355" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <line x1="350" y1="125" x2="360" y2="125" stroke="#fff" stroke-width="1"/>
+                        <line x1="350" y1="335" x2="360" y2="335" stroke="#fff" stroke-width="1"/>
+                        <text id="dim-v-label" x="375" y="230" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 375, 230)">HEIGHT</text>
                     </g>
                 </svg>
             </div>
             <div class="lightbox-details-container">
-                <h2 id="lightbox-title">Premium Product</h2>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+                    <h2 id="lightbox-title" style="margin: 0;">Premium Product</h2>
+                    <span id="lightbox-code" style="color: #ff3b30; font-weight: 800; font-size: 1.2rem; text-transform: uppercase;"></span>
+                </div>
                 <div class="lightbox-meta">
                     <span id="lightbox-category" class="category-badge">Category</span>
                 </div>
@@ -459,8 +463,9 @@
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const closeBtn = document.querySelector('.lightbox-close');
-            const lightboxTitle = document.getElementById('lightbox-title');
-            const lightboxCategory = document.getElementById('lightbox-category');
+            const titleEl = document.getElementById('lightbox-title');
+            const codeHeaderEl = document.getElementById('lightbox-code');
+            const categoryEl = document.getElementById('lightbox-category');
             const detailList = document.getElementById('lightbox-detail-list');
             const dimSvg = document.getElementById('dim-svg');
             const dimHLabel = document.getElementById('dim-h-label');
@@ -474,8 +479,8 @@
                 const code = img.getAttribute('data-code');
 
                 lightboxImg.src = img.src;
-                lightboxTitle.textContent = name || 'Premium Product';
-                lightboxCategory.textContent = img.getAttribute('data-category') || 'Others';
+                if (titleEl) titleEl.textContent = name || 'Premium Product';
+                if (categoryEl) categoryEl.textContent = img.getAttribute('data-category') || 'Others';
 
                 // Repopulate details if data exists
                 if (name || capacity || diameter || height || code) {
@@ -486,6 +491,8 @@
                     if (height) detailsHtml += `<li><strong>HEIGHT:</strong> ${height}</li>`;
                     if (code) detailsHtml += `<li><strong>CODE:</strong> ${code}</li>`;
                     detailList.innerHTML = detailsHtml;
+
+                    if (codeHeaderEl) codeHeaderEl.textContent = code ? 'CODE: ' + code.toUpperCase() : '';
 
                     // Update SVG Dimensions
                     if (diameter || height) {
