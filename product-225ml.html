@@ -66,7 +66,7 @@
         }
 
         .promo-card:hover .spiral-image-zoom {
-            transform: scale(1.55) !important;
+            transform: scale(1.3) !important;
         }
 
         .lightbox-zoom {
@@ -237,8 +237,26 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/SPIRAL 225-ML.png" alt="225-ML SPIRAL"
-                            class="zoom-img lightbox-trigger spiral-image-zoom"
->
+                            class="zoom-img lightbox-trigger"
+                            data-name="SPIRAL"
+                            data-diameter="74MM"
+                            data-height="90MM"
+                            data-code="SP2236"
+                            data-category="225ml">
+                    </div>
+                    <div class="promo-footer">
+                        <h3>SPIRAL</h3>
+                    </div>
+                </div>
+                <div class="promo-card">
+                    <div class="card-image-wrapper img-wrapper">
+                        <img src="images/uploads/SPIRAL2 225-ML.png" alt="225-ML SPIRAL"
+                            class="zoom-img lightbox-trigger"
+                            data-name="SPIRAL"
+                            data-diameter="70MM"
+                            data-height="90MM"
+                            data-code="SP2215"
+                            data-category="225ml">
                     </div>
                     <div class="promo-footer">
                         <h3>SPIRAL</h3>
@@ -337,8 +355,34 @@
     <div id="lightbox">
         <div class="lightbox-content split-layout">
             <span class="lightbox-close">&times;</span>
-            <div class="lightbox-image-container">
+            <div class="lightbox-image-container" style="position:relative; background: #000;">
                 <img id="lightbox-img" src="" alt="Enlarged product image">
+                <!-- High-Contrast SVG dimension overlay -->
+                <svg id="dim-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;padding:2rem;box-sizing:border-box;">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto">
+                            <polygon points="0 0, 8 2.5, 0 5" fill="#fff" />
+                        </marker>
+                        <marker id="arrowhead-reverse" markerWidth="8" markerHeight="5" refX="0" refY="2.5" orient="auto">
+                            <polygon points="8 0, 0 2.5, 8 5" fill="#fff" />
+                        </marker>
+                    </defs>
+                    <!-- Elegant horizontal line (Diameter) -->
+                    <g id="h-spec">
+                        <line x1="80" y1="50" x2="320" y2="50" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <line x1="80" y1="45" x2="80" y2="55" stroke="#fff" stroke-width="1"/>
+                        <line x1="320" y1="45" x2="320" y2="55" stroke="#fff" stroke-width="1"/>
+                        <text id="dim-h-label" x="200" y="35" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif">DIAMETER</text>
+                    </g>
+                    <!-- Elegant vertical line (Height) -->
+                    <g id="v-spec">
+                        <line x1="380" y1="125" x2="380" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <line x1="375" y1="125" x2="385" y2="125" stroke="#fff" stroke-width="1"/>
+                        <line x1="375" y1="335" x2="385" y2="335" stroke="#fff" stroke-width="1"/>
+                        <text id="dim-v-label" x="395" y="230" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 395, 230)">HEIGHT</text>
+                    </g>
+                </svg>
             </div>
             <div class="lightbox-details-container">
                 <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
@@ -374,6 +418,9 @@
             const codeHeaderEl = document.getElementById('lightbox-code');
             const categoryEl = document.getElementById('lightbox-category');
             const detailList = document.querySelector('.detail-list');
+            const dimSvg = document.getElementById('dim-svg');
+            const dimHLabel = document.getElementById('dim-h-label');
+            const dimVLabel = document.getElementById('dim-v-label');
 
             const openLightbox = (img) => {
                 const name = img.getAttribute('data-name');
@@ -386,11 +433,8 @@
 
                 lightboxImg.src = img.src;
 
-                if (isSpiral) {
-                    lightboxImg.classList.add('lightbox-zoom');
-                } else {
-                    lightboxImg.classList.remove('lightbox-zoom');
-                }
+                // Lightbox zoom removed for product clarity
+                lightboxImg.classList.remove('lightbox-zoom');
                 if (titleEl) titleEl.textContent = name || 'Premium Product';
                 if (codeHeaderEl) codeHeaderEl.textContent = code ? 'CODE: ' + code.toUpperCase() : '';
                 if (categoryEl) categoryEl.textContent = category.toUpperCase();
@@ -403,7 +447,17 @@
                     if (height) detailsHtml += `<li><strong>HEIGHT:</strong> ${height.toUpperCase()}</li>`;
                     if (code) detailsHtml += `<li><strong>CODE:</strong> ${code.toUpperCase()}</li>`;
                     if (detailList) detailList.innerHTML = detailsHtml;
+
+                    // Update SVG Dimensions
+                    if (diameter || height) {
+                        dimSvg.style.display = 'block';
+                        if (diameter) dimHLabel.textContent = `DIAMETER ${diameter.toUpperCase()}`;
+                        if (height) dimVLabel.textContent = `HEIGHT ${height.toUpperCase()}`;
+                    } else {
+                        dimSvg.style.display = 'none';
+                    }
                 } else {
+                    dimSvg.style.display = 'none';
                     if (detailList) detailList.innerHTML = `
                         <li><strong>Material:</strong> Food-grade Premium Quality</li>
                         <li><strong>Features:</strong> Eco-friendly, Durable, Hygienic</li>
@@ -417,6 +471,7 @@
 
             const closeLightbox = () => {
                 lightbox.style.display = 'none';
+                dimSvg.style.display = 'none';
                 document.body.style.overflow = ''; // Restore scroll
             };
 

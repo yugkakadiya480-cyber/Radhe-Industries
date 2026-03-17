@@ -197,13 +197,29 @@ section {
     width: 45px;
     height: 45px;
     background: #a9a9a9;
-    /* Gray background as in screenshot */
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 5px;
     font-size: 1.2rem;
+    transition: transform 0.2s ease;
+}
+
+/* Phone icon - Emerald Green */
+.contact-block:nth-child(1) .contact-icon {
+    background: linear-gradient(135deg, #2e7d32, #43a047);
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.35);
+}
+
+/* Email icon - Brand Red */
+.contact-block:nth-child(2) .contact-icon {
+    background: linear-gradient(135deg, #c62828, #e53935);
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.35);
+}
+
+.contact-icon:hover {
+    transform: scale(1.1);
 }
 
 .contact-text h4 {
@@ -923,6 +939,25 @@ section {
     justify-content: center;
     font-size: 1.2rem;
     flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+/* Phone icon in footer - Emerald Green */
+.contact-info-box:nth-child(1) .contact-info-icon {
+    background: linear-gradient(135deg, #2e7d32, #43a047);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.4);
+}
+
+/* Email icon in footer - Brand Red */
+.contact-info-box:nth-child(2) .contact-info-icon {
+    background: linear-gradient(135deg, #c62828, #e53935);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.4);
+}
+
+.contact-info-icon:hover {
+    transform: scale(1.1);
 }
 
 .contact-info-text {

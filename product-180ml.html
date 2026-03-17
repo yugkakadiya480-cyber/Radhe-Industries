@@ -66,11 +66,11 @@
         }
 
         .promo-card:hover .spiral-image-zoom {
-            transform: scale(1.55) !important;
+            transform: scale(1.2) !important;
         }
 
         .lightbox-zoom {
-            transform: scale(1.6) !important;
+            transform: scale(1.4) !important;
         }
 
         .product-card .card-image-wrapper {
@@ -221,21 +221,7 @@
             <section class="promo-grid">
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
-                        <img src="images/uploads/TOWER 180-ML.png" alt="TOWER Presentation" class="zoom-img lightbox-trigger"
-                            data-name="TOWER"
-                            data-diameter="70MM"
-                            data-height="72MM"
-                            data-code="TW1850"
-                            data-category="180ml">
-                    </div>
-                    <div class="promo-footer" style="flex-direction: column;">
-                        <h3>TOWER</h3>
-                        <span style="font-size: 0.9rem; margin-top: 5px; opacity: 0.9;">CODE TW-1850</span>
-                    </div>
-                </div>
-                <div class="promo-card">
-                    <div class="card-image-wrapper img-wrapper">
-                        <img src="images/uploads/TOWER2 180-ML.png" alt="TOWER Presentation" class="zoom-img lightbox-trigger"
+                        <img src="images/uploads/TOWER2 180-ML.png" alt="TOWER" class="zoom-img lightbox-trigger"
                             data-name="TOWER"
                             data-diameter="67MM"
                             data-height="72MM"
@@ -330,7 +316,12 @@
                 </div>
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
-                        <img src="images/uploads/SPIRAL 180-ML.png" alt="SPIRAL Presentation" class="zoom-img spiral-image-zoom">
+                        <img src="images/uploads/SPIRAL2.png" alt="SPIRAL Presentation" class="zoom-img spiral-image-zoom lightbox-trigger"
+                            data-name="SPIRAL"
+                            data-diameter="70MM"
+                            data-height="75MM"
+                            data-code="SP1816"
+                            data-category="180ml">
                     </div>
                     <div class="promo-footer">
                         <h3>SPIRAL</h3>
@@ -340,8 +331,8 @@
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/MOCKTAIL.png" alt="MOCKTAIL Presentation" class="zoom-img lightbox-trigger"
                             data-name="MOCKTAIL"
-                            data-diameter="75MM"
-                            data-height="87MM"
+                            data-diameter="80MM"
+                            data-height="90MM"
                             data-code="TW1823"
                             data-category="180ml">
                     </div>
@@ -475,7 +466,7 @@
                 <img id="lightbox-img" src="" alt="Enlarged product image">
                 <!-- High-Contrast SVG dimension overlay -->
                 <svg id="dim-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"
-                    style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;">
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;padding:2rem;box-sizing:border-box;">
                     <defs>
                         <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto">
                             <polygon points="0 0, 8 2.5, 0 5" fill="#fff" />
@@ -491,6 +482,7 @@
                         <line x1="320" y1="45" x2="320" y2="55" stroke="#fff" stroke-width="1"/>
                         <text id="dim-h-label" x="200" y="35" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif">DIAMETER</text>
                     </g>
+
                     <!-- Elegant vertical line (Height) -->
                     <g id="v-spec">
                         <line x1="380" y1="125" x2="380" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
@@ -539,6 +531,11 @@
                     <div class="product-card">
                         <div class="card-image-wrapper">
                             <img src="${p.image}" alt="${p.name}" class="zoom-img lightbox-trigger"
+                                data-name="${p.name}"
+                                data-diameter="${p.diameter || ''}"
+                                data-height="${p.height || ''}"
+                                data-code="${p.code || ''}"
+                                data-category="${p.category || '180ml'}"
                                 style="width: 100%; height: 300px; object-fit: contain; background: #f5f5f5; cursor: pointer;">
                         </div>
                         <div class="card-details">

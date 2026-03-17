@@ -238,11 +238,11 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/300-ML spiral.png" alt="300-ML Spiral Cup"
-                            class="zoom-img lightbox-trigger spiral-image-zoom"
+                            class="zoom-img lightbox-trigger"
                             data-title="SPIRAL"
                             data-name="SPIRAL"
-                            data-diameter="75MM"
-                            data-height="105MM"
+                            data-diameter="80MM"
+                            data-height="110MM"
                             data-code="SP3025"
                             data-category="300ml">
                     </div>
@@ -380,7 +380,7 @@
                 <img id="lightbox-img" src="" alt="Enlarged product image">
                 <!-- High-Contrast SVG dimension overlay -->
                 <svg id="dim-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"
-                    style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;">
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;padding:2rem;box-sizing:border-box;">
                     <defs>
                         <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto">
                             <polygon points="0 0, 8 2.5, 0 5" fill="#fff" />
@@ -396,6 +396,7 @@
                         <line x1="320" y1="45" x2="320" y2="55" stroke="#fff" stroke-width="1"/>
                         <text id="dim-h-label" x="200" y="35" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif">DIAMETER</text>
                     </g>
+
                     <!-- Elegant vertical line (Height) -->
                     <g id="v-spec">
                         <line x1="380" y1="125" x2="380" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
@@ -444,12 +445,6 @@
             const openLightbox = (img) => {
                 const src = img.src;
                 const isSpiral = img.classList.contains('spiral-image-zoom');
-                const name = img.getAttribute('data-name');
-                const category = img.getAttribute('data-category') || '300ml';
-                const capacity = img.getAttribute('data-capacity');
-                const diameter = img.getAttribute('data-diameter');
-                const height = img.getAttribute('data-height');
-                const code = img.getAttribute('data-code');
 
                 lightboxImg.src = src;
 

@@ -242,11 +242,24 @@
                 </div>
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
-                        <img src="images/uploads/SPIRAL 225-ML.png" alt="SPIRAL" class="zoom-img lightbox-trigger spiral-image-zoom"
+                        <img src="images/uploads/SPIRAL 225-ML.png" alt="SPIRAL" class="zoom-img lightbox-trigger"
                             data-name="SPIRAL"
                             data-diameter="80MM"
                             data-height="90MM"
                             data-code="SP2525"
+                            data-category="250ml">
+                    </div>
+                    <div class="promo-footer">
+                        <h3>SPIRAL</h3>
+                    </div>
+                </div>
+                <div class="promo-card">
+                    <div class="card-image-wrapper img-wrapper">
+                        <img src="images/uploads/SPIRAL 250ML.png" alt="SPRIAL" class="zoom-img lightbox-trigger"
+                            data-name="SPIRAL"
+                            data-diameter="74MM"
+                            data-height="100MM"
+                            data-code="SP2517"
                             data-category="250ml">
                     </div>
                     <div class="promo-footer">
@@ -407,7 +420,7 @@
                 <img id="lightbox-img" src="" alt="Enlarged product image">
                 <!-- High-Contrast SVG dimension overlay -->
                 <svg id="dim-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"
-                    style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;">
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;padding:2rem;box-sizing:border-box;">
                     <defs>
                         <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto">
                             <polygon points="0 0, 8 2.5, 0 5" fill="#fff" />
@@ -482,11 +495,8 @@
                         const isSpiral = img.classList.contains('spiral-image-zoom');
                         lightboxImg.src = img.src;
 
-                        if (isSpiral) {
-                            lightboxImg.classList.add('lightbox-zoom');
-                        } else {
-                            lightboxImg.classList.remove('lightbox-zoom');
-                        }
+                        // Lightbox zoom removed for product clarity
+                        lightboxImg.classList.remove('lightbox-zoom');
                         
                         // Handle wide images
                         if (img.dataset.width === 'wide') {
