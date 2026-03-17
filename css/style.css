@@ -1649,3 +1649,31 @@ body {
         right: 10px;
     }
 }
+
+/* Hide Google Translate Toolbar */
+.goog-te-banner-frame.skiptranslate, 
+.goog-te-banner-frame {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+/* Hide "Original Text" tooltip on hover */
+.goog-te-balloon-frame {
+    display: none !important;
+}
+
+/* Hide Google logo in the footer of the widget (optional but cleaner) */
+.goog-logo-link {
+    display: none !important;
+}
+
+.goog-te-gadget {
+    color: transparent !important;
+}
+
+.goog-te-gadget .goog-te-combo {
+    color: #666 !important;
+}

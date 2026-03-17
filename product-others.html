@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,18 +13,15 @@
             gap: 3rem;
             margin-top: 0.5rem;
         }
-
         .promo-grid {
             display: flex;
             justify-content: flex-start;
             margin-bottom: 1.5rem;
             width: 100%;
         }
-
         .page-header {
             padding: 1rem 0 0.5rem !important;
         }
-
         .promo-card {
             background: #fff;
             max-width: 320px;
@@ -39,14 +35,12 @@
             display: flex;
             flex-direction: column;
         }
-
         .promo-card .img-wrapper {
             width: 100%;
             height: 280px;
             overflow: hidden;
             background: #fff;
         }
-
         .promo-card .img-wrapper img,
         .zoom-img {
             width: 100%;
@@ -56,18 +50,14 @@
             padding: 10px;
             transition: transform 0.5s ease;
         }
-
         .promo-card:hover .zoom-img,
         .product-card:hover .zoom-img {
             transform: scale(1.1);
             cursor: zoom-in;
         }
-
         .product-card .card-image-wrapper {
             overflow: hidden;
         }
-
-
         .promo-footer {
             background: #50a18e;
             padding: 1.1rem 1.5rem;
@@ -77,7 +67,6 @@
             color: #fff;
             margin-top: auto;
         }
-
         .promo-footer h3 {
             margin: 0;
             font-size: 1.3rem;
@@ -85,43 +74,35 @@
             letter-spacing: 0.5px;
             color: #fff;
         }
-
         @media (max-width: 992px) {
             .main-layout {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-
             .sidebar-promo {
                 position: static;
                 order: -1;
             }
-
             .promo-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
-
             .promo-card .img-wrapper {
                 height: 200px;
             }
         }
-
         @media (max-width: 480px) {
             .promo-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 0.75rem;
             }
-
             .promo-card .img-wrapper {
                 height: 160px;
             }
-
             .promo-footer h3 {
                 font-size: 1.1rem;
             }
         }
-
         /* Specific zoom for BRU as requested */
         .bru-zoom {
             transform: scale(1.3);
@@ -130,9 +111,7 @@
         }
     </style>
 </head>
-
 <body>
-
     <!-- Header Top -->
     <header class="header-top">
         <div class="container header-top-content">
@@ -167,7 +146,6 @@
             </div>
         </div>
     </header>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="navbar-container">
@@ -182,20 +160,15 @@
                     <li class="nav-item"><a href="company-profile.html" class="nav-link">Company Profile</a></li>
                     <li class="nav-item"><a href="products.html" class="nav-link active">Products</a></li>
                     <li class="nav-item"><a href="quality.html" class="nav-link">Quality</a></li>
-
                     <li class="nav-item"><a href="material.html" class="nav-link">Material</a></li>
                     <li class="nav-item"><a href="pricelist.html" class="nav-link">Price List</a></li>
                     <li class="nav-item"><a href="certificate.html" class="nav-link">Certificate</a></li>
-
-
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
                     <li class="nav-item"><a href="place-order.html" class="nav-link">Place Order</a></li>
-
                 </ul>
             </div>
         </div>
     </nav>
-
     <!-- Page Header -->
     <header class="page-header" style="background: linear-gradient(135deg, #1a4d3e 0%, #2e7d32 100%);">
         <div class="container">
@@ -203,7 +176,6 @@
             <p>Our specialized collection designed according to your preference</p>
         </div>
     </header>
-
     <!-- Main Content -->
     <div class="container main-layout">
         <div class="content-area">
@@ -213,7 +185,6 @@
                     <i class="fa-solid fa-arrow-left"></i> Back to All Categories
                 </a>
             </div>
-
             <!-- Category Grid -->
             <section class="promo-grid">
                 <div class="promo-card">
@@ -231,8 +202,6 @@
                         <h3>BRU</h3>
                     </div>
                 </div>
-
-
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/TOWER2 120-ML.png" alt="TOWER CUP" class="zoom-img lightbox-trigger"
@@ -248,13 +217,11 @@
                     </div>
                 </div>
             </section>
-
             <main class="product-grid" id="productGrid" style="width: 100%;">
                 <!-- Products will be loaded here dynamically -->
             </main>
         </div>
     </div>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -266,7 +233,6 @@
                         Radhe Industries is a leading manufacturer of high-quality disposable cups, established in 2012.
                     </p>
                 </div>
-
                 <!-- Col 2: Quick Links -->
                 <div class="footer-col">
                     <h3>QUICK LINKS</h3>
@@ -285,9 +251,7 @@
                             <li><a href="place-order.html">Place Order</a></li>
                         </ul>
                     </div>
-
                 </div>
-
                 <!-- Col 3: Our Products -->
                 <div class="footer-col">
                     <h3>OUR PRODUCTS</h3>
@@ -299,7 +263,6 @@
                         <li><a href="#">Customized Cups</a></li>
                     </ul>
                 </div>
-
                 <!-- Col 4: Factory Address -->
                 <div class="footer-col factory-address">
                     <h3>FACTORY ADDRESSES</h3>
@@ -325,7 +288,6 @@
                     <a href="brochure.html" target="_blank" class="btn-brochure">Download Brochure</a>
                 </div>
             </div>
-
             <div class="footer-contact-blocks">
                 <!-- Phone Block -->
                 <div class="contact-info-box">
@@ -338,7 +300,6 @@
                         <a href="tel:+919426816321">+91 94268 16321</a>
                     </div>
                 </div>
-
                 <!-- Email Block -->
                 <div class="contact-info-box">
                     <div class="contact-info-icon">
@@ -350,7 +311,6 @@
                         <a href="mailto:radhedisposable8@gmail.com">radhedisposable8@gmail.com</a>
                     </div>
                 </div>
-
                 <!-- Social Block -->
                 <div class="social-follow-box">
                     <div class="social-group">
@@ -414,22 +374,18 @@
             </div>
         </div>
     </div>
-
     <script src="js/main.js"></script>
     <script src="js/responsive.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const grid = document.getElementById('productGrid');
             const zoomResult = document.getElementById('img-zoom-result');
-
             try {
                 const res = await fetch('/api/products');
                 if (!res.ok) throw new Error('Failed to fetch data');
                 let products = await res.json();
-
                 // Filter for others category
                 products = products.filter(p => p.category === 'Others');
-
                 if (products.length === 0) {
                      grid.innerHTML = '<p style="text-align:center; padding: 2rem; width: 100%;">No dynamic products found for this category.</p>';
                 } else {
@@ -461,12 +417,10 @@
                         </div>
                     `).join('');
                 }
-
             } catch (err) {
                 console.error(err);
                 grid.innerHTML = '<p style="text-align:center; color:red; width:100%; padding: 4rem;">Currently offline. Please try again later.</p>';
             }
-
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const closeBtn = document.querySelector('.lightbox-close');
@@ -477,18 +431,15 @@
             const dimSvg = document.getElementById('dim-svg');
             const dimHLabel = document.getElementById('dim-h-label');
             const dimVLabel = document.getElementById('dim-v-label');
-
             const openLightbox = (img) => {
                 const name = img.getAttribute('data-name');
                 const capacity = img.getAttribute('data-capacity');
                 const diameter = img.getAttribute('data-diameter');
                 const height = img.getAttribute('data-height');
                 const code = img.getAttribute('data-code');
-
                 lightboxImg.src = img.src;
                 if (titleEl) titleEl.textContent = name || 'Premium Product';
                 if (categoryEl) categoryEl.textContent = img.getAttribute('data-category') || 'Others';
-
                 // Repopulate details if data exists
                 if (name || capacity || diameter || height || code) {
                     let detailsHtml = '';
@@ -498,9 +449,7 @@
                     if (height) detailsHtml += `<li><strong>HEIGHT:</strong> ${height}</li>`;
                     if (code) detailsHtml += `<li><strong>CODE:</strong> ${code}</li>`;
                     detailList.innerHTML = detailsHtml;
-
                     if (codeHeaderEl) codeHeaderEl.textContent = code ? 'CODE: ' + code.toUpperCase() : '';
-
                     // Update SVG Dimensions
                     if (diameter || height) {
                         dimSvg.style.display = 'block';
@@ -512,24 +461,20 @@
                 } else {
                     dimSvg.style.display = 'none';
                 }
-
                 if (name === 'BRU') {
                     lightboxImg.classList.add('bru-zoom');
                 } else {
                     lightboxImg.classList.remove('bru-zoom');
                 }
-
                 lightbox.style.display = 'flex';
                 document.body.style.overflow = 'hidden'; // Prevent scroll
             };
-
             const closeLightbox = () => {
                 lightbox.style.display = 'none';
                 dimSvg.style.display = 'none';
                 lightboxImg.classList.remove('bru-zoom');
                 document.body.style.overflow = ''; // Restore scroll
             };
-
             // Delegate clicks for both static and dynamic images
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('zoom-img') || e.target.classList.contains('lightbox-trigger')) {
@@ -538,18 +483,15 @@
                     }
                 }
             });
-
             closeBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 closeLightbox();
             });
-
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox) {
                     closeLightbox();
                 }
             });
-
             // ESC key to close
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && lightbox.style.display === 'flex') {
@@ -559,5 +501,4 @@
         });
     </script>
 </body>
-
 </html>

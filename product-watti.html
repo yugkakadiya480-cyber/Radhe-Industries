@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,6 @@
             gap: 3rem;
             margin-top: 0.5rem;
         }
-
         .promo-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -22,11 +20,9 @@
             margin-bottom: 1.5rem;
             width: 100%;
         }
-
         .page-header {
             padding: 1rem 0 0.5rem !important;
         }
-
         .promo-card {
             background: #fff;
             width: 100%;
@@ -38,13 +34,11 @@
             display: flex;
             flex-direction: column;
         }
-
         .promo-card .img-wrapper {
             width: 100%;
             height: 280px;
             overflow: hidden;
         }
-
         .promo-card .img-wrapper img,
         .zoom-img {
             width: 100%;
@@ -54,18 +48,14 @@
             padding: 10px;
             transition: transform 0.5s ease;
         }
-
         .promo-card:hover .zoom-img,
         .product-card:hover .zoom-img {
             transform: scale(1.1);
             cursor: zoom-in;
         }
-
         .product-card .card-image-wrapper {
             overflow: hidden;
         }
-
-
         .promo-footer {
             background: #50a18e;
             padding: 1.2rem 1.5rem;
@@ -75,7 +65,6 @@
             color: #fff;
             margin-top: auto;
         }
-
         .promo-footer h3 {
             margin: 0;
             font-size: 1.6rem;
@@ -83,47 +72,38 @@
             letter-spacing: 0.5px;
             color: #fff;
         }
-
         @media (max-width: 992px) {
             .main-layout {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-
             .sidebar-promo {
                 position: static;
                 order: -1;
             }
-
             .promo-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
-
             .promo-card .img-wrapper {
                 height: 200px;
             }
         }
-
         @media (max-width: 480px) {
             .promo-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 0.75rem;
             }
-
             .promo-card .img-wrapper {
                 height: 160px;
             }
-
             .promo-footer h3 {
                 font-size: 1.1rem;
             }
         }
     </style>
 </head>
-
 <body>
-
     <!-- Header Top -->
     <header class="header-top">
         <div class="container header-top-content">
@@ -158,7 +138,6 @@
             </div>
         </div>
     </header>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="navbar-container">
@@ -173,19 +152,15 @@
                     <li class="nav-item"><a href="company-profile.html" class="nav-link">Company Profile</a></li>
                     <li class="nav-item"><a href="products.html" class="nav-link active">Products</a></li>
                     <li class="nav-item"><a href="quality.html" class="nav-link">Quality</a></li>
-
-
                     <li class="nav-item"><a href="material.html" class="nav-link">Material</a></li>
                     <li class="nav-item"><a href="pricelist.html" class="nav-link">Price List</a></li>
                     <li class="nav-item"><a href="certificate.html" class="nav-link">Certificate</a></li>
-
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
                     <li class="nav-item"><a href="place-order.html" class="nav-link">Place Order</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-
     <!-- Page Header -->
     <header class="page-header" style="background: linear-gradient(135deg, #1a4d3e 0%, #2e7d32 100%);">
         <div class="container">
@@ -193,7 +168,6 @@
             <p>Premium WATTI disposable cups designed according to your preference</p>
         </div>
     </header>
-
     <!-- Main Content -->
     <div class="container main-layout">
         <div class="content-area">
@@ -220,7 +194,6 @@
                         <h3>WATTI 100-ML</h3>
                     </div>
                 </div>
-
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/50-ML WATTI.png" alt="WATTI 50-ML"
@@ -269,7 +242,6 @@
             </section>
         </div>
     </div>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -297,7 +269,6 @@
                             <li><a href="place-order.html">Place Order</a></li>
                         </ul>
                     </div>
-
                 </div>
                 <div class="footer-col">
                     <h3>OUR PRODUCTS</h3>
@@ -407,7 +378,6 @@
             </div>
         </div>
     </div>
-
     <script src="js/main.js"></script>
     <script src="js/responsive.js"></script>
     <script>
@@ -415,44 +385,36 @@
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const closeBtn = document.querySelector('.lightbox-close');
-
             const openLightbox = (src) => {
                 lightboxImg.src = src;
                 lightbox.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
             };
-
             const closeLightbox = () => {
                 lightbox.style.display = 'none';
                 document.body.style.overflow = '';
                 const dimSvg = document.getElementById('dim-svg');
                 if (dimSvg) dimSvg.style.display = 'none';
             };
-
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('zoom-img') || e.target.classList.contains('lightbox-trigger')) {
                     if (e.target.closest('.promo-card') || e.target.closest('.product-card')) {
                         const img = e.target;
                         lightboxImg.src = img.src;
-
                         // Populate title
                         const titleEl = document.getElementById('lightbox-title');
                         const codeHeaderEl = document.getElementById('lightbox-code');
                         const categoryEl = document.getElementById('lightbox-category');
                         const detailList = document.getElementById('lightbox-detail-list');
-
                         if (codeHeaderEl) codeHeaderEl.textContent = img.dataset.code ? 'CODE: ' + img.dataset.code.toUpperCase() : '';
-
                         if (img.dataset.title) {
                             titleEl.textContent = img.dataset.title.toUpperCase();
                         } else {
                             titleEl.textContent = 'PREMIUM PRODUCT';
                         }
-
                         if (img.dataset.category) {
                             categoryEl.textContent = img.dataset.category.toUpperCase();
                         }
-
                         // Rebuild detail list from data attributes
                         const dimSvg = document.getElementById('dim-svg');
                         if (img.dataset.diameter || img.dataset.height || img.dataset.length || img.dataset.code || img.dataset.name || img.dataset.capacity) {
@@ -463,7 +425,6 @@
                             if (img.dataset.height || img.dataset.length) listHtml += `<li><strong>HEIGHT:</strong> ${(img.dataset.height || img.dataset.length).toUpperCase()}</li>`;
                             if (img.dataset.code) listHtml += `<li><strong>CODE:</strong> ${img.dataset.code.toUpperCase()}</li>`;
                             detailList.innerHTML = listHtml;
-                            
                             // Show SVG dimension overlay
                             dimSvg.style.display = 'block';
                             // Update labels from actual data attributes
@@ -476,24 +437,20 @@
                                 <li><strong>FEATURES:</strong> ECO-FRIENDLY, DURABLE, HYGIENIC</li>
                                 <li><strong>USAGE:</strong> IDEAL FOR CAFES, EVENTS, AND DAILY USE</li>`;
                         }
-
                         lightbox.style.display = 'flex';
                         document.body.style.overflow = 'hidden';
                     }
                 }
             });
-
             closeBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 closeLightbox();
             });
-
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox) {
                     closeLightbox();
                 }
             });
-
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && lightbox.style.display === 'flex') {
                     closeLightbox();
@@ -502,5 +459,4 @@
         });
     </script>
 </body>
-
 </html>

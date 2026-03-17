@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
-
 <body>
-
     <!-- Header Top -->
     <header class="header-top">
         <div class="container header-top-content">
@@ -45,7 +42,6 @@
             </div>
         </div>
     </header>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="navbar-container">
@@ -60,20 +56,15 @@
                     <li class="nav-item"><a href="company-profile.html" class="nav-link">Company Profile</a></li>
                     <li class="nav-item"><a href="products.html" class="nav-link">Products</a></li>
                     <li class="nav-item"><a href="quality.html" class="nav-link">Quality</a></li>
-
                     <li class="nav-item"><a href="material.html" class="nav-link">Material</a></li>
-
                     <li class="nav-item"><a href="pricelist.html" class="nav-link">Price List</a></li>
                     <li class="nav-item"><a href="certificate.html" class="nav-link">Certificate</a></li>
-
-
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
                     <li class="nav-item"><a href="place-order.html" class="nav-link">Place Order</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-
     <!-- Page Header -->
     <header class="page-header">
         <div class="container">
@@ -81,10 +72,6 @@
             <p style="white-space: nowrap;">Explore our comprehensive range of products and their prices. (Last Updated: 09-03-2026)</p>
         </div>
     </header>
-
-
-
-
     <main class="container" style="padding: 4rem 2rem;">
         <div class="pricing-controls"
             style="margin-bottom: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;">
@@ -106,7 +93,6 @@
             <input type="text" id="searchPrice" placeholder="Search by Code or Type..."
                 style="padding: 0.8rem; border-radius: 8px; border: 1px solid #ddd; width: 100%; max-width: 300px;">
         </div>
-
         <div class="table-responsive"
             style="overflow-x: auto; background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eaeaea;">
             <table style="width: 100%; border-collapse: collapse; min-width: 800px; text-align: left;">
@@ -655,7 +641,6 @@
                     </tbody>
             </table>
         </div>
-
         <div
             style="margin-top: 3rem; background: #f9f9f9; padding: 2rem; border-radius: 12px; border-left: 5px solid var(--color-accent);">
             <h3 style="margin-bottom: 1rem; color: var(--color-primary-dark);">Terms & Conditions</h3>
@@ -678,27 +663,21 @@
             </div>
         </div>
     </main>
-
     <script>
         (function () {
             const searchInput = document.getElementById('searchPrice');
             const filterCategory = document.getElementById('filterCategory');
             const rows = document.querySelectorAll('.price-row');
-
             if (!searchInput || !filterCategory || !rows.length) return;
-
             function filterTable() {
                 const searchTerm = searchInput.value.toLowerCase().trim();
                 const category = filterCategory.value;
-
                 rows.forEach(row => {
                     const code = row.children[0].textContent.toLowerCase().trim();
                     const type = row.children[1].textContent.toLowerCase().trim();
                     const rowCat = row.getAttribute('data-category');
-
                     const matchesSearch = code.includes(searchTerm) || type.includes(searchTerm);
                     const matchesCategory = category === 'all' || rowCat === category;
-
                     if (matchesSearch && matchesCategory) {
                         row.style.display = '';
                     } else {
@@ -706,18 +685,14 @@
                     }
                 });
             }
-
             searchInput.addEventListener('input', filterTable);
             // Also listen to keyup just in case
             searchInput.addEventListener('keyup', filterTable);
             filterCategory.addEventListener('change', filterTable);
-
             // Run once manually to ensure state
             filterTable();
         })();
     </script>
-
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -729,7 +704,6 @@
                         Radhe Industries is a leading manufacturer of high-quality disposable cups, established in 2012.
                     </p>
                 </div>
-
                 <!-- Col 2: Quick Links -->
                 <div class="footer-col">
                     <h3>QUICK LINKS</h3>
@@ -749,7 +723,6 @@
                         </ul>
                     </div>
                 </div>
-
                 <!-- Col 3: Our Products -->
                 <div class="footer-col">
                     <h3>OUR PRODUCTS</h3>
@@ -761,7 +734,6 @@
                         <li><a href="#">Customized Cups</a></li>
                     </ul>
                 </div>
-
                 <!-- Col 4: Factory Address -->
                 <div class="footer-col factory-address">
                     <h3>FACTORY ADDRESSES</h3>
@@ -787,7 +759,6 @@
                     <a href="brochure.html" target="_blank" class="btn-brochure">Download Brochure</a>
                 </div>
             </div>
-
             <div class="footer-contact-blocks">
                 <!-- Phone Block -->
                 <div class="contact-info-box">
@@ -800,7 +771,6 @@
                         <a href="tel:+919426816321">+91 94268 16321</a>
                     </div>
                 </div>
-
                 <!-- Email Block -->
                 <div class="contact-info-box">
                     <div class="contact-info-icon">
@@ -812,7 +782,6 @@
                         <a href="mailto:radhedisposable8@gmail.com">radhedisposable8@gmail.com</a>
                     </div>
                 </div>
-
                 <!-- Social Block -->
                 <div class="social-follow-box">
                     <div class="social-group">
@@ -824,12 +793,9 @@
             </div>
         </div>
     </footer>
-
     <div id="google_translate_element" style="display:none;"></div>
-
     <script src="js/main.js"></script>
     <script src="js/responsive.js"></script>
     <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
-
 </html>

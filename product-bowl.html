@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,6 @@
             gap: 3rem;
             margin-top: 0.5rem;
         }
-
         .promo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -22,11 +20,9 @@
             margin-bottom: 1.5rem;
             width: 100%;
         }
-
         .page-header {
             padding: 1rem 0 0.5rem !important;
         }
-
         .promo-card {
             background: #fff;
             width: 100%;
@@ -38,13 +34,11 @@
             display: flex;
             flex-direction: column;
         }
-
         .promo-card .img-wrapper {
             width: 100%;
             height: 280px;
             overflow: hidden;
         }
-
         .promo-card .img-wrapper img,
         .zoom-img {
             width: 100%;
@@ -54,13 +48,11 @@
             padding: 10px;
             transition: transform 0.5s ease;
         }
-
         .promo-card:hover .zoom-img,
         .product-card:hover .zoom-img {
             transform: scale(1.1);
             cursor: zoom-in;
         }
-
         .promo-footer {
             background: #50a18e;
             padding: 1.2rem 1.5rem;
@@ -70,7 +62,6 @@
             color: #fff;
             margin-top: auto;
         }
-
         .promo-footer h3 {
             margin: 0;
             font-size: 1.6rem;
@@ -78,37 +69,30 @@
             letter-spacing: 0.5px;
             color: #fff;
         }
-
         @media (max-width: 992px) {
             .promo-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
-
             .promo-card .img-wrapper {
                 height: 200px;
             }
         }
-
         @media (max-width: 480px) {
             .promo-grid {
                 grid-template-columns: repeat(1, 1fr);
                 gap: 0.75rem;
             }
-
             .promo-card .img-wrapper {
                 height: 160px;
             }
-
             .promo-footer h3 {
                 font-size: 1.1rem;
             }
         }
     </style>
 </head>
-
 <body>
-
     <!-- Header Top -->
     <header class="header-top">
         <div class="container header-top-content">
@@ -143,7 +127,6 @@
             </div>
         </div>
     </header>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="navbar-container">
@@ -161,14 +144,12 @@
                     <li class="nav-item"><a href="material.html" class="nav-link">Material</a></li>
                     <li class="nav-item"><a href="pricelist.html" class="nav-link">Price List</a></li>
                     <li class="nav-item"><a href="certificate.html" class="nav-link">Certificate</a></li>
-
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
                     <li class="nav-item"><a href="place-order.html" class="nav-link">Place Order</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-
     <!-- Page Header -->
     <header class="page-header" style="background: linear-gradient(135deg, #1a4d3e 0%, #2e7d32 100%);">
         <div class="container">
@@ -176,7 +157,6 @@
             <p>Premium Disposable Bowls designed according to your preference</p>
         </div>
     </header>
-
     <!-- Main Content -->
     <div class="container main-layout">
         <div class="content-area">
@@ -213,7 +193,6 @@
             </section>
         </div>
     </div>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -241,7 +220,6 @@
                             <li><a href="place-order.html">Place Order</a></li>
                         </ul>
                     </div>
-
                 </div>
                 <div class="footer-col">
                     <h3>OUR PRODUCTS</h3>
@@ -299,7 +277,6 @@
             </div>
         </div>
     </footer>
-
     <!-- Lightbox Modal -->
     <div id="lightbox">
         <div class="lightbox-content split-layout">
@@ -352,7 +329,6 @@
             </div>
         </div>
     </div>
-
     <script src="js/main.js"></script>
     <script src="js/responsive.js"></script>
     <script>
@@ -363,13 +339,10 @@
             const dimSvg = document.getElementById('dim-svg');
             const dimHLabel = document.getElementById('dim-h-label');
             const dimVLabel = document.getElementById('dim-v-label');
-
             const titleEl = document.getElementById('lightbox-title');
             const codeHeaderEl = document.getElementById('lightbox-code');
             const categoryEl = document.getElementById('lightbox-category');
             const detailList = document.getElementById('lightbox-detail-list');
-
-
             const openLightbox = (img) => {
                 const src = img.src;
                 const name = img.getAttribute('data-name');
@@ -378,17 +351,13 @@
                 const diameter = img.getAttribute('data-diameter');
                 const height = img.getAttribute('data-height');
                 const code = img.getAttribute('data-code');
-
                 lightboxImg.src = src;
-
                 const titleEl = document.getElementById('lightbox-title');
                 const codeHeaderEl = document.getElementById('lightbox-code');
                 const categoryEl = document.getElementById('lightbox-category');
                 const detailList = document.getElementById('lightbox-detail-list');
-
                 if (titleEl) titleEl.textContent = name || 'PREMIUM BOWL';
                 if (categoryEl) categoryEl.textContent = category;
-
                 if (name || capacity || diameter || height || code) {
                     let detailsHtml = '';
                     if (name) detailsHtml += `<li><strong>NAME:</strong> ${name}</li>`;
@@ -397,9 +366,7 @@
                     if (height) detailsHtml += `<li><strong>HEIGHT:</strong> ${height}</li>`;
                     if (code) detailsHtml += `<li><strong>CODE:</strong> ${code}</li>`;
                     if (detailList) detailList.innerHTML = detailsHtml;
-
                     if (codeHeaderEl) codeHeaderEl.textContent = code ? 'CODE: ' + code.toUpperCase() : '';
-
                     // Update SVG Dimensions
                     if (diameter || height) {
                         dimSvg.style.display = 'block';
@@ -411,17 +378,14 @@
                 } else {
                     dimSvg.style.display = 'none';
                 }
-
                 lightbox.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
             };
-
             const closeLightbox = () => {
                 lightbox.style.display = 'none';
                 dimSvg.style.display = 'none';
                 document.body.style.overflow = '';
             };
-
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('zoom-img') || e.target.classList.contains('lightbox-trigger')) {
                     if (e.target.closest('.promo-card') || e.target.closest('.product-card')) {
@@ -429,18 +393,15 @@
                     }
                 }
             });
-
             closeBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 closeLightbox();
             });
-
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox) {
                     closeLightbox();
                 }
             });
-
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && lightbox.style.display === 'flex') {
                     closeLightbox();
@@ -449,5 +410,4 @@
         });
     </script>
 </body>
-
 </html>
