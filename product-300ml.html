@@ -445,6 +445,12 @@
             const openLightbox = (img) => {
                 const src = img.src;
                 const isSpiral = img.classList.contains('spiral-image-zoom');
+                const name = img.getAttribute('data-name');
+                const category = img.getAttribute('data-category') || '300ml';
+                const capacity = img.getAttribute('data-capacity');
+                const diameter = img.getAttribute('data-diameter');
+                const height = img.getAttribute('data-height');
+                const code = img.getAttribute('data-code');
 
                 lightboxImg.src = src;
 
