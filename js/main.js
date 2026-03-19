@@ -40,6 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (productName.includes('square')) {
                         // Square Watti: y1=top rim, y2=cup base
                         y1 = 115; y2 = 275; x = 310;
+                    } else if (productName.includes('50-ml')) {
+                        // 50ml Watti: very short
+                        y1 = 160; y2 = 250; x = 355;
+                    } else if (productName.includes('sunday')) {
+                        // Sunday Cup: shift height upward
+                        y1 = 130; y2 = 260; x = 355;
                     } else {
                         // Round Watti 100ml and similar
                         y1 = 150; y2 = 280; x = 355;
@@ -47,6 +53,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (category.includes('180') && productName.includes('plain')) {
                     // 180ml PLAIN: extend arrow to full cup span (top rim → base)
                     y1 = 85; y2 = 395; x = 360;
+                } else if (category.includes('180') && productName.includes('spiral')) {
+                    // 180ml SPIRAL: shift top of arrow upward to reach the cup rim
+                    y1 = 65; y2 = 355; x = 360;
+                } else if (productName.includes('mocktail')) {
+                    // MOCKTAIL is centered and smaller; match its boundaries
+                    y1 = 105; y2 = 295; x = 340;
+                } else if (category.includes('200') && productName.includes('tower')) {
+                    // 200ml TOWER: shift top of arrow upward, decrease from downward, and place near glass
+                    y1 = 80; y2 = 330; x = 320;
+                } else if (category.includes('200') && productName.includes('hexa')) {
+                    // 200ml HEXA: shift top of arrow upward and decrease from downward
+                    y1 = 90; y2 = 320; x = 350;
+                } else if (category.includes('200') && productName.includes('check')) {
+                    // 200ml CHECKS: move height arrow near the glass and decrease from downward
+                    y1 = 110; y2 = 320; x = 310;
+                } else if (category.includes('200') && productName.includes('plain')) {
+                    // 200ml PLAIN: shift top of arrow upward and decrease from downward
+                    y1 = 80; y2 = 330; x = 360;
+                } else if (category.includes('200') && productName.includes('spiral')) {
+                    // 200ml SPIRAL: shift top of arrow upward and decrease from downward
+                    y1 = 80; y2 = 340; x = 360;
+                } else if (category.includes('225') && productName.includes('spiral')) {
+                    // 225ml SPIRAL: shift top of arrow upward and decrease from downward
+                    y1 = 80; y2 = 340; x = 360;
+                } else if (category.includes('250') && productName.includes('tower')) {
+                    // 250ml TOWER: move height arrow near the glass
+                    y1 = 80; y2 = 340; x = 320;
+                } else if (category.includes('250') && productName.includes('spiral')) {
+                    // 250ml SPIRAL: move height arrow near the glass
+                    y1 = 80; y2 = 340; x = 330;
+                } else if (category.includes('250') && (productName.includes('plain') || productName.includes('flower'))) {
+                    // 250ml PLAIN/FLOWER: move height arrow near the glass and shift top upward
+                    y1 = 110; y2 = 350; x = 310;
+                } else if (category.includes('300') && productName.includes('plain heavy')) {
+                    // 300ml PLAIN HEAVY: move height arrow near the glass and even shorter from below
+                    y1 = 80; y2 = 330; x = 310;
+                } else if (category.includes('300') && productName.includes('plain')) {
+                    // 300ml PLAIN: move height arrow near the glass and shorten from below
+                    y1 = 80; y2 = 360; x = 310;
+                } else if (category.includes('300') && productName.includes('spiral')) {
+                    // 300ml SPIRAL: move height arrow near the glass and shift top upward
+                    y1 = 60; y2 = 350; x = 340;
+                } else if (category.includes('300') && productName.includes('tower')) {
+                    // 300ml TOWER: move height arrow near the glass and shift top upward
+                    y1 = 60; y2 = 340; x = 320;
                 } else {
                     // Default for glasses (180ml, 200ml, 250ml, 300ml, etc.)
                     y1 = 110; y2 = 380; x = 360;
@@ -88,6 +139,97 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (category.includes('180') && productName.includes('plain')) {
                         // Shift diameter arrow upward by 15 units for 180ml PLAIN
                         const newY = 35;
+                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
+                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
+                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
+                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                    } else if (category.includes('180') && productName.includes('spiral')) {
+                        // Shift diameter arrow further upward for 180ml SPIRAL
+                        const newY = 35;
+                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
+                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
+                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
+                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                    } else if (category.includes('200') && productName.includes('plain')) {
+                        // Shift diameter arrow upward for 200ml PLAIN, keeping it visible
+                        const newY = 30;
+                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
+                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
+                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
+                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                    } else if (category.includes('200') && productName.includes('spiral')) {
+                        // Shift diameter arrow upward for 200ml SPIRAL
+                        const newY = 35;
+                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
+                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
+                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
+                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                    } else if (category.includes('225') && productName.includes('spiral')) {
+                        // Shift diameter arrow upward further for 225ml SPIRAL
+                        const newY = 25;
+                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
+                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
+                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
+                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                    } else if (category.includes('250') && productName.includes('tower')) {
+                        // Shift diameter arrow upward for 250ml TOWER
+                        const newY = 35;
+                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
+                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
+                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
+                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                    } else if (category.includes('250') && productName.includes('spiral')) {
+                        // Shift diameter arrow upward for 250ml SPIRAL
+                        const newY = 35;
+                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
+                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
+                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
+                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                    } else if (category.includes('250') && (productName.includes('plain') || productName.includes('flower'))) {
+                        // Shift diameter arrow even higher above mouth for 250ml PLAIN/FLOWER
+                        const newY = 85;
+                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
+                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
+                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
+                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                    } else if (category.includes('300') && productName.includes('plain')) {
+                        // Shift diameter arrow even higher above mouth for 300ml PLAIN
+                        const newY = 65;
+                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
+                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
+                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
+                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                    } else if (category.includes('300') && productName.includes('spiral')) {
+                        // Shift diameter arrow even higher above mouth for 300ml SPIRAL
+                        const newY = 25;
+                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
+                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
+                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
+                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                    } else if (category.includes('300') && productName.includes('tower')) {
+                        // Shift diameter arrow above mouth for 300ml TOWER
+                        const newY = 45;
+                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
+                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
+                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
+                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                    } else if (category.includes('watti')) {
+                        // Shift diameter arrow downward for Watti products
+                        let newY = 80;
+                        if (productName.includes('sunday')) {
+                            // Sunday Cup: shift diameter upward from general Watti level
+                            newY = 70;
+                        } else if (productName.includes('square')) {
+                            // Square Watti: shift diameter upward from general Watti level
+                            newY = 100;
+                        }
+                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
+                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
+                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
+                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                    } else if (productName.includes('mocktail')) {
+                        // Shift diameter arrow downward for MOCKTAIL
+                        const newY = 95;
                         if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
                         if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
                         if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }

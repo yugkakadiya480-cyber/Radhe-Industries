@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,15 +14,18 @@
             gap: 3rem;
             margin-top: 0.5rem;
         }
+
         .promo-grid {
             display: flex;
             justify-content: flex-start;
             margin-bottom: 1.5rem;
             width: 100%;
         }
+
         .page-header {
             padding: 1rem 0 0.5rem !important;
         }
+
         .promo-card {
             background: #fff;
             max-width: 320px;
@@ -35,12 +39,14 @@
             display: flex;
             flex-direction: column;
         }
+
         .promo-card .img-wrapper {
             width: 100%;
             height: 280px;
             overflow: hidden;
             background: #fff;
         }
+
         .promo-card .img-wrapper img,
         .zoom-img {
             width: 100%;
@@ -50,14 +56,17 @@
             padding: 10px;
             transition: transform 0.5s ease;
         }
+
         .promo-card:hover .zoom-img,
         .product-card:hover .zoom-img {
             transform: scale(1.1);
             cursor: zoom-in;
         }
+
         .product-card .card-image-wrapper {
             overflow: hidden;
         }
+
         .promo-footer {
             background: #50a18e;
             padding: 1.1rem 1.5rem;
@@ -67,6 +76,7 @@
             color: #fff;
             margin-top: auto;
         }
+
         .promo-footer h3 {
             margin: 0;
             font-size: 1.3rem;
@@ -74,35 +84,43 @@
             letter-spacing: 0.5px;
             color: #fff;
         }
+
         @media (max-width: 992px) {
             .main-layout {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
+
             .sidebar-promo {
                 position: static;
                 order: -1;
             }
+
             .promo-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
+
             .promo-card .img-wrapper {
                 height: 200px;
             }
         }
+
         @media (max-width: 480px) {
             .promo-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 0.75rem;
             }
+
             .promo-card .img-wrapper {
                 height: 160px;
             }
+
             .promo-footer h3 {
                 font-size: 1.1rem;
             }
         }
+
         /* Specific zoom for BRU as requested */
         .bru-zoom {
             transform: scale(1.3);
@@ -111,16 +129,20 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Header Top -->
     <header class="header-top">
         <div class="container header-top-content">
             <a href="index.html" class="logo"
                 style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
-                <img src="images/company-logo.png" alt="Radhe Disposable Logo" style="height: 60px; width: auto;" class="brand-logo-img">
+                <img src="images/company-logo.png" alt="Radhe Disposable Logo" style="height: 60px; width: auto;"
+                    class="brand-logo-img">
                 <div style="line-height: 1.1;">
-                    <span class="brand-text-primary" style="display: block; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase;">RADHE</span>
-                    <span class="brand-text-secondary" style="display: block; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Disposable</span>
+                    <span class="brand-text-primary"
+                        style="display: block; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase;">RADHE</span>
+                    <span class="brand-text-secondary"
+                        style="display: block; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Disposable</span>
                 </div>
             </a>
             <div class="header-contact-info">
@@ -190,13 +212,8 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/BRU.png" alt="Others Product" class="zoom-img lightbox-trigger"
-                            data-title="BRU"
-                            data-category="Others"
-                            data-name="BRU"
-                            data-capacity="120ML"
-                            data-diameter="62MM"
-                            data-height="65MM"
-                            data-code="T 1270">
+                            data-title="BRU" data-category="Others" data-name="BRU" data-capacity="120ML"
+                            data-diameter="62MM" data-height="65MM" data-code="T 1270">
                     </div>
                     <div class="promo-footer">
                         <h3>BRU</h3>
@@ -205,12 +222,8 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/TOWER2 120-ML.png" alt="TOWER CUP" class="zoom-img lightbox-trigger"
-                            data-title="TOWER CUP"
-                            data-category="Others"
-                            data-name="TOWER CUP"
-                            data-diameter="62MM"
-                            data-height="65MM"
-                            data-code="T 1271">
+                            data-title="TOWER CUP" data-category="Others" data-name="TOWER CUP" data-diameter="62MM"
+                            data-height="65MM" data-code="T 1271">
                     </div>
                     <div class="promo-footer">
                         <h3>TOWER</h3>
@@ -335,30 +348,37 @@
                         <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto">
                             <polygon points="0 0, 8 2.5, 0 5" fill="#fff" />
                         </marker>
-                        <marker id="arrowhead-reverse" markerWidth="8" markerHeight="5" refX="0" refY="2.5" orient="auto">
+                        <marker id="arrowhead-reverse" markerWidth="8" markerHeight="5" refX="0" refY="2.5"
+                            orient="auto">
                             <polygon points="8 0, 0 2.5, 8 5" fill="#fff" />
                         </marker>
                     </defs>
                     <!-- Elegant horizontal line (Diameter) - Floating Style -->
                     <g id="h-spec">
-                        <line x1="80" y1="50" x2="320" y2="50" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
-                        <line x1="80" y1="45" x2="80" y2="55" stroke="#fff" stroke-width="1"/>
-                        <line x1="320" y1="45" x2="320" y2="55" stroke="#fff" stroke-width="1"/>
-                        <text id="dim-h-label" x="200" y="35" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif">DIAMETER</text>
+                        <line x1="80" y1="50" x2="320" y2="50" stroke="#fff" stroke-width="2"
+                            marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)" />
+                        <line x1="80" y1="45" x2="80" y2="55" stroke="#fff" stroke-width="1" />
+                        <line x1="320" y1="45" x2="320" y2="55" stroke="#fff" stroke-width="1" />
+                        <text id="dim-h-label" x="200" y="35" text-anchor="middle" font-size="16" font-weight="900"
+                            fill="#fff" font-family="'Inter', sans-serif">DIAMETER</text>
                     </g>
                     <!-- Elegant vertical line (Height) - Floating Style -->
                     <g id="v-spec">
-                        <line x1="380" y1="125" x2="380" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
-                        <line x1="375" y1="125" x2="385" y2="125" stroke="#fff" stroke-width="1"/>
-                        <line x1="375" y1="335" x2="385" y2="335" stroke="#fff" stroke-width="1"/>
-                        <text id="dim-v-label" x="395" y="230" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 395, 230)">HEIGHT</text>
+                        <line x1="380" y1="125" x2="380" y2="335" stroke="#fff" stroke-width="2"
+                            marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)" />
+                        <line x1="375" y1="125" x2="385" y2="125" stroke="#fff" stroke-width="1" />
+                        <line x1="375" y1="335" x2="385" y2="335" stroke="#fff" stroke-width="1" />
+                        <text id="dim-v-label" x="395" y="230" text-anchor="middle" font-size="16" font-weight="900"
+                            fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 395, 230)">HEIGHT</text>
                     </g>
                 </svg>
             </div>
             <div class="lightbox-details-container">
-                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
                     <h2 id="lightbox-title" style="margin: 0;">Premium Product</h2>
-                    <span id="lightbox-code" style="color: #ff3b30; font-weight: 800; font-size: 1.2rem; text-transform: uppercase;"></span>
+                    <span id="lightbox-code"
+                        style="color: #ff3b30; font-weight: 800; font-size: 1.2rem; text-transform: uppercase;"></span>
                 </div>
                 <div class="lightbox-meta">
                     <span id="lightbox-category" class="category-badge">Category</span>
@@ -379,7 +399,95 @@
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const grid = document.getElementById('productGrid');
-            const zoomResult = document.getElementById('img-zoom-result');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.querySelector('.lightbox-close');
+            const titleEl = document.getElementById('lightbox-title');
+            const codeHeaderEl = document.getElementById('lightbox-code');
+            const categoryEl = document.getElementById('lightbox-category');
+            const detailList = document.getElementById('lightbox-detail-list');
+            const dimSvg = document.getElementById('dim-svg');
+            const dimHLabel = document.getElementById('dim-h-label');
+            const dimVLabel = document.getElementById('dim-v-label');
+
+            const openLightbox = (img) => {
+                const name = img.getAttribute('data-name');
+                const capacity = img.getAttribute('data-capacity');
+                const diameter = img.getAttribute('data-diameter');
+                const height = img.getAttribute('data-height');
+                const code = img.getAttribute('data-code');
+                const category = img.getAttribute('data-category');
+
+                lightboxImg.src = img.src;
+                if (titleEl) titleEl.textContent = name || 'PREMIUM PRODUCT';
+                if (categoryEl) categoryEl.textContent = category || 'OTHERS';
+                if (codeHeaderEl) codeHeaderEl.textContent = code ? 'CODE: ' + code.toUpperCase() : '';
+
+                // Build detail list
+                let listHtml = '';
+                if (name) listHtml += `<li><strong>NAME:</strong> ${name.toUpperCase()}</li>`;
+                if (capacity) listHtml += `<li><strong>CAPACITY:</strong> ${capacity.toUpperCase()}</li>`;
+                if (diameter) listHtml += `<li><strong>DIAMETER:</strong> ${diameter.toUpperCase()}</li>`;
+                if (height) listHtml += `<li><strong>HEIGHT:</strong> ${height.toUpperCase()}</li>`;
+                if (code) listHtml += `<li><strong>CODE:</strong> ${code.toUpperCase()}</li>`;
+                
+                if (listHtml) {
+                    detailList.innerHTML = listHtml;
+                } else {
+                    detailList.innerHTML = `
+                        <li><strong>MATERIAL:</strong> FOOD-GRADE PREMIUM QUALITY</li>
+                        <li><strong>FEATURES:</strong> ECO-FRIENDLY, DURABLE, HYGIENIC</li>
+                        <li><strong>USAGE:</strong> IDEAL FOR CAFES, EVENTS, AND DAILY USE</li>`;
+                }
+
+                // Show SVG Dimensions
+                if (dimSvg) {
+                    if (diameter || height) {
+                        dimSvg.style.display = 'block';
+                        if (dimHLabel && diameter) dimHLabel.textContent = 'DIAMETER ' + diameter.toUpperCase();
+                        if (dimVLabel && height) dimVLabel.textContent = 'HEIGHT ' + height.toUpperCase();
+                    } else {
+                        dimSvg.style.display = 'none';
+                    }
+                }
+
+                lightbox.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeLightbox = () => {
+                lightbox.style.display = 'none';
+                if (dimSvg) dimSvg.style.display = 'none';
+                document.body.style.overflow = '';
+            };
+
+            // Delegate clicks for both static and dynamic images
+            document.addEventListener('click', (e) => {
+                const target = e.target;
+                if (target.classList.contains('zoom-img') || target.classList.contains('lightbox-trigger')) {
+                    if (target.closest('.promo-card') || target.closest('.product-card')) {
+                        openLightbox(target);
+                    }
+                }
+            });
+
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeLightbox();
+            });
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                    closeLightbox();
+                }
+            });
+
             try {
                 const res = await fetch('/api/products');
                 if (!res.ok) throw new Error('Failed to fetch data');
@@ -387,7 +495,7 @@
                 // Filter for others category
                 products = products.filter(p => p.category === 'Others');
                 if (products.length === 0) {
-                     grid.innerHTML = '<p style="text-align:center; padding: 2rem; width: 100%;">No dynamic products found for this category.</p>';
+                    grid.innerHTML = '<p style="text-align:center; padding: 2rem; width: 100%;">No dynamic products found for this category.</p>';
                 } else {
                     grid.innerHTML = products.map(p => `
                         <div class="product-card">
@@ -406,10 +514,10 @@
                                 <div style="display:flex; justify-content:space-between; align-items:center;">
                                     <div>
                                         ${p.discount > 0
-                                            ? `<span style="text-decoration: line-through; color: #999; font-size: 0.9em;">₹${p.price.toFixed(2)}</span>
+                            ? `<span style="text-decoration: line-through; color: #999; font-size: 0.9em;">₹${p.price.toFixed(2)}</span>
                                             <span class="card-price" style="color: red;">₹${(p.price * (1 - p.discount / 100)).toFixed(2)}</span>`
-                                            : `<span class="card-price">₹${p.price.toFixed(2)}</span> / case`
-                                        }
+                            : `<span class="card-price">₹${p.price.toFixed(2)}</span> / case`
+                        }
                                     </div>
                                 </div>
                                 ${p.description ? `<p style="font-size:0.85rem; color:#666; margin-top:0.5rem;">${p.description}</p>` : ''}
@@ -421,84 +529,8 @@
                 console.error(err);
                 grid.innerHTML = '<p style="text-align:center; color:red; width:100%; padding: 4rem;">Currently offline. Please try again later.</p>';
             }
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const closeBtn = document.querySelector('.lightbox-close');
-            const titleEl = document.getElementById('lightbox-title');
-            const codeHeaderEl = document.getElementById('lightbox-code');
-            const categoryEl = document.getElementById('lightbox-category');
-            const detailList = document.getElementById('lightbox-detail-list');
-            const dimSvg = document.getElementById('dim-svg');
-            const dimHLabel = document.getElementById('dim-h-label');
-            const dimVLabel = document.getElementById('dim-v-label');
-            const openLightbox = (img) => {
-                const name = img.getAttribute('data-name');
-                const capacity = img.getAttribute('data-capacity');
-                const diameter = img.getAttribute('data-diameter');
-                const height = img.getAttribute('data-height');
-                const code = img.getAttribute('data-code');
-                lightboxImg.src = img.src;
-                if (titleEl) titleEl.textContent = name || 'Premium Product';
-                if (categoryEl) categoryEl.textContent = img.getAttribute('data-category') || 'Others';
-                // Repopulate details if data exists
-                if (name || capacity || diameter || height || code) {
-                    let detailsHtml = '';
-                    if (name) detailsHtml += `<li><strong>NAME:</strong> ${name}</li>`;
-                    if (capacity) detailsHtml += `<li><strong>CAPACITY:</strong> ${capacity}</li>`;
-                    if (diameter) detailsHtml += `<li><strong>DIAMETER:</strong> ${diameter}</li>`;
-                    if (height) detailsHtml += `<li><strong>HEIGHT:</strong> ${height}</li>`;
-                    if (code) detailsHtml += `<li><strong>CODE:</strong> ${code}</li>`;
-                    detailList.innerHTML = detailsHtml;
-                    if (codeHeaderEl) codeHeaderEl.textContent = code ? 'CODE: ' + code.toUpperCase() : '';
-                    // Update SVG Dimensions
-                    if (diameter || height) {
-                        dimSvg.style.display = 'block';
-                        if (diameter) dimHLabel.textContent = `DIAMETER ${diameter}`;
-                        if (height) dimVLabel.textContent = `HEIGHT ${height}`;
-                    } else {
-                        dimSvg.style.display = 'none';
-                    }
-                } else {
-                    dimSvg.style.display = 'none';
-                }
-                if (name === 'BRU') {
-                    lightboxImg.classList.add('bru-zoom');
-                } else {
-                    lightboxImg.classList.remove('bru-zoom');
-                }
-                lightbox.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Prevent scroll
-            };
-            const closeLightbox = () => {
-                lightbox.style.display = 'none';
-                dimSvg.style.display = 'none';
-                lightboxImg.classList.remove('bru-zoom');
-                document.body.style.overflow = ''; // Restore scroll
-            };
-            // Delegate clicks for both static and dynamic images
-            document.addEventListener('click', (e) => {
-                if (e.target.classList.contains('zoom-img') || e.target.classList.contains('lightbox-trigger')) {
-                    if (e.target.closest('.promo-card') || e.target.closest('.product-card')) {
-                        openLightbox(e.target);
-                    }
-                }
-            });
-            closeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                closeLightbox();
-            });
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) {
-                    closeLightbox();
-                }
-            });
-            // ESC key to close
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-                    closeLightbox();
-                }
-            });
         });
     </script>
 </body>
+
 </html>

@@ -54,13 +54,13 @@
             cursor: zoom-in;
         }
         .spiral-image-zoom {
-            transform: scale(1.1) !important;
+            transform: scale(1.15) !important;
         }
         .promo-card:hover .spiral-image-zoom {
             transform: scale(1.3) !important;
         }
         .lightbox-zoom {
-            transform: scale(1.6) !important;
+            transform: scale(1.5) !important;
         }
         .product-card .card-image-wrapper {
             overflow: hidden;
@@ -221,7 +221,7 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/SPIRAL2 225-ML.png" alt="225-ML SPIRAL"
-                            class="zoom-img lightbox-trigger"
+                            class="zoom-img spiral-image-zoom lightbox-trigger"
                             data-name="SPIRAL"
                             data-diameter="70MM"
                             data-height="90MM"
@@ -396,8 +396,11 @@
                 const code = img.getAttribute('data-code');
                 const category = img.getAttribute('data-category') || '225ml';
                 lightboxImg.src = img.src;
-                // Lightbox zoom removed for product clarity
-                lightboxImg.classList.remove('lightbox-zoom');
+                if (isSpiral) {
+                    lightboxImg.classList.add('lightbox-zoom');
+                } else {
+                    lightboxImg.classList.remove('lightbox-zoom');
+                }
                 if (titleEl) titleEl.textContent = name || 'Premium Product';
                 if (codeHeaderEl) codeHeaderEl.textContent = code ? 'CODE: ' + code.toUpperCase() : '';
                 if (categoryEl) categoryEl.textContent = category.toUpperCase();
