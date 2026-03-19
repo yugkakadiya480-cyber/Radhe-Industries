@@ -98,6 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (category.includes('300') && productName.includes('tower')) {
                     // 300ml TOWER: move height arrow near the glass and shift top upward
                     y1 = 60; y2 = 340; x = 320;
+                } else if (category.includes('others') && productName.includes('tower')) {
+                    // Others TOWER CUP: move height arrow near the image and decrease from downside
+                    y1 = 110; y2 = 300; x = 320;
+                } else if (productName.includes('bru')) {
+                    // BRU product: move height arrow near the glass and decrease from downward
+                    y1 = 100; y2 = 290; x = 320;
                 } else {
                     // Default for glasses (180ml, 200ml, 250ml, 300ml, etc.)
                     y1 = 110; y2 = 380; x = 360;
@@ -209,6 +215,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (category.includes('300') && productName.includes('tower')) {
                         // Shift diameter arrow above mouth for 300ml TOWER
                         const newY = 45;
+                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
+                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
+                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
+                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                    } else if (productName.includes('bru')) {
+                        // BRU product: push diameter arrow downward for visibility
+                        const newY = 90;
+                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
+                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
+                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
+                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                    } else if (category.includes('others') && productName.includes('tower')) {
+                        // Others TOWER CUP: push diameter arrow downward for visibility
+                        const newY = 100;
                         if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
                         if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
                         if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
