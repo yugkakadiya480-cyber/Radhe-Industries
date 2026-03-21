@@ -215,9 +215,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         hY = 95;
                     }
 
-                    // Global Phone/Mobile Adjustment: Shift diameter arrow upward
+                    // Global Phone/Mobile Adjustment
                     if (window.innerWidth <= 600) {
-                        hY = Math.max(15, hY - 30); // Move up by 30px on mobile, but stay within view
+                        if (category.includes('180')) {
+                            hY = hY + 30; // Move DOWN for 180ml on mobile
+                        } else {
+                            hY = Math.max(15, hY - 30); // Default: move UP for others
+                        }
                     }
 
                     // Apply all coordinates at once
