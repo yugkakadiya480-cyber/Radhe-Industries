@@ -170,12 +170,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         hY = 25; // More upward
                     } else if (category.includes('200') && productName.includes('plain')) {
                         hY = 30;
-                    } else if (category.includes('200') && productName.includes('hexa')) {
+                    } else if (category.includes('200') && (productName.includes('hexa') || productName.includes('tower') || productName.includes('checks'))) {
                         hY = 25;
                     } else if (category.includes('200') && productName.includes('spiral')) {
                         hY = 35;
-                    } else if (category.includes('225') && productName.includes('spiral')) {
+                    } else if (category.includes('225') && (productName.includes('spiral') || productName.includes('tower'))) {
                         hY = 25;
+                    } else if (category.includes('225') && productName.includes('checks')) {
+                        hY = 25; hX1 = 55; hX2 = 345;
                     } else if (category.includes('250') && productName.includes('tower')) {
                         hY = 35;
                     } else if (category.includes('250') && productName.includes('spiral')) {
@@ -194,17 +196,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         hY = 100;
                     } else if (category.includes('watti')) {
                         hY = 110;
+                        hX1 = 60; hX2 = 300; // Refined centering
+
                         if (productName.includes('sunday')) {
                             hY = 70;
                         } else if (productName.includes('square')) {
                             hY = 100;
+                            hX1 = 55; hX2 = 295; // Refined centering for square
                         } else if (productName.includes('100-ml')) {
                             hY = 80;
                         }
 
                         // Custom X-position for 50ml variants
                         if (productName.includes('full size') || productName.includes('cut size')) {
-                            hX1 = 20; hX2 = 260;
+                            hX1 = 10; hX2 = 250; // Refined centering
                         }
                     } else if (productName.includes('mocktail')) {
                         hY = 95;
