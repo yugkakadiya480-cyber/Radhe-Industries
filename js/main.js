@@ -153,147 +153,78 @@ document.addEventListener('DOMContentLoaded', () => {
                     const hLines = hSpec.querySelectorAll('line');
                     const hLabel = hSpec.querySelector('text');
 
-                    // Standard horizontal coordinates (shift handled by SVG container margin)
-                    const hX1 = 80;
-                    const hX2 = 320;
-
-                    if (hLines[0]) { hLines[0].setAttribute('x1', hX1); hLines[0].setAttribute('x2', hX2); }
-                    if (hLines[1]) { hLines[1].setAttribute('x1', hX1); hLines[1].setAttribute('x2', hX1); }
-                    if (hLines[2]) { hLines[2].setAttribute('x1', hX2); hLines[2].setAttribute('x2', hX2); }
-                    if (hLabel)    { hLabel.setAttribute('x', (hX1 + hX2) / 2); }
-;
+                    // Standard horizontal coordinates
+                    let hX1 = 80;
+                    let hX2 = 320;
+                    let hY = 100; // Default baseline
 
                     if (category.includes('180') && productName.includes('plain')) {
-                        // Shift diameter arrow upward for 180ml PLAIN
-                        const newY = 30;
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                        hY = 30;
                     } else if (category.includes('180') && productName.includes('spiral')) {
-                        // Shift diameter arrow further upward for 180ml SPIRAL
-                        const newY = 45;
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                        hY = 45;
                     } else if (category.includes('200') && productName.includes('plain')) {
-                        // Shift diameter arrow upward for 200ml PLAIN, keeping it visible
-                        const newY = 30;
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                        hY = 30;
                     } else if (category.includes('200') && productName.includes('hexa')) {
-                        // Shift diameter arrow upward for 200ml HEXA
-                        const newY = 25;
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                        hY = 25;
                     } else if (category.includes('200') && productName.includes('spiral')) {
-                        // Shift diameter arrow upward for 200ml SPIRAL
-                        const newY = 35;
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                        hY = 35;
                     } else if (category.includes('225') && productName.includes('spiral')) {
-                        // Shift diameter arrow upward further for 225ml SPIRAL
-                        const newY = 25;
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                        hY = 25;
                     } else if (category.includes('250') && productName.includes('tower')) {
-                        // Shift diameter arrow upward for 250ml TOWER
-                        const newY = 35;
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                        hY = 35;
                     } else if (category.includes('250') && productName.includes('spiral')) {
-                        // Shift diameter arrow upward for 250ml SPIRAL
-                        const newY = 35;
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                        hY = 35;
                     } else if (category.includes('250') && (productName.includes('plain') || productName.includes('flower'))) {
-                        // Shift diameter arrow even higher above mouth for 250ml PLAIN/FLOWER
-                        const newY = 30;
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                        hY = 30;
                     } else if (category.includes('300') && productName.includes('plain')) {
-                        // Shift diameter arrow even higher above mouth for 300ml PLAIN
-                        const newY = 65;
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                        hY = 65;
                     } else if (category.includes('300') && productName.includes('spiral')) {
-                        // Shift diameter arrow even higher above mouth for 300ml SPIRAL
-                        const newY = 25;
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                        hY = 25;
                     } else if (category.includes('300') && productName.includes('tower')) {
-                        // Shift diameter arrow above mouth for 300ml TOWER
-                        const newY = 45;
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                        hY = 45;
                     } else if (productName.includes('bru')) {
-                        // BRU product: push diameter arrow downward for visibility
-                        const newY = 90;
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                        hY = 90;
                     } else if (productName.includes('tower')) {
-                        // General TOWER CUP: push diameter arrow downward for visibility
-                        const newY = 100;
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                        hY = 100;
                     } else if (category.includes('watti')) {
-                        // Shift diameter arrow downward for Watti products
-                        let newY = 110;
+                        hY = 110;
                         if (productName.includes('sunday')) {
-                            // Sunday Cup: shift diameter upward from general Watti level
-                            newY = 70;
+                            hY = 70;
                         } else if (productName.includes('square')) {
-                            // Square Watti: shift diameter upward from general Watti level
-                            newY = 100;
+                            hY = 100;
                         } else if (productName.includes('100-ml')) {
-                            // 100ml Watti: move upward from general Watti level
-                            newY = 80;
+                            hY = 80;
                         }
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
 
-                        // Custom X-position for 50ml Full Size and Cut Size (shift 60px left)
+                        // Custom X-position for 50ml variants
                         if (productName.includes('full size') || productName.includes('cut size')) {
-                            const newX1 = 20, newX2 = 260;
-                            if (hLines[0]) { hLines[0].setAttribute('x1', newX1); hLines[0].setAttribute('x2', newX2); }
-                            if (hLines[1]) { hLines[1].setAttribute('x1', newX1); hLines[1].setAttribute('x2', newX1); }
-                            if (hLines[2]) { hLines[2].setAttribute('x1', newX2); hLines[2].setAttribute('x2', newX2); }
-                            if (hLabel)    { hLabel.setAttribute('x', (newX1 + newX2) / 2); }
+                            hX1 = 20; hX2 = 260;
                         }
                     } else if (productName.includes('mocktail')) {
-                        // Shift diameter arrow downward for MOCKTAIL
-                        const newY = 95;
-                        if (hLines[0]) { hLines[0].setAttribute('y1', newY); hLines[0].setAttribute('y2', newY); }
-                        if (hLines[1]) { hLines[1].setAttribute('y1', newY - 5); hLines[1].setAttribute('y2', newY + 5); }
-                        if (hLines[2]) { hLines[2].setAttribute('y1', newY - 5); hLines[2].setAttribute('y2', newY + 5); }
-                        if (hLabel)    { hLabel.setAttribute('y', newY - 10); }
+                        hY = 95;
+                    }
+
+                    // Global Phone/Mobile Adjustment: Shift diameter arrow upward
+                    if (window.innerWidth <= 600) {
+                        hY -= 30; // Move up by 30px on mobile
+                    }
+
+                    // Apply all coordinates at once
+                    if (hLines[0]) {
+                        hLines[0].setAttribute('x1', hX1); hLines[0].setAttribute('y1', hY);
+                        hLines[0].setAttribute('x2', hX2); hLines[0].setAttribute('y2', hY);
+                    }
+                    if (hLines[1]) {
+                        hLines[1].setAttribute('x1', hX1); hLines[1].setAttribute('y1', hY - 5);
+                        hLines[1].setAttribute('x2', hX1); hLines[1].setAttribute('y2', hY + 5);
+                    }
+                    if (hLines[2]) {
+                        hLines[2].setAttribute('x1', hX2); hLines[2].setAttribute('y1', hY - 5);
+                        hLines[2].setAttribute('x2', hX2); hLines[2].setAttribute('y2', hY + 5);
+                    }
+                    if (hLabel) {
+                        hLabel.setAttribute('x', (hX1 + hX2) / 2);
+                        hLabel.setAttribute('y', hY - 10);
                     }
                 }
             }, 50); // Small delay to ensure original scripts have finished
