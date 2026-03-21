@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (category.includes('180') && productName.includes('tower')) {
                         hY = 25; // More upward
                     } else if (category.includes('180') && productName.includes('hexa')) {
-                        hY = 20; // Even more upward
+                        hY = 30; // Slightly down from before
                     } else if (category.includes('180') && productName.includes('checks')) {
                         hY = 25; // More upward
                     } else if (category.includes('200') && productName.includes('plain')) {
