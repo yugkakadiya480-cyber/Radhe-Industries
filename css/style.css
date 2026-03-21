@@ -801,6 +801,19 @@ section {
     color: var(--color-text);
 }
 
+.promo-footer h3 {
+    margin: 0;
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+@media (max-width: 480px) {
+    .promo-footer h3 {
+        font-size: 1rem !important;
+    }
+}
+
 .card-price {
     font-weight: 600;
     color: var(--color-primary);
