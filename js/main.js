@@ -162,6 +162,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         hY = 30;
                     } else if (category.includes('180') && productName.includes('spiral')) {
                         hY = 45;
+                    } else if (category.includes('180') && productName.includes('tower')) {
+                        hY = 25; // More upward
+                    } else if (category.includes('180') && productName.includes('hexa')) {
+                        hY = 20; // Even more upward
+                    } else if (category.includes('180') && productName.includes('checks')) {
+                        hY = 25; // More upward
                     } else if (category.includes('200') && productName.includes('plain')) {
                         hY = 30;
                     } else if (category.includes('200') && productName.includes('hexa')) {
