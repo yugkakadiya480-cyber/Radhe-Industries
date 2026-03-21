@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Global Phone/Mobile Adjustment: Shift diameter arrow upward
                     if (window.innerWidth <= 600) {
-                        hY -= 30; // Move up by 30px on mobile
+                        hY = Math.max(15, hY - 30); // Move up by 30px on mobile, but stay within view
                     }
 
                     // Apply all coordinates at once

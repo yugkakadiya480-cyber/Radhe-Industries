@@ -541,10 +541,11 @@
                             if (detailList) detailList.innerHTML = listHtml;
                             if (codeHeaderEl) codeHeaderEl.textContent = img.dataset.code ? 'CODE: ' + img.dataset.code.toUpperCase() : '';
                     // Update SVG Dimensions
+                    // Note: main.js handles coordinate adjustments and display state
                     if (diameter || height) {
-                        dimSvg.style.display = 'block';
                         if (diameter) dimHLabel.textContent = `DIAMETER ${diameter}`;
                         if (height) dimVLabel.textContent = `HEIGHT ${height}`;
+                        dimSvg.style.display = 'block';
                     } else {
                         dimSvg.style.display = 'none';
                     }
