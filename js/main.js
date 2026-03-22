@@ -218,7 +218,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Global Phone/Mobile Adjustment
                     if (window.innerWidth <= 600) {
                         if (category.includes('180')) {
-                            hY = hY + 10; // Move DOWN for 180ml on mobile (refined)
+                            if (productName.includes('plain') || productName.includes('mocktail')) {
+                                hY = hY - 5; // Move slightly UP for PLAIN/MOCKTAIL
+                            } else {
+                                hY = hY + 10; // Stay DOWN for others (HEXA, etc.)
+                            }
                         } else {
                             hY = Math.max(15, hY - 30); // Default: move UP for others
                         }
