@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Global Phone/Mobile Adjustment
                     if (window.innerWidth <= 600) {
                         if (category.includes('180')) {
-                            hY = hY - 10; // Move UP for 180ml on mobile
+                            hY = hY + 10; // Move DOWN for 180ml on mobile (refined)
                         } else {
                             hY = Math.max(15, hY - 30); // Default: move UP for others
                         }
