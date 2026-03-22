@@ -218,8 +218,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Global Phone/Mobile Adjustment
                     if (window.innerWidth <= 600) {
                         if (category.includes('180')) {
-                            if (productName.includes('plain') || productName.includes('mocktail')) {
-                                hY = hY - 5; // Move slightly UP for PLAIN/MOCKTAIL
+                            if (productName.includes('plain') || productName.includes('mocktail') || productName.includes('spiral')) {
+                                hY = hY - 15; // Move MORE UP for PLAIN/MOCKTAIL/SPIRAL
                             } else {
                                 hY = hY + 10; // Stay DOWN for others (HEXA, etc.)
                             }
