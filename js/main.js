@@ -78,14 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 225ml SPIRAL: shift top of arrow upward and decrease from downward
                     y1 = 80; y2 = 340; x = 360;
                 } else if (category.includes('250') && productName.includes('tower')) {
-                    // 250ml TOWER: move height arrow near the glass
-                    y1 = 80; y2 = 340; x = 320;
+                    // 250ml TOWER: move height arrow further right
+                    y1 = 80; y2 = 340; x = 350;
                 } else if (category.includes('250') && productName.includes('spiral')) {
-                    // 250ml SPIRAL: move height arrow near the glass
-                    y1 = 80; y2 = 340; x = 330;
+                    // 250ml SPIRAL: move height arrow further right
+                    y1 = 80; y2 = 340; x = 355;
                 } else if (category.includes('250') && (productName.includes('plain') || productName.includes('flower'))) {
-                    // 250ml PLAIN/FLOWER: move height arrow near the glass and shift top upward
-                    y1 = 110; y2 = 350; x = 310;
+                    // 250ml PLAIN/FLOWER: move height arrow further right
+                    y1 = 110; y2 = 350; x = 345;
                 } else if (category.includes('300') && productName.includes('plain heavy')) {
                     // 300ml PLAIN HEAVY: move height arrow near the glass and even shorter from below
                     y1 = 80; y2 = 330; x = 310;
