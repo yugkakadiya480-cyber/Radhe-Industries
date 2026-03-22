@@ -223,8 +223,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             } else {
                                 hY = hY + 10; // Stay DOWN for others (HEXA, etc.)
                             }
-                        } else if (category.includes('200')) {
-                            hY = hY + 10; // Move DOWN for 200ml on mobile
+                        } else if (category.includes('200') || category.includes('225')) {
+                            hY = hY + 10; // Move DOWN for 200ml and 225ml on mobile
                         } else {
                             hY = Math.max(15, hY - 30); // Default: move UP for others
                         }
