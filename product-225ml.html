@@ -60,7 +60,13 @@
             transform: scale(1.3) !important;
         }
         .lightbox-zoom {
-            transform: scale(1.5) !important;
+            transform: scale(1.5) translateY(-25px) !important;
+        }
+        @media (max-width: 768px) {
+            .lightbox-image-container.zoomed-container {
+                min-height: 380px !important;
+                padding-bottom: 5rem !important;
+            }
         }
         .product-card .card-image-wrapper {
             overflow: hidden;
@@ -408,8 +414,10 @@
                 lightboxImg.src = img.src;
                 if (isSpiral) {
                     lightboxImg.classList.add('lightbox-zoom');
+                    lightboxImg.parentElement.classList.add('zoomed-container');
                 } else {
                     lightboxImg.classList.remove('lightbox-zoom');
+                    lightboxImg.parentElement.classList.remove('zoomed-container');
                 }
                 if (titleEl) titleEl.textContent = name || 'Premium Product';
                 if (codeHeaderEl) codeHeaderEl.textContent = code ? 'CODE: ' + code.toUpperCase() : '';
@@ -444,6 +452,7 @@
             const closeLightbox = () => {
                 lightbox.style.display = 'none';
                 dimSvg.style.display = 'none';
+                lightboxImg.parentElement.classList.remove('zoomed-container');
                 document.body.style.overflow = ''; // Restore scroll
             };
             document.addEventListener('click', (e) => {
