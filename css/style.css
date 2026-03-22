@@ -22,9 +22,11 @@
     --color-text-light: hsl(var(--primary-hue), 5%, 40%);
 
     /* Brand Logo Colors - Red and Black */
-    --color-brand-primary: #e53935; /* Red */
-    --color-brand-secondary: #000000; /* Black */
-    
+    --color-brand-primary: #e53935;
+    /* Red */
+    --color-brand-secondary: #000000;
+    /* Black */
+
     /* CSS Filter to match --color-brand-primary (Red #e53935) */
     --filter-brand-primary: invert(21%) sepia(89%) saturate(5436%) hue-rotate(352deg) brightness(96%) contrast(92%);
 
@@ -1478,6 +1480,7 @@ body {
     margin: 5px auto 0 !important;
     line-height: 1.4;
 }
+
 /* Lightbox Styles */
 #lightbox {
     display: none;
@@ -1507,8 +1510,15 @@ body {
 }
 
 @keyframes modalFadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .lightbox-image-container {
@@ -1525,7 +1535,7 @@ body {
     max-width: 100%;
     max-height: 60vh;
     object-fit: contain;
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
 }
 
 .lightbox-details-container {
@@ -1626,7 +1636,7 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .lightbox-close:hover {
@@ -1656,14 +1666,14 @@ body {
     .lightbox-details-container h2 {
         font-size: 1.5rem;
     }
-    
+
     .lightbox-close {
         top: 10px;
         right: 10px;
     }
 
     /* Stack product title and code vertically */
-    .lightbox-details-container > div:first-child {
+    .lightbox-details-container>div:first-child {
         flex-direction: column !important;
         align-items: flex-start !important;
         gap: 0.5rem;
@@ -1678,7 +1688,7 @@ body {
 }
 
 /* Hide Google Translate Toolbar */
-.goog-te-banner-frame.skiptranslate, 
+.goog-te-banner-frame.skiptranslate,
 .goog-te-banner-frame {
     display: none !important;
 }

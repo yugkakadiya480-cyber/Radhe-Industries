@@ -218,10 +218,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Global Phone/Mobile Adjustment
                     if (window.innerWidth <= 600) {
                         if (category.includes('180')) {
-                            if (productName.includes('plain') || productName.includes('mocktail') || productName.includes('spiral')) {
-                                hY = hY - 15; // Move MORE UP for PLAIN/MOCKTAIL/SPIRAL
+                            if (productName.includes('plain')) {
+                                hY = hY - 10; // Move slightly DOWN for better visibility (was -15, too high)
+                            } else if (productName.includes('hexa')) {
+                                hY = hY - 10; // Move UP for HEXA (was +10, too low)
+                            } else if (productName.includes('mocktail') || productName.includes('spiral')) {
+                                hY = hY - 15; // Keep MORE UP for MOCKTAIL/SPIRAL
                             } else {
-                                hY = hY + 10; // Stay DOWN for others (HEXA, etc.)
+                                hY = hY + 10; // Stay DOWN for others
                             }
                         } else if (category.includes('200')) {
                             hY = hY + 10; // Move DOWN for 200ml on mobile
