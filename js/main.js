@@ -219,9 +219,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (window.innerWidth <= 600) {
                         if (category.includes('180')) {
                             if (productName.includes('plain')) {
-                                hY = hY - 10; // Move slightly DOWN for better visibility (was -15, too high)
+                                hY = hY + 5; // Move DOWN for better visibility (was -15, too high)
                             } else if (productName.includes('hexa')) {
-                                hY = hY - 10; // Move UP for HEXA (was +10, too low)
+                                hY = hY + 5; // Move DOWN slightly from center (was -10, too high)
                             } else if (productName.includes('mocktail') || productName.includes('spiral')) {
                                 hY = hY - 15; // Keep MORE UP for MOCKTAIL/SPIRAL
                             } else {
