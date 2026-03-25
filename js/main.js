@@ -151,11 +151,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 // MOBILE: move height arrow closer to glass for 225ml SPIRAL
                 if (window.innerWidth <= 768 && category.includes('225') && isSpiral) {
                     const mobileX = 290; // Closer to the glass (was 360)
+                    const mobileY1 = 60;  // Move top upward (was 80)
+                    const mobileY2 = 295; // Shorten from bottom (was 340)
                     lines[0].setAttribute('x1', mobileX); lines[0].setAttribute('x2', mobileX);
+                    lines[0].setAttribute('y1', mobileY1); lines[0].setAttribute('y2', mobileY2);
                     lines[1].setAttribute('x1', mobileX - 5); lines[1].setAttribute('x2', mobileX + 5);
+                    lines[1].setAttribute('y1', mobileY1); lines[1].setAttribute('y2', mobileY1);
                     lines[2].setAttribute('x1', mobileX - 5); lines[2].setAttribute('x2', mobileX + 5);
+                    lines[2].setAttribute('y1', mobileY2); lines[2].setAttribute('y2', mobileY2);
                     if (label) {
-                        const midY = (parseFloat(lines[0].getAttribute('y1')) + parseFloat(lines[0].getAttribute('y2'))) / 2;
+                        const midY = (mobileY1 + mobileY2) / 2;
                         label.setAttribute('x', mobileX + 20);
                         label.setAttribute('y', midY);
                         label.setAttribute('transform', `rotate(90, ${mobileX + 20}, ${midY})`);
