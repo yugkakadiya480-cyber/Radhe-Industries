@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             } else if (productName.includes('mocktail') || productName.includes('spiral')) {
                                 hY = hY - 15; // Keep MORE UP for MOCKTAIL/SPIRAL
                             } else if (productName.includes('checks')) {
-                                hY = hY + 30; // Move DOWN more for CHECKS 180ml on mobile
+                                hY = 100; // Set absolute LOWER position for CHECKS 180ml on mobile
                             } else {
                                 hY = hY + 10; // Stay DOWN for others
                             }
