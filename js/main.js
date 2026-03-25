@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (window.innerWidth <= 768) {
                         if (category.includes('180')) {
                             if (productName.includes('plain')) {
-                                hY = 10; // Move even higher up for all phones (removed padding in HTML)
+                                hY = 25; // High up but label visible (hY-10=15 keeps label in viewBox)
                             } else if (productName.includes('hexa')) {
                                 hY = hY + 5; // Move DOWN slightly from center (was -10, too high)
                             } else if (productName.includes('mocktail') || productName.includes('spiral')) {
