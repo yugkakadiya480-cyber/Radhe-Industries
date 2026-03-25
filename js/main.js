@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const img = e.target;
             const category = (img.getAttribute('data-category') || document.title || '').toLowerCase();
             const productName = (img.getAttribute('data-name') || img.getAttribute('data-title') || '').toLowerCase();
+            const isSpiral = img.classList.contains('spiral-image-zoom');
             
             // Wait for the local lightbox script to run and populate the SVG
             setTimeout(() => {
@@ -149,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // MOBILE: move height arrow closer to glass for 225ml SPIRAL
                 if (window.innerWidth <= 768 && category.includes('225') && isSpiral) {
-                    const mobileX = 300; // Closer to the glass (was 360)
+                    const mobileX = 290; // Closer to the glass (was 360)
                     lines[0].setAttribute('x1', mobileX); lines[0].setAttribute('x2', mobileX);
                     lines[1].setAttribute('x1', mobileX - 5); lines[1].setAttribute('x2', mobileX + 5);
                     lines[2].setAttribute('x1', mobileX - 5); lines[2].setAttribute('x2', mobileX + 5);
@@ -246,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             hY = hY + 10; // Move DOWN for 200ml on mobile
                         } else if (category.includes('225')) {
                             if (isSpiral) {
-                                hY = 10; // Move EVEN HIGHER UP for 225ml SPIRAL on mobile
+                                hY = 20; // Moved up but label still visible on mobile
                             } else {
                                 hY = hY + 10; // Move DOWN for others in 225ml
                             }
