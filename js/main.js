@@ -216,10 +216,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     // Global Phone/Mobile Adjustment
-                    if (window.innerWidth <= 600) {
+                    // MOBILE ADJUSTMENTS (All Phones/Tablets <= 768px)
+                    if (window.innerWidth <= 768) {
                         if (category.includes('180')) {
                             if (productName.includes('plain')) {
-                                hY = hY - 5; // Move UPWARD but stay visible (hY = 25)
+                                hY = 10; // Move even higher up for all phones (removed padding in HTML)
                             } else if (productName.includes('hexa')) {
                                 hY = hY + 5; // Move DOWN slightly from center (was -10, too high)
                             } else if (productName.includes('mocktail') || productName.includes('spiral')) {
