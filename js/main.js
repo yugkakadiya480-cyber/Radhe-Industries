@@ -236,6 +236,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             } else {
                                 hY = hY + 10; // Move DOWN for others in 225ml
                             }
+                        } else if (category.includes('250')) {
+                            hY = hY + 30; // Move DOWN for ALL 250ml products on mobile
                         } else {
                             hY = Math.max(15, hY - 30); // Default: move UP for others
                         }
