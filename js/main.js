@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (window.innerWidth <= 600) {
                         if (category.includes('180')) {
                             if (productName.includes('plain')) {
-                                hY = hY - 15; // Move UPWARD for all phone screens (as requested)
+                                hY = hY - 5; // Move UPWARD but stay visible (hY = 25)
                             } else if (productName.includes('hexa')) {
                                 hY = hY + 5; // Move DOWN slightly from center (was -10, too high)
                             } else if (productName.includes('mocktail') || productName.includes('spiral')) {
