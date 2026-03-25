@@ -147,6 +147,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     label.setAttribute('transform', `rotate(90, ${labelX}, ${midY})`);
                 }
 
+                // MOBILE: move height arrow closer to glass for 225ml SPIRAL
+                if (window.innerWidth <= 768 && category.includes('225') && isSpiral) {
+                    const mobileX = 300; // Closer to the glass (was 360)
+                    lines[0].setAttribute('x1', mobileX); lines[0].setAttribute('x2', mobileX);
+                    lines[1].setAttribute('x1', mobileX - 5); lines[1].setAttribute('x2', mobileX + 5);
+                    lines[2].setAttribute('x1', mobileX - 5); lines[2].setAttribute('x2', mobileX + 5);
+                    if (label) {
+                        const midY = (parseFloat(lines[0].getAttribute('y1')) + parseFloat(lines[0].getAttribute('y2'))) / 2;
+                        label.setAttribute('x', mobileX + 20);
+                        label.setAttribute('y', midY);
+                        label.setAttribute('transform', `rotate(90, ${mobileX + 20}, ${midY})`);
+                    }
+                }
+
                 // Product-specific diameter (h-spec) arrow adjustments
                 const hSpec = dimSvg ? dimSvg.querySelector('#h-spec') : null;
                 if (hSpec) {
@@ -232,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             hY = hY + 10; // Move DOWN for 200ml on mobile
                         } else if (category.includes('225')) {
                             if (isSpiral) {
-                                hY = Math.max(15, hY - 30); // Move UP for 225ml SPIRAL
+                                hY = 10; // Move EVEN HIGHER UP for 225ml SPIRAL on mobile
                             } else {
                                 hY = hY + 10; // Move DOWN for others in 225ml
                             }
