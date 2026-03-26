@@ -197,6 +197,7 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/TOWER 225-ML.png" alt="225-ML TOWER" class="zoom-img lightbox-trigger"
+                            data-zoom-src="images/uploads/TW-2250.jpg"
                             data-name="TOWER"
                             data-diameter="70MM"
                             data-height="90MM"
@@ -411,7 +412,7 @@
                 const isSpiral = img.classList.contains('spiral-image-zoom');
                 const code = img.getAttribute('data-code');
                 const category = img.getAttribute('data-category') || '225ml';
-                lightboxImg.src = img.src;
+                lightboxImg.src = img.getAttribute('data-zoom-src') || img.src;
                 if (isSpiral) {
                     lightboxImg.classList.add('lightbox-zoom');
                     lightboxImg.parentElement.classList.add('zoomed-container');
