@@ -60,7 +60,13 @@
             transform: scale(1.55) !important;
         }
         .lightbox-zoom {
-            transform: scale(1.6) !important;
+            transform: scale(1.6) translateY(15px) !important;
+        }
+        @media (max-width: 768px) {
+            .lightbox-image-container.zoomed-container {
+                min-height: 380px !important;
+                padding-bottom: 5rem !important;
+            }
         }
         .product-card .card-image-wrapper {
             overflow: hidden;
@@ -203,12 +209,14 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/TOWER 225-ML.png" alt="TOWER" class="zoom-img lightbox-trigger"
+                            data-zoom-src="images/uploads/TW-2530.jpg"
                             data-name="TOWER"
                             data-diameter="80MM"
                             data-height="90MM"
                             data-code="TW2530"
                             data-category="250ml"
-                            data-width="wide">
+                            data-no-arrows="true"
+                            data-zoom-all="true">
                     </div>
                     <div class="promo-footer">
                         <h3>TOWER</h3>
@@ -459,14 +467,27 @@
                     if (e.target.closest('.promo-card') || e.target.closest('.product-card')) {
                         const img = e.target;
                         const isSpiral = img.classList.contains('spiral-image-zoom');
-                        lightboxImg.src = img.src;
-                        // Lightbox zoom removed for product clarity
-                        lightboxImg.classList.remove('lightbox-zoom');
-                        // Handle wide images
-                        if (img.dataset.width === 'wide') {
-                            lightboxImg.style.transform = 'scale(1.3)';
+                        const zoomSrc = img.dataset.zoomSrc;
+                        const zoomAll = img.dataset.zoomAll === 'true';
+                        
+                        lightboxImg.src = zoomSrc || img.src;
+                        
+                        // Handle Zoom classes
+                        if (isSpiral || zoomAll) {
+                            lightboxImg.classList.add('lightbox-zoom');
+                            lightboxImg.parentElement.classList.add('zoomed-container');
                         } else {
+                            lightboxImg.classList.remove('lightbox-zoom');
+                            lightboxImg.parentElement.classList.remove('zoomed-container');
+                        }
+                        
+                        // Handle wide images (legacy)
+                        if (img.dataset.width === 'wide' && !zoomAll) {
+                            lightboxImg.style.transform = 'scale(1.3)';
+                        } else if (!isSpiral && !zoomAll) {
                             lightboxImg.style.transform = 'scale(1)';
+                        } else {
+                            lightboxImg.style.transform = ''; // Let CSS take over for zoom-all
                         }
                         // Update Details
                         const titleEl = document.getElementById('lightbox-title');
@@ -490,10 +511,12 @@
                             if (img.dataset.code) details += `<li><strong>CODE:</strong> ${img.dataset.code.toUpperCase()}</li>`;
                             detailList.innerHTML = details;
                             const dimSvg = document.getElementById('dim-svg');
-                            if (dimSvg) {
+                            if (dimSvg && img.dataset.noArrows !== 'true') {
                                 dimSvg.style.display = 'block';
                                 if (img.dataset.diameter) document.getElementById('dim-h-label').textContent = 'DIAMETER ' + img.dataset.diameter.toUpperCase();
                                 if (img.dataset.height) document.getElementById('dim-v-label').textContent = 'HEIGHT ' + img.dataset.height.toUpperCase();
+                            } else if (dimSvg) {
+                                dimSvg.style.display = 'none';
                             }
                         } else {
                             detailList.innerHTML = `
