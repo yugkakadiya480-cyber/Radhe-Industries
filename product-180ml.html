@@ -62,6 +62,11 @@
         .lightbox-zoom {
             transform: scale(1.4) translateY(15px) !important;
         }
+        @media (max-width: 768px) {
+            .lightbox-mobile-scale-down {
+                transform: scale(1.15) translateY(-2px) !important;
+            }
+        }
         .product-card .card-image-wrapper {
             overflow: hidden;
         }
@@ -198,7 +203,8 @@
                             data-code="TW1840"
                             data-category="180ml"
                             data-zoom-all="true"
-                            data-no-height-arrow="true">
+                            data-no-arrows="true"
+                            data-mobile-scale-down="true">
                     </div>
                     <div class="promo-footer">
                         <h3>TOWER</h3>
@@ -543,6 +549,12 @@
                     dimSvg.classList.add('lightbox-zoom');
                 } else {
                     dimSvg.classList.remove('lightbox-zoom');
+                }
+
+                if (img.getAttribute('data-mobile-scale-down') === 'true' && window.innerWidth <= 768) {
+                    lightboxImg.classList.add('lightbox-mobile-scale-down');
+                } else {
+                    lightboxImg.classList.remove('lightbox-mobile-scale-down');
                 }
                 // Update text elements
                 const titleEl = document.getElementById('lightbox-title');
