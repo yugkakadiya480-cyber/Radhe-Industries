@@ -202,7 +202,8 @@
                             data-diameter="70MM"
                             data-height="90MM"
                             data-code="tw2250"
-                            data-category="225ml">
+                            data-category="225ml"
+                            data-no-arrows="true">
                     </div>
                     <div class="promo-footer">
                         <h3>TOWER</h3>
@@ -432,7 +433,7 @@
                     if (code) detailsHtml += `<li><strong>CODE:</strong> ${code.toUpperCase()}</li>`;
                     if (detailList) detailList.innerHTML = detailsHtml;
                     // Update SVG Dimensions
-                    if (diameter || height) {
+                    if ((diameter || height) && img.getAttribute('data-no-arrows') !== 'true') {
                         dimSvg.style.display = 'block';
                         if (diameter) dimHLabel.textContent = `DIAMETER ${diameter.toUpperCase()}`;
                         if (height) dimVLabel.textContent = `HEIGHT ${height.toUpperCase()}`;
