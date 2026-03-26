@@ -61,7 +61,13 @@
             transform: scale(1.3) !important;
         }
         .lightbox-zoom {
-            transform: scale(1.4) !important;
+            transform: scale(1.4) translateY(35px) !important;
+        }
+        @media (max-width: 768px) {
+            .lightbox-image-container.zoomed-container {
+                min-height: 420px !important;
+                padding-bottom: 6rem !important;
+            }
         }
         .product-card .card-image-wrapper {
             overflow: hidden;
@@ -225,12 +231,15 @@
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/300-ML TOWER.png" alt="300-ML Tower Cup"
                             class="zoom-img lightbox-trigger"
+                            data-zoom-src="images/uploads/TW-3070.jpg"
                             data-title="TOWER"
                             data-name="TOWER"
                             data-diameter="80MM"
                             data-height="105MM"
                             data-code="3070"
-                            data-category="300ml">
+                            data-category="300ml"
+                            data-zoom-all="true"
+                            data-no-arrows="true">
                     </div>
                     <div class="promo-footer">
                         <h3>TOWER</h3>
@@ -403,21 +412,26 @@
                 document.body.style.overflow = '';
                 const dimSvg = document.getElementById('dim-svg');
                 if (dimSvg) dimSvg.style.display = 'none';
+                lightboxImg.parentElement.classList.remove('zoomed-container');
             };
             const openLightbox = (img) => {
-                const src = img.src;
+                const src = img.getAttribute('data-zoom-src') || img.src;
                 const isSpiral = img.classList.contains('spiral-image-zoom');
+                const zoomAll = img.getAttribute('data-zoom-all') === 'true';
                 const name = img.getAttribute('data-name');
                 const category = img.getAttribute('data-category') || '300ml';
                 const capacity = img.getAttribute('data-capacity');
                 const diameter = img.getAttribute('data-diameter');
                 const height = img.getAttribute('data-height');
                 const code = img.getAttribute('data-code');
+                const noArrows = img.getAttribute('data-no-arrows') === 'true';
                 lightboxImg.src = src;
-                if (isSpiral) {
+                if (isSpiral || zoomAll) {
                     lightboxImg.classList.add('lightbox-zoom');
+                    lightboxImg.parentElement.classList.add('zoomed-container');
                 } else {
                     lightboxImg.classList.remove('lightbox-zoom');
+                    lightboxImg.parentElement.classList.remove('zoomed-container');
                 }
                 const titleEl = document.getElementById('lightbox-title');
                 const codeHeaderEl = document.getElementById('lightbox-code');
@@ -435,10 +449,12 @@
                     if (code) detailsHtml += `<li><strong>CODE:</strong> ${code}</li>`;
                     if (detailList) detailList.innerHTML = detailsHtml;
                     const dimSvg = document.getElementById('dim-svg');
-                    if (dimSvg) {
+                    if (dimSvg && !noArrows) {
                         dimSvg.style.display = 'block';
                         if (diameter) document.getElementById('dim-h-label').textContent = 'DIAMETER ' + diameter;
                         if (height) document.getElementById('dim-v-label').textContent = 'HEIGHT ' + height;
+                    } else if (dimSvg) {
+                        dimSvg.style.display = 'none';
                     }
                 } else {
                     const dimSvg = document.getElementById('dim-svg');
