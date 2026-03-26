@@ -43,13 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         y1 = 115; y2 = 275; x = 310;
                     } else if (productName.includes('50-ml')) {
                         // 50ml Watti: very short
-                        y1 = 160; y2 = 250; x = 355;
+                        y1 = 160; y2 = 250; x = 315;
                     } else if (productName.includes('sunday')) {
                         // Sunday Cup: shift height upward
-                        y1 = 130; y2 = 260; x = 355;
+                        y1 = 130; y2 = 260; x = 315;
+                    } else if (productName.includes('100-ml')) {
+                        // Round Watti 100ml
+                        y1 = 150; y2 = 280; x = 325;
                     } else {
-                        // Round Watti 100ml and similar
-                        y1 = 150; y2 = 280; x = 355;
+                        // Round Watti default (40ml, etc.)
+                        y1 = 150; y2 = 280; x = 315;
                     }
                 } else if (category.includes('180') && productName.includes('plain')) {
                     // 180ml PLAIN: extend arrow to full cup span (top rim → base)
@@ -215,16 +218,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (productName.includes('tower')) {
                         hY = 100;
                     } else if (category.includes('watti')) {
-                        hY = 110;
+                        hY = 135;
                         hX1 = 60; hX2 = 300; // Refined centering
 
                         if (productName.includes('sunday')) {
-                            hY = 70;
+                            hY = 100;
                         } else if (productName.includes('square')) {
                             hY = 100;
                             hX1 = 55; hX2 = 295; // Refined centering for square
                         } else if (productName.includes('100-ml')) {
-                            hY = 80;
+                            hY = 90;
                         }
 
                         // Custom X-position for 50ml variants
@@ -260,6 +263,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         } else if (category.includes('250')) {
                             hY = hY + 30; // Move DOWN for ALL 250ml products on mobile
+                        } else if (category.includes('watti')) {
+                            // keep mobile watti identical to before the laptop adjustments
+                            if (productName.includes('sunday')) hY = 40;
+                            else if (productName.includes('square')) hY = 70;
+                            else if (productName.includes('100-ml')) hY = 50;
+                            else hY = 80;
                         } else {
                             hY = Math.max(15, hY - 30); // Default: move UP for others
                         }

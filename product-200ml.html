@@ -65,8 +65,14 @@
         .lightbox-shift-down {
             transform: translateY(15px) !important;
         }
+        .lightbox-shift-up {
+            transform: translateY(-40px) !important;
+        }
         .lightbox-zoom.lightbox-shift-down {
             transform: scale(1.4) translateY(15px) !important;
+        }
+        .lightbox-zoom.lightbox-shift-up {
+            transform: scale(1.4) translateY(-40px) !important;
         }
         .big-product-zoom {
             transform: scale(1.3) !important;
@@ -201,11 +207,14 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/TOWER 180-ML.png" alt="TOWER" class="zoom-img lightbox-trigger"
+                            data-zoom-src="images/uploads/TW-1850.jpg"
                             data-name="TOWER"
                             data-diameter="70MM"
                             data-height="80MM"
                             data-code="TW1850"
-                            data-category="200ml">
+                            data-category="200ml"
+                            data-no-arrows="true"
+                            data-shift-up="true">
                     </div>
                     <div class="promo-footer">
                         <h3>TOWER</h3>
@@ -214,11 +223,14 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/TOWER 200-ML.png" alt="200-ML TOWER" class="zoom-img lightbox-trigger big-product-zoom"
+                            data-zoom-src="images/uploads/TW-2025.jpg"
                             data-name="TOWER"
                             data-diameter="80MM"
                             data-height="78MM"
                             data-code="TW2025"
-                            data-category="200ml">
+                            data-category="200ml"
+                            data-zoom-all="true"
+                            data-no-height-arrow="true">
                     </div>
                     <div class="promo-footer">
                         <h3>TOWER</h3>
@@ -515,11 +527,18 @@
                 const height = img.getAttribute('data-height');
                 const isSpiral = img.classList.contains('spiral-image-zoom');
                 const code = img.getAttribute('data-code');
-                lightboxImg.src = img.src;
+                lightboxImg.src = img.getAttribute('data-zoom-src') || img.src;
                 if (isSpiral) {
                     lightboxImg.classList.add('lightbox-zoom');
                 } else {
                     lightboxImg.classList.remove('lightbox-zoom');
+                }
+
+                if (img.getAttribute('data-zoom-all') === 'true') {
+                    lightboxImg.classList.add('lightbox-zoom');
+                    dimSvg.classList.add('lightbox-zoom');
+                } else {
+                    dimSvg.classList.remove('lightbox-zoom');
                 }
                 
                 // Shift down for 200ml Plain and Spiral
@@ -527,6 +546,13 @@
                     lightboxImg.classList.add('lightbox-shift-down');
                 } else {
                     lightboxImg.classList.remove('lightbox-shift-down');
+                }
+
+                // Explicit shift up using data attribute
+                if (img.getAttribute('data-shift-up') === 'true') {
+                    lightboxImg.classList.add('lightbox-shift-up');
+                } else {
+                    lightboxImg.classList.remove('lightbox-shift-up');
                 }
                 if (titleEl) titleEl.textContent = name || 'Premium Product';
                 if (categoryEl) categoryEl.textContent = img.getAttribute('data-category') || '200ml';
@@ -542,9 +568,23 @@
                             if (codeHeaderEl) codeHeaderEl.textContent = img.dataset.code ? 'CODE: ' + img.dataset.code.toUpperCase() : '';
                     // Update SVG Dimensions
                     // Note: main.js handles coordinate adjustments and display state
-                    if (diameter || height) {
-                        if (diameter) dimHLabel.textContent = `DIAMETER ${diameter}`;
-                        if (height) dimVLabel.textContent = `HEIGHT ${height}`;
+                    if ((diameter || height) && img.getAttribute('data-no-arrows') !== 'true') {
+                        const hSpec = dimSvg.querySelector('#h-spec');
+                        if (diameter) {
+                            dimHLabel.textContent = `DIAMETER ${diameter}`;
+                            if (hSpec) hSpec.style.display = 'block';
+                        } else {
+                            if (hSpec) hSpec.style.display = 'none';
+                        }
+                        
+                        const vSpec = dimSvg.querySelector('#v-spec');
+                        if (height && img.getAttribute('data-no-height-arrow') !== 'true') {
+                            dimVLabel.textContent = `HEIGHT ${height}`;
+                            if (vSpec) vSpec.style.display = 'block';
+                        } else {
+                            if (vSpec) vSpec.style.display = 'none';
+                        }
+                        
                         dimSvg.style.display = 'block';
                     } else {
                         dimSvg.style.display = 'none';
