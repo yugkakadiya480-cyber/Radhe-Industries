@@ -81,6 +81,12 @@
             .lightbox-zoom.lightbox-shift-up {
                 transform: scale(1.4) translateY(15px) !important;
             }
+            .lightbox-shift-down-mobile {
+                transform: translateY(30px) !important;
+            }
+            .lightbox-zoom.lightbox-shift-down-mobile {
+                transform: scale(1.4) translateY(30px) !important;
+            }
         }
         .big-product-zoom {
             transform: scale(1.3) !important;
@@ -238,7 +244,8 @@
                             data-code="TW2025"
                             data-category="200ml"
                             data-zoom-all="true"
-                            data-no-height-arrow="true">
+                            data-no-height-arrow="true"
+                            data-shift-down-mobile="true">
                     </div>
                     <div class="promo-footer">
                         <h3>TOWER</h3>
@@ -561,6 +568,14 @@
                     lightboxImg.classList.add('lightbox-shift-up');
                 } else {
                     lightboxImg.classList.remove('lightbox-shift-up');
+                }
+
+                if (img.getAttribute('data-shift-down-mobile') === 'true') {
+                    lightboxImg.classList.add('lightbox-shift-down-mobile');
+                    dimSvg.classList.add('lightbox-shift-down-mobile');
+                } else {
+                    lightboxImg.classList.remove('lightbox-shift-down-mobile');
+                    dimSvg.classList.remove('lightbox-shift-down-mobile');
                 }
                 if (titleEl) titleEl.textContent = name || 'Premium Product';
                 if (categoryEl) categoryEl.textContent = img.getAttribute('data-category') || '200ml';

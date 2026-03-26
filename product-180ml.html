@@ -191,11 +191,14 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/TOWER2 180-ML.png" alt="TOWER" class="zoom-img lightbox-trigger"
+                            data-zoom-src="images/uploads/TW-1840.jpg"
                             data-name="TOWER"
                             data-diameter="67MM"
                             data-height="85MM"
                             data-code="TW1840"
-                            data-category="180ml">
+                            data-category="180ml"
+                            data-zoom-all="true"
+                            data-no-height-arrow="true">
                     </div>
                     <div class="promo-footer">
                         <h3>TOWER</h3>
@@ -520,7 +523,7 @@
             const dimHLabel = document.getElementById('dim-h-label');
             const dimVLabel = document.getElementById('dim-v-label');
             const openLightbox = (img) => {
-                const src = img.src;
+                const src = img.getAttribute('data-zoom-src') || img.src;
                 const isSpiral = img.classList.contains('spiral-image-zoom');
                 const name = img.getAttribute('data-name');
                 const category = img.getAttribute('data-category') || '180ml';
@@ -533,6 +536,13 @@
                     lightboxImg.classList.add('lightbox-zoom');
                 } else {
                     lightboxImg.classList.remove('lightbox-zoom');
+                }
+
+                if (img.getAttribute('data-zoom-all') === 'true') {
+                    lightboxImg.classList.add('lightbox-zoom');
+                    dimSvg.classList.add('lightbox-zoom');
+                } else {
+                    dimSvg.classList.remove('lightbox-zoom');
                 }
                 // Update text elements
                 const titleEl = document.getElementById('lightbox-title');
@@ -552,9 +562,23 @@
                     if (detailList) detailList.innerHTML = detailsHtml;
                     // Update SVG Dimensions
                     // Note: main.js handles coordinate adjustments and display state
-                    if (diameter || height) {
-                        if (diameter) dimHLabel.textContent = `DIAMETER ${diameter}`;
-                        if (height) dimVLabel.textContent = `HEIGHT ${height}`;
+                    if ((diameter || height) && img.getAttribute('data-no-arrows') !== 'true') {
+                        const hSpec = dimSvg.querySelector('#h-spec');
+                        if (diameter) {
+                            dimHLabel.textContent = `DIAMETER ${diameter}`;
+                            if (hSpec) hSpec.style.display = 'block';
+                        } else {
+                            if (hSpec) hSpec.style.display = 'none';
+                        }
+                        
+                        const vSpec = dimSvg.querySelector('#v-spec');
+                        if (height && img.getAttribute('data-no-height-arrow') !== 'true') {
+                            dimVLabel.textContent = `HEIGHT ${height}`;
+                            if (vSpec) vSpec.style.display = 'block';
+                        } else {
+                            if (vSpec) vSpec.style.display = 'none';
+                        }
+                        
                         dimSvg.style.display = 'block';
                     } else {
                         dimSvg.style.display = 'none';
