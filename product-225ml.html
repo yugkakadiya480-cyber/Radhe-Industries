@@ -414,19 +414,18 @@
                 const code = img.getAttribute('data-code');
                 const category = img.getAttribute('data-category') || '225ml';
                 lightboxImg.src = img.getAttribute('data-zoom-src') || img.src;
-                if (isSpiral) {
+                if (isSpiral || img.getAttribute('data-zoom-all') === 'true') {
                     lightboxImg.classList.add('lightbox-zoom');
                     lightboxImg.parentElement.classList.add('zoomed-container');
+                    if (img.getAttribute('data-zoom-all') === 'true') {
+                        if (dimSvg) dimSvg.classList.add('lightbox-zoom');
+                    } else {
+                        if (dimSvg) dimSvg.classList.remove('lightbox-zoom');
+                    }
                 } else {
                     lightboxImg.classList.remove('lightbox-zoom');
                     lightboxImg.parentElement.classList.remove('zoomed-container');
-                }
-
-                if (img.getAttribute('data-zoom-all') === 'true') {
-                    lightboxImg.classList.add('lightbox-zoom');
-                    dimSvg.classList.add('lightbox-zoom');
-                } else {
-                    dimSvg.classList.remove('lightbox-zoom');
+                    if (dimSvg) dimSvg.classList.remove('lightbox-zoom');
                 }
                 if (titleEl) titleEl.textContent = name || 'Premium Product';
                 if (codeHeaderEl) codeHeaderEl.textContent = code ? 'CODE: ' + code.toUpperCase() : '';
