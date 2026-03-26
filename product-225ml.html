@@ -203,6 +203,7 @@
                             data-height="90MM"
                             data-code="tw2250"
                             data-category="225ml"
+                            data-no-arrows="true"
                             data-zoom-all="true">
                     </div>
                     <div class="promo-footer">
@@ -417,15 +418,9 @@
                 if (isSpiral || img.getAttribute('data-zoom-all') === 'true') {
                     lightboxImg.classList.add('lightbox-zoom');
                     lightboxImg.parentElement.classList.add('zoomed-container');
-                    if (img.getAttribute('data-zoom-all') === 'true') {
-                        if (dimSvg) dimSvg.classList.add('lightbox-zoom');
-                    } else {
-                        if (dimSvg) dimSvg.classList.remove('lightbox-zoom');
-                    }
                 } else {
                     lightboxImg.classList.remove('lightbox-zoom');
                     lightboxImg.parentElement.classList.remove('zoomed-container');
-                    if (dimSvg) dimSvg.classList.remove('lightbox-zoom');
                 }
                 if (titleEl) titleEl.textContent = name || 'Premium Product';
                 if (codeHeaderEl) codeHeaderEl.textContent = code ? 'CODE: ' + code.toUpperCase() : '';
