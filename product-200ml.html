@@ -60,7 +60,13 @@
             transform: scale(1.2) !important;
         }
         .lightbox-zoom {
-            transform: scale(1.4) !important;
+            transform: scale(1.4) translateY(35px) !important;
+        }
+        @media (max-width: 768px) {
+            .lightbox-image-container.zoomed-container {
+                min-height: 420px !important;
+                padding-bottom: 6rem !important;
+            }
         }
         .lightbox-shift-down {
             transform: translateY(15px) !important;
@@ -244,7 +250,7 @@
                             data-code="TW2025"
                             data-category="200ml"
                             data-zoom-all="true"
-                            data-no-height-arrow="true"
+                            data-no-arrows="true"
                             data-shift-down-mobile="true">
                     </div>
                     <div class="promo-footer">
@@ -552,8 +558,10 @@
                 if (img.getAttribute('data-zoom-all') === 'true') {
                     lightboxImg.classList.add('lightbox-zoom');
                     dimSvg.classList.add('lightbox-zoom');
+                    lightboxImg.parentElement.classList.add('zoomed-container');
                 } else {
                     dimSvg.classList.remove('lightbox-zoom');
+                    lightboxImg.parentElement.classList.remove('zoomed-container');
                 }
                 
                 // Shift down for 200ml Plain and Spiral
@@ -629,6 +637,7 @@
                 lightbox.style.display = 'none';
                 dimSvg.style.display = 'none';
                 document.body.style.overflow = ''; // Restore scroll
+                lightboxImg.parentElement.classList.remove('zoomed-container');
             };
             // Delegate clicks for both static and dynamic images
             document.addEventListener('click', (e) => {
