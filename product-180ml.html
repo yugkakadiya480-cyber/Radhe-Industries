@@ -66,6 +66,9 @@
             transform: scale(1.8) translateY(15px) !important;
         }
         @media (max-width: 768px) {
+            .lightbox-zoom-xl {
+                transform: scale(1.3) translateY(60px) !important;
+            }
             .lightbox-mobile-scale-down {
                 transform: scale(1.15) translateY(-2px) !important;
             }
@@ -237,6 +240,8 @@
                             data-name="HEXA MEDIUM SIZE"
                             data-diameter="70MM"
                             data-height="80MM"
+                            data-no-diameter-arrow="true"
+                            data-no-height-arrow="true"
                             data-code="HX1810"
                             data-category="180ml">
                     </div>
@@ -590,7 +595,7 @@
                     // Note: main.js handles coordinate adjustments and display state
                     if ((diameter || height) && img.getAttribute('data-no-arrows') !== 'true') {
                         const hSpec = dimSvg.querySelector('#h-spec');
-                        if (diameter) {
+                        if (diameter && img.getAttribute('data-no-diameter-arrow') !== 'true') {
                             dimHLabel.textContent = `DIAMETER ${diameter}`;
                             if (hSpec) hSpec.style.display = 'block';
                         } else {
