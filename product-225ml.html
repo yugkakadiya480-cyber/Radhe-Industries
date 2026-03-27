@@ -62,10 +62,22 @@
         .lightbox-zoom {
             transform: scale(1.6) translateY(-40px) translateX(-60px) !important;
         }
+        .lightbox-zoom-md {
+            transform: scale(1.35) !important;
+        }
+        .lightbox-zoom-lg {
+            transform: scale(1.7) !important;
+        }
         @media (max-width: 768px) {
             .lightbox-image-container.zoomed-container {
                 min-height: 380px !important;
                 padding-bottom: 5rem !important;
+            }
+            .lightbox-zoom-md {
+                transform: scale(1.15) !important;
+            }
+            .lightbox-zoom-lg {
+                transform: scale(1.25) !important;
             }
         }
         .product-card .card-image-wrapper {
@@ -204,7 +216,7 @@
                             data-code="tw2250"
                             data-category="225ml"
                             data-no-arrows="true"
-                            data-zoom-all="true">
+                            data-zoom-medium="true">
                     </div>
                     <div class="promo-footer">
                         <h3>TOWER</h3>
@@ -417,9 +429,23 @@
                 lightboxImg.src = img.getAttribute('data-zoom-src') || img.src;
                 if (isSpiral || img.getAttribute('data-zoom-all') === 'true') {
                     lightboxImg.classList.add('lightbox-zoom');
+                    lightboxImg.classList.remove('lightbox-zoom-md');
+                    lightboxImg.classList.remove('lightbox-zoom-lg');
                     lightboxImg.parentElement.classList.add('zoomed-container');
+                } else if (img.getAttribute('data-zoom-medium') === 'true') {
+                    lightboxImg.classList.add('lightbox-zoom-md');
+                    lightboxImg.classList.remove('lightbox-zoom');
+                    lightboxImg.classList.remove('lightbox-zoom-lg');
+                    lightboxImg.parentElement.classList.remove('zoomed-container');
+                } else if (img.getAttribute('data-zoom-large') === 'true') {
+                    lightboxImg.classList.add('lightbox-zoom-lg');
+                    lightboxImg.classList.remove('lightbox-zoom');
+                    lightboxImg.classList.remove('lightbox-zoom-md');
+                    lightboxImg.parentElement.classList.remove('zoomed-container');
                 } else {
                     lightboxImg.classList.remove('lightbox-zoom');
+                    lightboxImg.classList.remove('lightbox-zoom-md');
+                    lightboxImg.classList.remove('lightbox-zoom-lg');
                     lightboxImg.parentElement.classList.remove('zoomed-container');
                 }
                 if (titleEl) titleEl.textContent = name || 'Premium Product';
