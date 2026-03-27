@@ -63,10 +63,28 @@
         .lightbox-zoom {
             transform: scale(1.5) translateY(-30px) !important;
         }
+        .lightbox-zoom-md {
+            transform: scale(1.35) !important;
+        }
+        .lightbox-zoom-lg {
+            transform: scale(1.7) !important;
+        }
+        .lightbox-zoom-lg.lightbox-shift-down {
+            transform: scale(1.7) translateY(50px) !important;
+        }
         @media (max-width: 768px) {
             .lightbox-image-container.zoomed-container {
                 min-height: 420px !important;
                 padding-bottom: 6rem !important;
+            }
+            .lightbox-zoom-md {
+                transform: scale(1.0) !important;
+            }
+            .lightbox-zoom-lg {
+                transform: scale(1.25) !important;
+            }
+            .lightbox-zoom-lg.lightbox-shift-down {
+                transform: scale(1.25) !important;
             }
         }
         .product-card .card-image-wrapper {
@@ -238,7 +256,7 @@
                             data-height="105MM"
                             data-code="3070"
                             data-category="300ml"
-                            data-zoom-all="true"
+                            data-zoom-medium="true"
                             data-no-arrows="true">
                     </div>
                     <div class="promo-footer">
@@ -428,9 +446,23 @@
                 lightboxImg.src = src;
                 if (isSpiral || zoomAll) {
                     lightboxImg.classList.add('lightbox-zoom');
+                    lightboxImg.classList.remove('lightbox-zoom-md');
+                    lightboxImg.classList.remove('lightbox-zoom-lg');
                     lightboxImg.parentElement.classList.add('zoomed-container');
+                } else if (img.getAttribute('data-zoom-large') === 'true') {
+                    lightboxImg.classList.add('lightbox-zoom-lg');
+                    lightboxImg.classList.remove('lightbox-zoom');
+                    lightboxImg.classList.remove('lightbox-zoom-md');
+                    lightboxImg.parentElement.classList.remove('zoomed-container');
+                } else if (img.getAttribute('data-zoom-medium') === 'true') {
+                    lightboxImg.classList.add('lightbox-zoom-md');
+                    lightboxImg.classList.remove('lightbox-zoom');
+                    lightboxImg.classList.remove('lightbox-zoom-lg');
+                    lightboxImg.parentElement.classList.remove('zoomed-container');
                 } else {
                     lightboxImg.classList.remove('lightbox-zoom');
+                    lightboxImg.classList.remove('lightbox-zoom-md');
+                    lightboxImg.classList.remove('lightbox-zoom-lg');
                     lightboxImg.parentElement.classList.remove('zoomed-container');
                 }
                 const titleEl = document.getElementById('lightbox-title');
