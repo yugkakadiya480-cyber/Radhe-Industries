@@ -62,6 +62,14 @@
         .lightbox-zoom {
             transform: scale(1.6) translateY(-40px) !important;
         }
+        .lightbox-zoom-md {
+            transform: scale(1.35) !important;
+        }
+        @media (max-width: 768px) {
+            .lightbox-zoom-md {
+                transform: scale(1.0) !important;
+            }
+        }
         @media (max-width: 768px) {
             .lightbox-image-container.zoomed-container {
                 min-height: 380px !important;
@@ -197,9 +205,12 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/FLOWER 200-ML.png" alt="FLOWER" class="zoom-img lightbox-trigger"
+                            data-zoom-src="images/uploads/FLOWER.jpg"
                             data-name="FLOWER"
                             data-diameter="80MM"
                             data-height="90MM"
+                            data-no-arrows="true"
+                            data-zoom-medium="true"
                             data-category="250ml">
                     </div>
                     <div class="promo-footer">
@@ -475,9 +486,15 @@
                         // Handle Zoom classes
                         if (isSpiral || zoomAll) {
                             lightboxImg.classList.add('lightbox-zoom');
+                            lightboxImg.classList.remove('lightbox-zoom-md');
                             lightboxImg.parentElement.classList.add('zoomed-container');
+                        } else if (img.dataset.zoomMedium === 'true') {
+                            lightboxImg.classList.add('lightbox-zoom-md');
+                            lightboxImg.classList.remove('lightbox-zoom');
+                            lightboxImg.parentElement.classList.remove('zoomed-container');
                         } else {
                             lightboxImg.classList.remove('lightbox-zoom');
+                            lightboxImg.classList.remove('lightbox-zoom-md');
                             lightboxImg.parentElement.classList.remove('zoomed-container');
                         }
                         
