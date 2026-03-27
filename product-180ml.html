@@ -62,6 +62,9 @@
         .lightbox-zoom {
             transform: scale(1.4) translateY(15px) !important;
         }
+        .lightbox-zoom-xl {
+            transform: scale(1.8) translateY(15px) !important;
+        }
         @media (max-width: 768px) {
             .lightbox-mobile-scale-down {
                 transform: scale(1.15) translateY(-2px) !important;
@@ -214,7 +217,10 @@
                     <div class="card-image-wrapper img-wrapper">
                         <div class="img-zoom-lens"></div>
                         <img src="images/uploads/hexa-180ml.jpeg" alt="HEXA Presentation" class="zoom-img lightbox-trigger"
+                            data-zoom-src="images/uploads/HX-1800.jpg"
                             data-name="HEXA CUT SIZE"
+                            data-no-arrows="true"
+                            data-zoom-xl="true"
                             data-diameter="70MM"
                             data-height="75MM"
                             data-code="HX1800"
@@ -268,7 +274,9 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/CHECKS2.png" alt="CHECKS Presentation" class="zoom-img lightbox-trigger"
+                            data-zoom-src="images/uploads/HX-1800.jpg"
                             data-name="CHECKS CUT SIZE"
+                            data-no-arrows="true"
                             data-diameter="67MM"
                             data-height="80MM"
                             data-code="CH1825"
@@ -544,10 +552,16 @@
                     lightboxImg.classList.remove('lightbox-zoom');
                 }
 
-                if (img.getAttribute('data-zoom-all') === 'true') {
+                if (img.getAttribute('data-zoom-xl') === 'true') {
+                    lightboxImg.classList.add('lightbox-zoom-xl');
+                    lightboxImg.classList.remove('lightbox-zoom');
+                    dimSvg.classList.remove('lightbox-zoom');
+                } else if (img.getAttribute('data-zoom-all') === 'true') {
                     lightboxImg.classList.add('lightbox-zoom');
+                    lightboxImg.classList.remove('lightbox-zoom-xl');
                     dimSvg.classList.add('lightbox-zoom');
                 } else {
+                    lightboxImg.classList.remove('lightbox-zoom-xl');
                     dimSvg.classList.remove('lightbox-zoom');
                 }
 
