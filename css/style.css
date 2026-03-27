@@ -1498,7 +1498,7 @@ body {
 .lightbox-content.split-layout {
     position: relative;
     width: 90%;
-    max-width: 1000px;
+    max-width: 900px;
     max-height: 85vh;
     background-color: #000; /* Match image panel to hide gaps */
     border-radius: 12px;
@@ -1522,7 +1522,7 @@ body {
 }
 
 .lightbox-image-container {
-    flex: 1;
+    flex: 1.2;
     background: #000;
     display: flex;
     align-items: center;
