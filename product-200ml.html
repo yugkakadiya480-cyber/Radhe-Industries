@@ -68,6 +68,9 @@
         .lightbox-zoom-lg {
             transform: scale(1.7) !important;
         }
+        .lightbox-zoom-lg.lightbox-shift-down {
+            transform: scale(1.7) translateY(50px) !important;
+        }
         @media (max-width: 768px) {
             .lightbox-image-container.zoomed-container {
                 min-height: 420px !important;
@@ -270,6 +273,7 @@
                             data-name="HEXA FULL SIZE"
                             data-no-arrows="true"
                             data-zoom-large="true"
+                            data-shift-down="true"
                             data-diameter="74MM"
                             data-height="75MM"
                             data-code="HX2012"
@@ -286,6 +290,7 @@
                             data-name="HEXA FULL SIZE"
                             data-no-arrows="true"
                             data-zoom-large="true"
+                            data-shift-down="true"
                             data-diameter="74MM"
                             data-height="75MM"
                             data-code="HX2022"
@@ -596,8 +601,8 @@
                     lightboxImg.parentElement.classList.remove('zoomed-container');
                 }
                 
-                // Shift down for 200ml Plain and Spiral
-                if (name && (name.toLowerCase().includes('plain') || name.toLowerCase().includes('spiral'))) {
+                // Shift down for 200ml Plain and Spiral, or explicit data-shift-down
+                if ((name && (name.toLowerCase().includes('plain') || name.toLowerCase().includes('spiral'))) || img.getAttribute('data-shift-down') === 'true') {
                     lightboxImg.classList.add('lightbox-shift-down');
                 } else {
                     lightboxImg.classList.remove('lightbox-shift-down');
