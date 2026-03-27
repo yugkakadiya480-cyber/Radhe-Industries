@@ -60,10 +60,13 @@
             transform: scale(1.2) !important;
         }
         .lightbox-zoom {
-            transform: scale(1.4) translateY(-20px) !important;
+            transform: scale(1.4) translateY(-20px) translateX(-40px) !important;
         }
         .lightbox-zoom-xl {
-            transform: scale(1.8) translateY(-25px) !important;
+            transform: scale(1.8) translateY(-25px) translateX(-50px) !important;
+        }
+        .lightbox-zoom-md {
+            transform: scale(1.35) !important;
         }
         @media (max-width: 768px) {
             .lightbox-zoom-xl {
@@ -208,8 +211,8 @@
                             data-height="85MM"
                             data-code="TW1840"
                             data-category="180ml"
-                            data-zoom-all="true"
                             data-no-arrows="true"
+                            data-zoom-medium="true"
                             data-mobile-scale-down="true">
                     </div>
                     <div class="promo-footer">
@@ -223,7 +226,7 @@
                             data-zoom-src="images/uploads/HX-1800.jpg"
                             data-name="HEXA CUT SIZE"
                             data-no-arrows="true"
-                            data-zoom-xl="true"
+                            data-zoom-medium="true"
                             data-diameter="70MM"
                             data-height="75MM"
                             data-code="HX1800"
@@ -238,10 +241,10 @@
                         <div class="img-zoom-lens"></div>
                         <img src="images/uploads/HEXA2 180-ML.jpeg" alt="HEXA Presentation" class="zoom-img lightbox-trigger"
                             data-zoom-src="images/uploads/HX-1810.jpg"
-                            data-zoom-xl="true"
                             data-name="HEXA MEDIUM SIZE"
                             data-diameter="70MM"
                             data-height="80MM"
+                            data-zoom-medium="true"
                             data-no-diameter-arrow="true"
                             data-no-height-arrow="true"
                             data-code="HX1810"
@@ -256,10 +259,10 @@
                         <div class="img-zoom-lens"></div>
                         <img src="images/uploads/HEXA3- 180ML.jpeg" alt="HEXA Presentation" class="zoom-img lightbox-trigger"
                             data-zoom-src="images/uploads/HX-1812.jpg"
-                            data-zoom-xl="true"
                             data-name="HEXA MEDIUM SIZE"
                             data-diameter="70MM"
                             data-height="80MM"
+                            data-zoom-medium="true"
                             data-no-diameter-arrow="true"
                             data-no-height-arrow="true"
                             data-code="HX1812"
@@ -566,13 +569,21 @@
                 if (img.getAttribute('data-zoom-xl') === 'true') {
                     lightboxImg.classList.add('lightbox-zoom-xl');
                     lightboxImg.classList.remove('lightbox-zoom');
+                    lightboxImg.classList.remove('lightbox-zoom-md');
                     dimSvg.classList.remove('lightbox-zoom');
                 } else if (img.getAttribute('data-zoom-all') === 'true') {
                     lightboxImg.classList.add('lightbox-zoom');
                     lightboxImg.classList.remove('lightbox-zoom-xl');
+                    lightboxImg.classList.remove('lightbox-zoom-md');
                     dimSvg.classList.add('lightbox-zoom');
+                } else if (img.getAttribute('data-zoom-medium') === 'true') {
+                    lightboxImg.classList.add('lightbox-zoom-md');
+                    lightboxImg.classList.remove('lightbox-zoom-xl');
+                    lightboxImg.classList.remove('lightbox-zoom');
+                    dimSvg.classList.remove('lightbox-zoom');
                 } else {
                     lightboxImg.classList.remove('lightbox-zoom-xl');
+                    lightboxImg.classList.remove('lightbox-zoom-md');
                     dimSvg.classList.remove('lightbox-zoom');
                 }
 

@@ -62,6 +62,12 @@
         .lightbox-zoom {
             transform: scale(1.6) translateY(-40px) !important;
         }
+        .lightbox-zoom-md {
+            transform: scale(1.35) !important;
+        }
+        .lightbox-zoom-lg {
+            transform: scale(1.7) !important;
+        }
         @media (max-width: 768px) {
             .lightbox-image-container.zoomed-container {
                 min-height: 420px !important;
@@ -249,8 +255,8 @@
                             data-height="78MM"
                             data-code="TW2025"
                             data-category="200ml"
-                            data-zoom-all="true"
                             data-no-arrows="true"
+                            data-zoom-medium="true"
                             data-shift-down-mobile="true">
                     </div>
                     <div class="promo-footer">
@@ -261,9 +267,9 @@
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/HEXA4 180-ML.jpeg" alt="HEXA FULL SIZE" class="zoom-img lightbox-trigger"
                             data-zoom-src="images/uploads/HX-2012.jpg"
-                            data-zoom-all="true"
                             data-name="HEXA FULL SIZE"
                             data-no-arrows="true"
+                            data-zoom-large="true"
                             data-diameter="74MM"
                             data-height="75MM"
                             data-code="HX2012"
@@ -277,9 +283,9 @@
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/HEXA5 180-ML.jpeg" alt="HEXA FULL SIZE" class="zoom-img lightbox-trigger"
                             data-zoom-src="images/uploads/HX-2022.jpg"
-                            data-zoom-all="true"
                             data-name="HEXA FULL SIZE"
                             data-no-arrows="true"
+                            data-zoom-large="true"
                             data-diameter="74MM"
                             data-height="75MM"
                             data-code="HX2022"
@@ -293,10 +299,10 @@
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/HEXA6 180-ML.jpg" alt="HEXA LARGE SIZE" class="zoom-img lightbox-trigger"
                             data-zoom-src="images/uploads/HX-2029.jpg"
-                            data-zoom-all="true"
                             data-name="HEXA LARGE SIZE"
                             data-diameter="80MM"
                             data-height="85MM"
+                            data-zoom-medium="true"
                             data-code="HX2029"
                             data-category="200ml"
                             data-no-arrows="true">
@@ -566,9 +572,26 @@
 
                 if (img.getAttribute('data-zoom-all') === 'true') {
                     lightboxImg.classList.add('lightbox-zoom');
+                    lightboxImg.classList.remove('lightbox-zoom-md');
+                    lightboxImg.classList.remove('lightbox-zoom-lg');
                     dimSvg.classList.add('lightbox-zoom');
                     lightboxImg.parentElement.classList.add('zoomed-container');
+                } else if (img.getAttribute('data-zoom-large') === 'true') {
+                    lightboxImg.classList.add('lightbox-zoom-lg');
+                    lightboxImg.classList.remove('lightbox-zoom');
+                    lightboxImg.classList.remove('lightbox-zoom-md');
+                    dimSvg.classList.remove('lightbox-zoom');
+                    lightboxImg.parentElement.classList.remove('zoomed-container');
+                } else if (img.getAttribute('data-zoom-medium') === 'true') {
+                    lightboxImg.classList.add('lightbox-zoom-md');
+                    lightboxImg.classList.remove('lightbox-zoom');
+                    lightboxImg.classList.remove('lightbox-zoom-lg');
+                    dimSvg.classList.remove('lightbox-zoom');
+                    lightboxImg.parentElement.classList.remove('zoomed-container');
                 } else {
+                    lightboxImg.classList.remove('lightbox-zoom');
+                    lightboxImg.classList.remove('lightbox-zoom-md');
+                    lightboxImg.classList.remove('lightbox-zoom-lg');
                     dimSvg.classList.remove('lightbox-zoom');
                     lightboxImg.parentElement.classList.remove('zoomed-container');
                 }
