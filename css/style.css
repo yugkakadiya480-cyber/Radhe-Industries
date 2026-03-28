@@ -1664,7 +1664,7 @@ body {
     }
 
     .lightbox-image-container img.hexa-mobile-zoom {
-        transform: scale(1.6) translateY(20px) !important;
+        transform: scale(1.6) translateY(45px) !important;
         max-height: 45vh !important;
     }
 
