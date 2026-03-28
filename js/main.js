@@ -274,6 +274,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
 
+                    // Global Mobile Hexa Scaling
+                    if (window.innerWidth <= 768 && productName.includes('hexa')) {
+                        if (lightboxImg) lightboxImg.classList.add('hexa-mobile-zoom');
+                    } else {
+                        if (lightboxImg) lightboxImg.classList.remove('hexa-mobile-zoom');
+                    }
+
                     // Apply all coordinates at once
                     if (hLines[0]) {
                         hLines[0].setAttribute('x1', hX1); hLines[0].setAttribute('y1', hY);
