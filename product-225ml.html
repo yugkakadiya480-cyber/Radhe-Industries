@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
             gap: 3rem;
             margin-top: 0.5rem;
         }
+
         .promo-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -20,9 +22,11 @@
             margin-bottom: 1.5rem;
             width: 100%;
         }
+
         .page-header {
             padding: 1rem 0 0.5rem !important;
         }
+
         .promo-card {
             background: #fff;
             width: 100%;
@@ -34,11 +38,13 @@
             display: flex;
             flex-direction: column;
         }
+
         .promo-card .img-wrapper {
             width: 100%;
             height: 280px;
             overflow: hidden;
         }
+
         .promo-card .img-wrapper img,
         .zoom-img {
             width: 100%;
@@ -48,41 +54,52 @@
             padding: 10px;
             transition: transform 0.5s ease;
         }
+
         .promo-card:hover .zoom-img,
         .product-card:hover .zoom-img {
             transform: scale(1.1);
             cursor: zoom-in;
         }
+
         .spiral-image-zoom {
             transform: scale(1.15) !important;
         }
+
         .promo-card:hover .spiral-image-zoom {
             transform: scale(1.3) !important;
         }
+
         .lightbox-zoom {
             transform: scale(1.6) translateY(-40px) translateX(-60px) !important;
         }
+
         .lightbox-zoom-md {
             transform: scale(1.35) !important;
         }
+
         .lightbox-zoom-lg {
             transform: scale(1.7) !important;
         }
+
         @media (max-width: 768px) {
             .lightbox-image-container.zoomed-container {
                 min-height: 380px !important;
                 padding-bottom: 5rem !important;
             }
+
             .lightbox-zoom-md {
                 transform: scale(1.15) !important;
             }
+
             .lightbox-zoom-lg {
                 transform: scale(1.25) !important;
             }
         }
+
         .product-card .card-image-wrapper {
             overflow: hidden;
         }
+
         .promo-footer {
             background: #50a18e;
             padding: 1.2rem 1.5rem;
@@ -92,6 +109,7 @@
             color: #fff;
             margin-top: auto;
         }
+
         .promo-footer h3 {
             margin: 0;
             font-size: 1.6rem;
@@ -99,47 +117,58 @@
             letter-spacing: 0.5px;
             color: #fff;
         }
+
         @media (max-width: 992px) {
             .main-layout {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
+
             .sidebar-promo {
                 position: static;
                 order: -1;
             }
+
             .promo-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
+
             .promo-card .img-wrapper {
                 height: 200px;
             }
         }
+
         @media (max-width: 480px) {
             .promo-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 0.75rem;
             }
+
             .promo-card .img-wrapper {
                 height: 160px;
             }
+
             .promo-footer h3 {
                 font-size: 1.1rem;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Header Top -->
     <header class="header-top">
         <div class="container header-top-content">
             <a href="index.html" class="logo"
                 style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
-                <img src="images/company-logo.png" alt="Radhe Disposable Logo" style="height: 60px; width: auto;" class="brand-logo-img">
+                <img src="images/company-logo.png" alt="Radhe Disposable Logo" style="height: 60px; width: auto;"
+                    class="brand-logo-img">
                 <div style="line-height: 1.1;">
-                    <span class="brand-text-primary" style="display: block; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase;">RADHE</span>
-                    <span class="brand-text-secondary" style="display: block; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Disposable</span>
+                    <span class="brand-text-primary"
+                        style="display: block; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase;">RADHE</span>
+                    <span class="brand-text-secondary"
+                        style="display: block; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Disposable</span>
                 </div>
             </a>
             <div class="header-contact-info">
@@ -209,13 +238,8 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/TOWER 225-ML.png" alt="225-ML TOWER" class="zoom-img lightbox-trigger"
-                            data-zoom-src="images/uploads/TW-2250.jpg"
-                            data-name="TOWER"
-                            data-diameter="70MM"
-                            data-height="90MM"
-                            data-code="tw2250"
-                            data-category="225ml"
-                            data-no-arrows="true"
+                            data-zoom-src="images/uploads/TW-2250.jpg" data-name="TOWER" data-diameter="70MM"
+                            data-height="90MM" data-code="tw2250" data-category="225ml" data-no-arrows="true"
                             data-zoom-medium="true">
                     </div>
                     <div class="promo-footer">
@@ -224,12 +248,9 @@
                 </div>
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
-                        <img src="images/uploads/CHECKS 225-ML.png" alt="225-ML CHECKS" class="zoom-img lightbox-trigger"
-                            data-name="CHECKS"
-                            data-diameter="70MM"
-                            data-height="90MM"
-                            data-code="CH2214"
-                            data-category="225ml">
+                        <img src="images/uploads/CHECKS 225-ML.png" alt="225-ML CHECKS"
+                            class="zoom-img lightbox-trigger" data-name="CHECKS" data-diameter="70MM" data-height="90MM"
+                            data-code="CH2214" data-category="225ml">
                     </div>
                     <div class="promo-footer">
                         <h3>CHECKS</h3>
@@ -238,12 +259,8 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/SPIRAL 225-ML.png" alt="225-ML SPIRAL"
-                            class="zoom-img lightbox-trigger"
-                            data-name="SPIRAL"
-                            data-diameter="74MM"
-                            data-height="90MM"
-                            data-code="SP2236"
-                            data-category="225ml">
+                            class="zoom-img lightbox-trigger" data-name="SPIRAL" data-diameter="74MM" data-height="90MM"
+                            data-code="SP2236" data-category="225ml">
                     </div>
                     <div class="promo-footer">
                         <h3>SPIRAL</h3>
@@ -252,12 +269,8 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/SPIRAL2 225-ML.png" alt="225-ML SPIRAL"
-                            class="zoom-img spiral-image-zoom lightbox-trigger"
-                            data-name="SPIRAL"
-                            data-diameter="70MM"
-                            data-height="90MM"
-                            data-code="SP2215"
-                            data-category="225ml">
+                            class="zoom-img spiral-image-zoom lightbox-trigger" data-name="SPIRAL" data-diameter="70MM"
+                            data-height="90MM" data-code="SP2215" data-category="225ml">
                     </div>
                     <div class="promo-footer">
                         <h3>SPIRAL</h3>
@@ -363,30 +376,37 @@
                         <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto">
                             <polygon points="0 0, 8 2.5, 0 5" fill="#fff" />
                         </marker>
-                        <marker id="arrowhead-reverse" markerWidth="8" markerHeight="5" refX="0" refY="2.5" orient="auto">
+                        <marker id="arrowhead-reverse" markerWidth="8" markerHeight="5" refX="0" refY="2.5"
+                            orient="auto">
                             <polygon points="8 0, 0 2.5, 8 5" fill="#fff" />
                         </marker>
                     </defs>
                     <!-- Elegant horizontal line (Diameter) -->
                     <g id="h-spec">
-                        <line x1="80" y1="50" x2="320" y2="50" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
-                        <line x1="80" y1="45" x2="80" y2="55" stroke="#fff" stroke-width="1"/>
-                        <line x1="320" y1="45" x2="320" y2="55" stroke="#fff" stroke-width="1"/>
-                        <text id="dim-h-label" x="200" y="35" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif">DIAMETER</text>
+                        <line x1="80" y1="50" x2="320" y2="50" stroke="#fff" stroke-width="2"
+                            marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)" />
+                        <line x1="80" y1="45" x2="80" y2="55" stroke="#fff" stroke-width="1" />
+                        <line x1="320" y1="45" x2="320" y2="55" stroke="#fff" stroke-width="1" />
+                        <text id="dim-h-label" x="200" y="35" text-anchor="middle" font-size="16" font-weight="900"
+                            fill="#fff" font-family="'Inter', sans-serif">DIAMETER</text>
                     </g>
                     <!-- Elegant vertical line (Height) -->
                     <g id="v-spec">
-                        <line x1="380" y1="125" x2="380" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
-                        <line x1="375" y1="125" x2="385" y2="125" stroke="#fff" stroke-width="1"/>
-                        <line x1="375" y1="335" x2="385" y2="335" stroke="#fff" stroke-width="1"/>
-                        <text id="dim-v-label" x="395" y="230" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 395, 230)">HEIGHT</text>
+                        <line x1="380" y1="125" x2="380" y2="335" stroke="#fff" stroke-width="2"
+                            marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)" />
+                        <line x1="375" y1="125" x2="385" y2="125" stroke="#fff" stroke-width="1" />
+                        <line x1="375" y1="335" x2="385" y2="335" stroke="#fff" stroke-width="1" />
+                        <text id="dim-v-label" x="395" y="230" text-anchor="middle" font-size="16" font-weight="900"
+                            fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 395, 230)">HEIGHT</text>
                     </g>
                 </svg>
             </div>
             <div class="lightbox-details-container">
-                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
                     <h2 id="lightbox-title" style="margin: 0;">Premium Product</h2>
-                    <span id="lightbox-code" style="color: #ff3b30; font-weight: 800; font-size: 1.2rem; text-transform: uppercase;"></span>
+                    <span id="lightbox-code"
+                        style="color: #ff3b30; font-weight: 800; font-size: 1.2rem; text-transform: uppercase;"></span>
                 </div>
                 <div class="lightbox-meta">
                     <span id="lightbox-category" class="category-badge">Category</span>
@@ -508,4 +528,5 @@
         });
     </script>
 </body>
+
 </html>
