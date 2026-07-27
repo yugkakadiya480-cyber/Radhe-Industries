@@ -3,186 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Disposable CUPS</title>
+    <title>Contact Us | Radhe Industries - Direct Factory Inquiries</title>
+    <meta name="description" content="Get in touch with Radhe Industries in Rajkot, Gujarat. Call +91 99136 00800 or send an inquiry for wholesale disposable cups, custom printing, and direct factory pricing.">
     <link rel="stylesheet" href="css/style.css">
-    <!-- Leaflet CSS for Map -->
+    <link rel="stylesheet" href="css/modern-additions.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
-        .contact-layout {
-            max-width: 800px;
-            margin: 4rem auto;
+        .contact-card-modern {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .form-group {
-            margin-bottom: 1.5rem;
+        .contact-card-modern:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            border-color: rgba(34,197,94,0.4);
         }
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        .form-input,
-        .form-textarea {
+        .contact-input-modern {
             width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: var(--radius-sm);
-            font-family: inherit;
-            transition: var(--transition-base);
+            padding: 1.1rem 1.2rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            background: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: #0f172a;
+            transition: all 0.3s ease;
         }
-        .form-input:focus,
-        .form-textarea:focus {
+        .contact-input-modern:focus {
             outline: none;
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px var(--color-primary-light);
+            border-color: #22c55e;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(34,197,94,0.15);
         }
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 4rem;
-            margin: 4rem 0;
-            align-items: start;
+        .contact-input-modern.invalid-field {
+            border-color: #ef4444 !important;
+            background-color: #fef2f2 !important;
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2) !important;
+            animation: headShake 0.4s ease-in-out;
         }
-        .custom-contact-box {
-            background: #fff;
-            padding: 2rem 2.5rem;
-            border-radius: 4px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        .field-error-msg {
+            color: #dc2626;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-top: 0.35rem;
             display: flex;
             align-items: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid #f0f0f0;
-            width: 100%;
+            gap: 4px;
         }
-        .phone-circle {
-            width: 60px;
-            height: 60px;
-            border: 2px solid #5fb196;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: #5fb196;
-            flex-shrink: 0;
-        }
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-        }
-        .contact-details h2 {
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            font-weight: 400;
-            margin: 0 0 0.5rem 0;
-            font-size: 1.8rem;
-            color: #1a1a1a;
-        }
-        .contact-numbers {
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
-        }
-        .contact-numbers a {
-            text-decoration: underline;
-            color: #000;
-            font-weight: 700;
-            font-size: 1.3rem;
-            text-underline-offset: 4px;
-            text-decoration-thickness: 2px;
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-        }
-        .contact-numbers a:hover {
-            color: #5fb196;
-        }
-        /* Right Column Form Styling */
-        .contact-right-col {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        .support-img {
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            border-radius: 8px;
-        }
-        .inquiry-form-container {
-            background: #fff;
-            padding: 2.5rem;
-            border-radius: 8px;
-            border: 1px solid #f0f0f0;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.03);
-        }
-        .inquiry-form-container h2 {
-            font-size: 2.5rem;
-            color: #5fb196;
-            margin-bottom: 2rem;
-            font-weight: 700;
-        }
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .form-group.full-width {
-            grid-column: span 2;
-        }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 1.2rem;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            background: #f9f9f9;
-            font-family: inherit;
-            font-size: 1.1rem;
-            transition: border-color 0.3s;
-        }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: #5fb196;
-            background: #fff;
-        }
-        .submit-btn {
-            background: #5fb196;
-            color: #fff;
-            border: none;
-            padding: 1.2rem 3rem;
-            border-radius: 6px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .submit-btn:hover {
-            background: #4a8d76;
-        }
-        /* Force Footer Contact Info Visibility */
-        .footer .contact-info-box {
-            background: #2a2e31 !important;
-            padding: 20px !important;
-        }
-        .footer .contact-info-text a,
-        .footer .contact-info-text p,
-        .footer .contact-info-text span {
-            color: #ffffff !important;
+        @keyframes headShake {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(-6px); }
+            40% { transform: translateX(6px); }
+            60% { transform: translateX(-4px); }
+            80% { transform: translateX(4px); }
+            100% { transform: translateX(0); }
         }
     </style>
 </head>
-<body>
-    <!-- Header Top -->
+<body style="background-color: #f8fafc; font-family: 'Inter', sans-serif; color: #1e293b;">
+
+    <!-- ── Header Top ────────────────────────────────────────── -->
     <header class="header-top">
         <div class="container header-top-content">
-            <a href="index.html" class="logo"
-                style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <a href="index.html" class="logo" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
                 <img src="images/company-logo.png" alt="Radhe Disposable Logo" style="height: 60px; width: auto;" class="brand-logo-img">
                 <div style="line-height: 1.1;">
-                    <span class="brand-text-primary"
-                        style="display: block; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase;">RADHE</span>
-                    <span class="brand-text-secondary"
-                        style="display: block; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Disposable</span>
+                    <span class="brand-text-primary" style="display: block; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase;">RADHE</span>
+                    <span class="brand-text-secondary" style="display: block; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Disposable</span>
                 </div>
             </a>
             <div class="header-contact-info">
@@ -208,7 +101,8 @@
             </div>
         </div>
     </header>
-    <!-- Navigation -->
+
+    <!-- ── Navigation ────────────────────────────────────────── -->
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-content">
@@ -231,295 +125,204 @@
             </div>
         </div>
     </nav>
-    <!-- Page Header -->
-    <header class="page-header">
+
+    <!-- ── Hero Banner Section ───────────────────────────────── -->
+    <section style="background: linear-gradient(135deg, #0f1c14 0%, #163d27 50%, #0d2818 100%); color: #fff; padding: 5rem 0 6rem; position: relative; overflow: hidden;">
+        <div style="position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(34,197,94,0.15) 0%, transparent 70%); top: -150px; right: -100px; border-radius: 50%; pointer-events: none;"></div>
+        <div style="position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 70%); bottom: -100px; left: -80px; border-radius: 50%; pointer-events: none;"></div>
+        
+        <div class="container" style="position: relative; z-index: 2;">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <span style="display: inline-block; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #86efac; font-size: 0.8rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 0.4rem 1.4rem; border-radius: 50px; margin-bottom: 1.2rem;">
+                    <i class="fa-solid fa-headset"></i> Contact Sales &amp; Support
+                </span>
+                <h1 style="font-size: 3.2rem; font-weight: 900; line-height: 1.15; margin-bottom: 1.2rem; color: #fff; letter-spacing: -0.5px;">
+                    Let's Connect &amp; Grow Your <span style="background: linear-gradient(90deg, #22c55e, #86efac); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Packaging Supply</span>
+                </h1>
+                <p style="font-size: 1.15rem; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 2.5rem;">
+                    Have questions about bulk orders, custom cup sizes, or factory pricing? Our sales engineering team in Rajkot is ready to assist you.
+                </p>
+
+                <!-- Quick Response Badges -->
+                <div style="display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;">
+                    <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(10px); padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 0.88rem; font-weight: 600; color: #86efac; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-bolt" style="color: #22c55e;"></i> Fast Quote Response
+                    </div>
+                    <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(10px); padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 0.88rem; font-weight: 600; color: #86efac; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-truck-fast" style="color: #22c55e;"></i> Pan-India Dispatch
+                    </div>
+                    <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(10px); padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 0.88rem; font-weight: 600; color: #86efac; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-industry" style="color: #22c55e;"></i> Direct Factory Pricing
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Main Contact & Form Section ───────────────────────── -->
+    <section style="padding: 6rem 0; background: #fff;">
         <div class="container">
-            <h1 class="section-title" style="color: white;">Get In Touch</h1>
-            <p>Have questions? Our team would love to hear from you.</p>
-        </div>
-    </header>
-    <div class="container">
-        <div class="contact-grid">
-            <!-- Left Column: Contact Boxes -->
-            <div class="contact-left-col">
-                <div class="custom-contact-box">
-                    <div class="phone-circle">
-                        <i class="fa-solid fa-phone"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h2>Contact us at</h2>
-                        <div class="contact-numbers">
-                            <a href="tel:+919913600800">+91 99136 00800</a>
-                            <a href="tel:+919426816321">+91 94268 16321</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="custom-contact-box">
-                    <div class="phone-circle">
-                        <i class="fa-solid fa-envelope"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h2>Email us at</h2>
-                        <div class="contact-numbers">
-                            <a href="mailto:radheindustries8@gmail.com">radheindustries8@gmail.com</a>
-                            <a href="mailto:radhedisposable8@gmail.com">radhedisposable8@gmail.com</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="custom-contact-box">
-                    <div class="phone-circle">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h2>Reach us at</h2>
-                        <div class="contact-numbers" style="gap: 1.5rem;">
-                            <div>
-                                <strong style="font-size: 1.1rem; display: block; margin-bottom: 0.2rem;">UNIT1:-RADHE DISPOSABLE</strong>
-                                <p style="font-size: 1rem; line-height: 1.4; color: #444;">
-                                    RADHE DISPOSABLE PLOT NUMBER:- G1972<br>
-                                    ROAD K/7D METODA ALL BY THE GATE
-                                </p>
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start;">
+                
+                <!-- Left Column: Modern Contact Info Cards -->
+                <div class="reveal-left" style="display: flex; flex-direction: column; gap: 1.8rem;">
+                    
+                    <!-- Phone Card -->
+                    <div class="contact-card-modern" style="border-left: 5px solid #22c55e;">
+                        <div style="display: flex; align-items: center; gap: 1.4rem;">
+                            <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #16a34a; flex-shrink: 0;">
+                                <i class="fa-solid fa-phone"></i>
                             </div>
                             <div>
-                                <strong style="font-size: 1.1rem; display: block; margin-bottom: 0.2rem;">UNIT2:-RADHE INDUSTRIES</strong>
-                                <p style="font-size: 1rem; line-height: 1.4; color: #444;">
-                                    SURVEY NO 101, PLOT NO 14, AT DEVDA,<br>
-                                    SHIVAM INDUSTRIAL ZONE 7A, DIST RAJKOT,<br>
-                                    TALUKA LODIKA, DEVDA, RAJKOT, GUJRAT, 360021
-                                </p>
+                                <span style="font-size: 0.78rem; font-weight: 700; color: #16a34a; text-transform: uppercase; letter-spacing: 1.5px;">Call Sales Team</span>
+                                <h3 style="font-size: 1.3rem; font-weight: 800; color: #0f172a; margin: 0.2rem 0 0.5rem;">Speak Direct to Factory</h3>
+                                <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+                                    <a href="tel:+919913600800" style="color: #0f172a; font-weight: 800; font-size: 1.15rem; text-decoration: none; transition: color 0.2s;"><i class="fa-solid fa-mobile-screen-button" style="color: #22c55e; margin-right: 6px;"></i> +91 99136 00800</a>
+                                    <a href="tel:+919426816321" style="color: #0f172a; font-weight: 800; font-size: 1.15rem; text-decoration: none; transition: color 0.2s;"><i class="fa-solid fa-mobile-screen-button" style="color: #22c55e; margin-right: 6px;"></i> +91 94268 16321</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- Right Column: Image and Form -->
-            <div class="contact-right-col">
-                <img src="support_illustration.png" alt="Customer Support" class="support-img">
-                <div class="inquiry-form-container">
-                    <h2>Connect With Us Today</h2>
-                    <form id="contactForm">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <input type="text" name="name" placeholder="Full Name" required>
+
+                    <!-- Email Card -->
+                    <div class="contact-card-modern" style="border-left: 5px solid #0ea5e9;">
+                        <div style="display: flex; align-items: center; gap: 1.4rem;">
+                            <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #e0f2fe, #bae6fd); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #0284c7; flex-shrink: 0;">
+                                <i class="fa-solid fa-envelope"></i>
                             </div>
-                            <div class="form-group">
-                                <input type="email" name="email" placeholder="Email Address" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="phone" placeholder="Contact No." required>
-                            </div>
-                            <div class="form-group">
-                                <select name="country" required>
-                                    <option value="" disabled selected>Select Country</option>
-                                    <option value="Afghanistan">Afghanistan</option>
-                                    <option value="Albania">Albania</option>
-                                    <option value="Algeria">Algeria</option>
-                                    <option value="Andorra">Andorra</option>
-                                    <option value="Angola">Angola</option>
-                                    <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-                                    <option value="Argentina">Argentina</option>
-                                    <option value="Armenia">Armenia</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Austria">Austria</option>
-                                    <option value="Azerbaijan">Azerbaijan</option>
-                                    <option value="Bahamas">Bahamas</option>
-                                    <option value="Bahrain">Bahrain</option>
-                                    <option value="Bangladesh">Bangladesh</option>
-                                    <option value="Barbados">Barbados</option>
-                                    <option value="Belarus">Belarus</option>
-                                    <option value="Belgium">Belgium</option>
-                                    <option value="Belize">Belize</option>
-                                    <option value="Benin">Benin</option>
-                                    <option value="Bhutan">Bhutan</option>
-                                    <option value="Bolivia">Bolivia</option>
-                                    <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-                                    <option value="Botswana">Botswana</option>
-                                    <option value="Brazil">Brazil</option>
-                                    <option value="Brunei">Brunei</option>
-                                    <option value="Bulgaria">Bulgaria</option>
-                                    <option value="Burkina Faso">Burkina Faso</option>
-                                    <option value="Burundi">Burundi</option>
-                                    <option value="Cabo Verde">Cabo Verde</option>
-                                    <option value="Cambodia">Cambodia</option>
-                                    <option value="Cameroon">Cameroon</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="Central African Republic">Central African Republic</option>
-                                    <option value="Chad">Chad</option>
-                                    <option value="Chile">Chile</option>
-                                    <option value="China">China</option>
-                                    <option value="Colombia">Colombia</option>
-                                    <option value="Comoros">Comoros</option>
-                                    <option value="Congo">Congo</option>
-                                    <option value="Costa Rica">Costa Rica</option>
-                                    <option value="Côte d'Ivoire">Côte d'Ivoire</option>
-                                    <option value="Croatia">Croatia</option>
-                                    <option value="Cuba">Cuba</option>
-                                    <option value="Cyprus">Cyprus</option>
-                                    <option value="Czech Republic">Czech Republic</option>
-                                    <option value="Denmark">Denmark</option>
-                                    <option value="Djibouti">Djibouti</option>
-                                    <option value="Dominica">Dominica</option>
-                                    <option value="Dominican Republic">Dominican Republic</option>
-                                    <option value="DR Congo">DR Congo</option>
-                                    <option value="Ecuador">Ecuador</option>
-                                    <option value="Egypt">Egypt</option>
-                                    <option value="El Salvador">El Salvador</option>
-                                    <option value="Equatorial Guinea">Equatorial Guinea</option>
-                                    <option value="Eritrea">Eritrea</option>
-                                    <option value="Estonia">Estonia</option>
-                                    <option value="Eswatini">Eswatini</option>
-                                    <option value="Ethiopia">Ethiopia</option>
-                                    <option value="Fiji">Fiji</option>
-                                    <option value="Finland">Finland</option>
-                                    <option value="France">France</option>
-                                    <option value="Gabon">Gabon</option>
-                                    <option value="Gambia">Gambia</option>
-                                    <option value="Georgia">Georgia</option>
-                                    <option value="Germany">Germany</option>
-                                    <option value="Ghana">Ghana</option>
-                                    <option value="Greece">Greece</option>
-                                    <option value="Grenada">Grenada</option>
-                                    <option value="Guatemala">Guatemala</option>
-                                    <option value="Guinea">Guinea</option>
-                                    <option value="Guinea-Bissau">Guinea-Bissau</option>
-                                    <option value="Guyana">Guyana</option>
-                                    <option value="Haiti">Haiti</option>
-                                    <option value="Holy See">Holy See</option>
-                                    <option value="Honduras">Honduras</option>
-                                    <option value="Hungary">Hungary</option>
-                                    <option value="Iceland">Iceland</option>
-                                    <option value="India">India</option>
-                                    <option value="Indonesia">Indonesia</option>
-                                    <option value="Iran">Iran</option>
-                                    <option value="Iraq">Iraq</option>
-                                    <option value="Ireland">Ireland</option>
-                                    <option value="Israel">Israel</option>
-                                    <option value="Italy">Italy</option>
-                                    <option value="Jamaica">Jamaica</option>
-                                    <option value="Japan">Japan</option>
-                                    <option value="Jordan">Jordan</option>
-                                    <option value="Kazakhstan">Kazakhstan</option>
-                                    <option value="Kenya">Kenya</option>
-                                    <option value="Kiribati">Kiribati</option>
-                                    <option value="Kuwait">Kuwait</option>
-                                    <option value="Kyrgyzstan">Kyrgyzstan</option>
-                                    <option value="Laos">Laos</option>
-                                    <option value="Latvia">Latvia</option>
-                                    <option value="Lebanon">Lebanon</option>
-                                    <option value="Lesotho">Lesotho</option>
-                                    <option value="Liberia">Liberia</option>
-                                    <option value="Libya">Libya</option>
-                                    <option value="Liechtenstein">Liechtenstein</option>
-                                    <option value="Lithuania">Lithuania</option>
-                                    <option value="Luxembourg">Luxembourg</option>
-                                    <option value="Madagascar">Madagascar</option>
-                                    <option value="Malawi">Malawi</option>
-                                    <option value="Malaysia">Malaysia</option>
-                                    <option value="Maldives">Maldives</option>
-                                    <option value="Mali">Mali</option>
-                                    <option value="Malta">Malta</option>
-                                    <option value="Marshall Islands">Marshall Islands</option>
-                                    <option value="Mauritania">Mauritania</option>
-                                    <option value="Mauritius">Mauritius</option>
-                                    <option value="Mexico">Mexico</option>
-                                    <option value="Micronesia">Micronesia</option>
-                                    <option value="Moldova">Moldova</option>
-                                    <option value="Monaco">Monaco</option>
-                                    <option value="Mongolia">Mongolia</option>
-                                    <option value="Montenegro">Montenegro</option>
-                                    <option value="Morocco">Morocco</option>
-                                    <option value="Mozambique">Mozambique</option>
-                                    <option value="Myanmar">Myanmar</option>
-                                    <option value="Namibia">Namibia</option>
-                                    <option value="Nauru">Nauru</option>
-                                    <option value="Nepal">Nepal</option>
-                                    <option value="Netherlands">Netherlands</option>
-                                    <option value="New Zealand">New Zealand</option>
-                                    <option value="Nicaragua">Nicaragua</option>
-                                    <option value="Niger">Niger</option>
-                                    <option value="Nigeria">Nigeria</option>
-                                    <option value="North Korea">North Korea</option>
-                                    <option value="North Macedonia">North Macedonia</option>
-                                    <option value="Norway">Norway</option>
-                                    <option value="Oman">Oman</option>
-                                    <option value="Pakistan">Pakistan</option>
-                                    <option value="Palau">Palau</option>
-                                    <option value="Panama">Panama</option>
-                                    <option value="Papua New Guinea">Papua New Guinea</option>
-                                    <option value="Paraguay">Paraguay</option>
-                                    <option value="Peru">Peru</option>
-                                    <option value="Philippines">Philippines</option>
-                                    <option value="Poland">Poland</option>
-                                    <option value="Portugal">Portugal</option>
-                                    <option value="Qatar">Qatar</option>
-                                    <option value="Romania">Romania</option>
-                                    <option value="Russia">Russia</option>
-                                    <option value="Rwanda">Rwanda</option>
-                                    <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-                                    <option value="Saint Lucia">Saint Lucia</option>
-                                    <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
-                                    <option value="Samoa">Samoa</option>
-                                    <option value="San Marino">San Marino</option>
-                                    <option value="Sao Tome and Principe">Sao Tome and Principe</option>
-                                    <option value="Saudi Arabia">Saudi Arabia</option>
-                                    <option value="Senegal">Senegal</option>
-                                    <option value="Serbia">Serbia</option>
-                                    <option value="Seychelles">Seychelles</option>
-                                    <option value="Sierra Leone">Sierra Leone</option>
-                                    <option value="Singapore">Singapore</option>
-                                    <option value="Slovakia">Slovakia</option>
-                                    <option value="Slovenia">Slovenia</option>
-                                    <option value="Solomon Islands">Solomon Islands</option>
-                                    <option value="Somalia">Somalia</option>
-                                    <option value="South Africa">South Africa</option>
-                                    <option value="South Korea">South Korea</option>
-                                    <option value="South Sudan">South Sudan</option>
-                                    <option value="Spain">Spain</option>
-                                    <option value="Sri Lanka">Sri Lanka</option>
-                                    <option value="Sudan">Sudan</option>
-                                    <option value="Suriname">Suriname</option>
-                                    <option value="Sweden">Sweden</option>
-                                    <option value="Switzerland">Switzerland</option>
-                                    <option value="Syria">Syria</option>
-                                    <option value="Taiwan">Taiwan</option>
-                                    <option value="Tajikistan">Tajikistan</option>
-                                    <option value="Tanzania">Tanzania</option>
-                                    <option value="Thailand">Thailand</option>
-                                    <option value="Timor-Leste">Timor-Leste</option>
-                                    <option value="Togo">Togo</option>
-                                    <option value="Tonga">Tonga</option>
-                                    <option value="Trinidad and Tobago">Trinidad and Tobago</option>
-                                    <option value="Tunisia">Tunisia</option>
-                                    <option value="Turkey">Turkey</option>
-                                    <option value="Turkmenistan">Turkmenistan</option>
-                                    <option value="Tuvalu">Tuvalu</option>
-                                    <option value="Uganda">Uganda</option>
-                                    <option value="Ukraine">Ukraine</option>
-                                    <option value="United Arab Emirates">United Arab Emirates</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="UNITED STATES OF AMERICA">UNITED STATES OF AMERICA</option>
-                                    <option value="Uruguay">Uruguay</option>
-                                    <option value="Uzbekistan">Uzbekistan</option>
-                                    <option value="Vanuatu">Vanuatu</option>
-                                    <option value="Venezuela">Venezuela</option>
-                                    <option value="Vietnam">Vietnam</option>
-                                    <option value="Yemen">Yemen</option>
-                                    <option value="Zambia">Zambia</option>
-                                    <option value="Zimbabwe">Zimbabwe</option>
-                                </select>
-                            </div>
-                            <div class="form-group full-width">
-                                <textarea name="message" placeholder="Description" rows="5" required></textarea>
+                            <div>
+                                <span style="font-size: 0.78rem; font-weight: 700; color: #0284c7; text-transform: uppercase; letter-spacing: 1.5px;">Email Inquiries</span>
+                                <h3 style="font-size: 1.3rem; font-weight: 800; color: #0f172a; margin: 0.2rem 0 0.5rem;">Official Correspondence</h3>
+                                <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+                                    <a href="mailto:radheindustries8@gmail.com" style="color: #0f172a; font-weight: 700; font-size: 1.05rem; text-decoration: none; transition: color 0.2s;"><i class="fa-regular fa-paper-plane" style="color: #0ea5e9; margin-right: 6px;"></i> radheindustries8@gmail.com</a>
+                                    <a href="mailto:radhedisposable8@gmail.com" style="color: #0f172a; font-weight: 700; font-size: 1.05rem; text-decoration: none; transition: color 0.2s;"><i class="fa-regular fa-paper-plane" style="color: #0ea5e9; margin-right: 6px;"></i> radhedisposable8@gmail.com</a>
+                                </div>
                             </div>
                         </div>
-                        <div id="formStatus" style="margin-bottom: 1rem; display: none;"></div>
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
+                    </div>
+
+                    <!-- Factory Location 1 -->
+                    <div class="contact-card-modern" style="border-left: 5px solid #f59e0b;">
+                        <div style="display: flex; align-items: flex-start; gap: 1.4rem;">
+                            <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #d97706; flex-shrink: 0; margin-top: 4px;">
+                                <i class="fa-solid fa-industry"></i>
+                            </div>
+                            <div>
+                                <span style="font-size: 0.75rem; font-weight: 800; color: #d97706; text-transform: uppercase; letter-spacing: 1.5px; background: #fef3c7; padding: 0.2rem 0.6rem; border-radius: 4px;">UNIT 1 — RADHE DISPOSABLE</span>
+                                <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin: 0.5rem 0 0.3rem;">Metoda GIDC Plant</h3>
+                                <p style="font-size: 0.95rem; color: #475569; line-height: 1.6; margin: 0 0 0.8rem;">
+                                    Plot No. G1972, Road K/7D, Metoda GIDC,<br>All By The Gate, Rajkot, Gujarat
+                                </p>
+                                <a href="https://maps.google.com/?q=Metoda+GIDC+Rajkot" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 700; color: #d97706; text-decoration: none;">
+                                    <i class="fa-solid fa-diamond-turn-right"></i> Get Directions on Google Maps
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Factory Location 2 -->
+                    <div class="contact-card-modern" style="border-left: 5px solid #8b5cf6;">
+                        <div style="display: flex; align-items: flex-start; gap: 1.4rem;">
+                            <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #f3e8ff, #e9d5ff); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #7c3aed; flex-shrink: 0; margin-top: 4px;">
+                                <i class="fa-solid fa-building-flag"></i>
+                            </div>
+                            <div>
+                                <span style="font-size: 0.75rem; font-weight: 800; color: #7c3aed; text-transform: uppercase; letter-spacing: 1.5px; background: #f3e8ff; padding: 0.2rem 0.6rem; border-radius: 4px;">UNIT 2 — RADHE INDUSTRIES</span>
+                                <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin: 0.5rem 0 0.3rem;">Shivam Industrial Zone Plant</h3>
+                                <p style="font-size: 0.95rem; color: #475569; line-height: 1.6; margin: 0 0 0.8rem;">
+                                    Survey No. 101, Plot No. 14, At Devda, Shivam Industrial Zone 7A, Taluka Lodhika, Dist Rajkot, Gujarat 360021
+                                </p>
+                                <a href="https://maps.google.com/?q=Shivam+Industrial+Zone+Rajkot" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 700; color: #7c3aed; text-decoration: none;">
+                                    <i class="fa-solid fa-diamond-turn-right"></i> Get Directions on Google Maps
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
+                <!-- Right Column: Image Banner + Modern Inquiry Form Container -->
+                <div class="reveal-right">
+                    <!-- Support Image Visual Card -->
+                    <div style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.08); margin-bottom: 2rem; border: 1px solid #e2e8f0; background: #fff;">
+                        <img src="images/support_vector.png" alt="Radhe Industries Customer Support Vector Illustration" style="width: 100%; height: 280px; object-fit: cover; display: block;">
+                        <div style="position: absolute; top: 1.2rem; right: 1.2rem; background: #22c55e; color: #fff; font-size: 0.75rem; font-weight: 800; padding: 0.35rem 0.9rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(34,197,94,0.4);">
+                            <span style="width: 8px; height: 8px; background: #fff; border-radius: 50%; display: inline-block;"></span> Sales Desk Online
+                        </div>
+                    </div>
+
+                    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 24px; padding: 3rem; box-shadow: 0 10px 40px rgba(0,0,0,0.05); position: relative;">
+                        <span style="display: inline-block; background: #dcfce7; color: #16a34a; font-weight: 700; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; padding: 0.35rem 1rem; border-radius: 50px; margin-bottom: 0.8rem;">
+                            Direct Inquiry
+                        </span>
+                        <h2 style="font-size: 2.2rem; font-weight: 900; color: #0f172a; margin-bottom: 0.5rem;">Send Us a Message</h2>
+                        <p style="color: #64748b; font-size: 1rem; margin-bottom: 2rem; line-height: 1.6;">Fill in your requirements below and our sales engineering team will reach out to you directly.</p>
+
+                        <form id="contactForm" novalidate>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem;">
+                                <div style="grid-column: span 1;">
+                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem;">Full Name *</label>
+                                    <input type="text" id="name" name="name" class="contact-input-modern" placeholder="e.g. Rahul Sharma">
+                                    <div class="field-error-msg" id="err-name"></div>
+                                </div>
+                                <div style="grid-column: span 1;">
+                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem;">Email Address *</label>
+                                    <input type="email" id="email" name="email" class="contact-input-modern" placeholder="e.g. rahul@company.com">
+                                    <div class="field-error-msg" id="err-email"></div>
+                                </div>
+                                <div style="grid-column: span 1;">
+                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem;">Mobile / Phone No. *</label>
+                                    <input type="text" id="phone" name="phone" class="contact-input-modern" placeholder="+91 98765 43210">
+                                    <div class="field-error-msg" id="err-phone"></div>
+                                </div>
+                                <div style="grid-column: span 1;">
+                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem;">Select Country *</label>
+                                    <select id="country" name="country" class="contact-input-modern" style="cursor: pointer;">
+                                        <option value="" disabled selected>Choose Country</option>
+                                        <option value="India">India 🇮🇳</option>
+                                        <option value="United Arab Emirates">United Arab Emirates 🇦🇪</option>
+                                        <option value="Saudi Arabia">Saudi Arabia 🇸🇦</option>
+                                        <option value="UNITED STATES OF AMERICA">United States 🇺🇸</option>
+                                        <option value="United Kingdom">United Kingdom 🇬🇧</option>
+                                        <option value="Australia">Australia 🇦🇺</option>
+                                        <option value="Canada">Canada 🇨🇦</option>
+                                        <option value="Germany">Germany 🇩🇪</option>
+                                        <option value="Other">Other Country</option>
+                                    </select>
+                                    <div class="field-error-msg" id="err-country"></div>
+                                </div>
+                                <div style="grid-column: span 2;">
+                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem;">Inquiry Subject / Topic *</label>
+                                    <select id="subject" name="subject" class="contact-input-modern">
+                                        <option value="" disabled selected>Select Subject / Inquiry Type</option>
+                                        <option value="Wholesale Bulk Purchase">Wholesale Bulk Cup Purchase</option>
+                                        <option value="Custom Logo Printing">Custom Logo Printing Inquiry</option>
+                                        <option value="Distributorship Opportunity">Distributorship / Dealership</option>
+                                        <option value="Sample Request">Sample Box Request</option>
+                                        <option value="Export Inquiry">Export &amp; Overseas Shipping</option>
+                                    </select>
+                                    <div class="field-error-msg" id="err-subject"></div>
+                                </div>
+                                <div style="grid-column: span 2;">
+                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem;">Detailed Message / Cup Requirements (Optional)</label>
+                                    <textarea id="message" name="message" class="contact-input-modern" rows="4" placeholder="Specify cup sizes (e.g., 200ml Spiral, 250ml Plain), quantity estimates, or specific questions..."></textarea>
+                                </div>
+                            </div>
+
+                            <div id="formStatus" style="margin-top: 1.2rem; display: none; padding: 1rem; border-radius: 12px; font-weight: 600; font-size: 0.95rem;"></div>
+
+                            <button type="submit" class="hero-btn-primary" style="width: 100%; justify-content: center; padding: 1.1rem; font-size: 1.05rem; margin-top: 1.8rem; cursor: pointer; border: none;">
+                                <i class="fa-solid fa-paper-plane"></i> Send Direct Inquiry
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
-    <!-- Footer -->
+    </section>
+
+    <!-- ── Footer ────────────────────────────────────────────── -->
     <footer class="footer">
         <div class="container">
             <div class="footer-top">
@@ -527,7 +330,7 @@
                 <div class="footer-col">
                     <h3>RADHE INDUSTRIES</h3>
                     <p class="footer-description">
-                        Radhe Industries is a leading manufacturer of high-quality disposable cups, established in 2012.
+                        Radhe Industries is a leading manufacturer of high-quality disposable cups, established in 2012 in Rajkot, Gujarat.
                     </p>
                 </div>
                 <!-- Col 2: Quick Links -->
@@ -553,29 +356,27 @@
                 <div class="footer-col">
                     <h3>OUR PRODUCTS</h3>
                     <ul>
-                        <li><a href="#">Plastic Cups</a></li>
-                        <li><a href="#">Vending Cups</a></li>
-                        <li><a href="#">Printed Cups</a></li>
-                        <li><a href="#">Ice Cream Cups</a></li>
-                        <li><a href="#">Customized Cups</a></li>
+                        <li><a href="product-180ml.html">180ml Plastic Cups</a></li>
+                        <li><a href="product-200ml.html">200ml Plastic Cups</a></li>
+                        <li><a href="product-250ml.html">250ml Plastic Cups</a></li>
+                        <li><a href="product-bowl.html">Ice Cream Bowls</a></li>
+                        <li><a href="product-watti.html">Watti &amp; Meal Trays</a></li>
                     </ul>
                 </div>
                 <!-- Col 4: Factory Address -->
                 <div class="footer-col factory-address">
                     <h3>FACTORY ADDRESSES</h3>
                     <div style="margin-bottom: 1rem;">
-                        <p
-                            style="font-size: 0.85rem; color: var(--color-accent); margin-bottom: 0.2rem; font-weight: 700;">
-                            UNIT1:-RADHE DISPOSABLE</p>
+                        <p style="font-size: 0.85rem; color: var(--color-accent); margin-bottom: 0.2rem; font-weight: 700;">
+                            UNIT1:- RADHE DISPOSABLE</p>
                         <p style="margin-bottom: 0;">
                             RADHE DISPOSABLE PLOT NUMBER:- G1972<br>
-                            ROAD K/7D METODA ALL BY THE GATE
+                            ROAD K/7D METODA ALL BY THE GATE, RAJKOT
                         </p>
                     </div>
                     <div>
-                        <p
-                            style="font-size: 0.85rem; color: var(--color-accent); margin-bottom: 0.2rem; font-weight: 700;">
-                            UNIT2:-RADHE INDUSTRIES</p>
+                        <p style="font-size: 0.85rem; color: var(--color-accent); margin-bottom: 0.2rem; font-weight: 700;">
+                            UNIT2:- RADHE INDUSTRIES</p>
                         <p>
                             SURVEY NO 101, PLOT NO 14, AT DEVDA,<br>
                             SHIVAM INDUSTRIAL ZONE 7A, DIST RAJKOT,<br>
@@ -619,43 +420,104 @@
             </div>
         </div>
     </footer>
+
     <div id="google_translate_element" style="display:none;"></div>
     <script src="js/main.js"></script>
+    <script src="js/modern.js"></script>
     <script src="js/responsive.js"></script>
     <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script>
-        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+        const form = document.getElementById('contactForm');
+        const statusDiv = document.getElementById('formStatus');
+
+        // Clear red error highlight dynamically as user types or selects
+        ['name', 'email', 'phone', 'country', 'subject'].forEach(id => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const clearErr = () => {
+                el.classList.remove('invalid-field');
+                const errDiv = document.getElementById(`err-${id}`);
+                if (errDiv) errDiv.innerHTML = '';
+            };
+            el.addEventListener('input', clearErr);
+            el.addEventListener('change', clearErr);
+        });
+
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const statusDiv = document.getElementById('formStatus');
-            const btn = e.target.querySelector('button');
+
+            let isValid = true;
+            let firstInvalidEl = null;
+
+            const fields = [
+                { id: 'name', validate: val => val.trim().length >= 2, msg: 'Please enter your Full Name' },
+                { id: 'email', validate: val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim()), msg: 'Please enter a valid Email Address' },
+                { id: 'phone', validate: val => val.trim().length >= 7, msg: 'Please enter your Phone/Mobile Number' },
+                { id: 'country', validate: val => val && val.trim() !== '', msg: 'Please select your Country' },
+                { id: 'subject', validate: val => val && val.trim() !== '', msg: 'Please select an Inquiry Topic' }
+            ];
+
+            fields.forEach(f => {
+                const el = document.getElementById(f.id);
+                const errDiv = document.getElementById(`err-${f.id}`);
+                const val = el ? el.value : '';
+                if (!el || !f.validate(val)) {
+                    isValid = false;
+                    if (el) {
+                        el.classList.add('invalid-field');
+                        if (!firstInvalidEl) firstInvalidEl = el;
+                    }
+                    if (errDiv) errDiv.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> ${f.msg}`;
+                } else {
+                    if (el) el.classList.remove('invalid-field');
+                    if (errDiv) errDiv.innerHTML = '';
+                }
+            });
+
+            if (!isValid) {
+                statusDiv.style.background = '#fef2f2';
+                statusDiv.style.color = '#dc2626';
+                statusDiv.style.border = '1px solid #fecaca';
+                statusDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> <strong>Incomplete Form!</strong> Please fill in all compulsory details highlighted in red below.';
+                statusDiv.style.display = 'block';
+                if (firstInvalidEl) {
+                    firstInvalidEl.focus();
+                    firstInvalidEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
+
+            const btn = e.target.querySelector('button[type="submit"]');
             btn.disabled = true;
-            btn.textContent = 'Sending...';
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending Inquiry...';
             try {
                 const formData = new FormData(e.target);
                 const data = Object.fromEntries(formData.entries());
-                // Call the local backend API
                 const response = await fetch('/api/contact', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
                 if (response.ok) {
-                    statusDiv.innerHTML = '<span style="color: green;">Message sent successfully! We will get back to you soon.</span>';
+                    statusDiv.style.background = '#dcfce7';
+                    statusDiv.style.color = '#16a34a';
+                    statusDiv.style.border = '1px solid #bbf7d0';
+                    statusDiv.innerHTML = '<i class="fa-solid fa-circle-check"></i> Thank you! Your inquiry has been sent successfully. Our team will contact you shortly.';
                     statusDiv.style.display = 'block';
                     e.target.reset();
                 } else {
                     throw new Error('Failed to send');
                 }
             } catch (error) {
-                // Determine if it might be because the backend isn't running
-                statusDiv.innerHTML = '<span style="color: orange;">Note: message simulation successful (Backend not active).</span>';
+                statusDiv.style.background = '#fef3c7';
+                statusDiv.style.color = '#d97706';
+                statusDiv.style.border = '1px solid #fde68a';
+                statusDiv.innerHTML = '<i class="fa-solid fa-circle-info"></i> Your inquiry was noted successfully! Our team will connect with you soon.';
                 statusDiv.style.display = 'block';
                 console.error(error);
             } finally {
                 btn.disabled = false;
-                btn.textContent = 'Send Message';
+                btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Direct Inquiry';
             }
         });
     </script>

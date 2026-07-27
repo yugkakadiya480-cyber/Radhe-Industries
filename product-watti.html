@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -368,12 +368,120 @@
             </div>
         </div>
     </footer>
+    <!-- 360 Rotation Styles -->
+    <style>
+        @keyframes spin360 {
+            0%   { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+        @keyframes spinEntrance {
+            0%   { transform: rotateY(0deg) scale(0.85); opacity: 0; }
+            40%  { opacity: 1; }
+            100% { transform: rotateY(360deg) scale(1); opacity: 1; }
+        }
+        .rotate-img-wrapper {
+            perspective: 1200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+            user-select: none;
+        }
+        .rotate-img-wrapper:active { cursor: grabbing; }
+        #lightbox-img {
+            animation: spinEntrance 1.2s cubic-bezier(0.4,0,0.2,1) forwards;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+        #lightbox-img.auto-spinning {
+            animation: spin360 6s linear infinite;
+        }
+        #lightbox-img.paused {
+            animation-play-state: paused;
+        }
+        /* 360 badge */
+        .badge-360 {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: linear-gradient(135deg, #1a4d3e, #2e7d32);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+            pointer-events: none;
+            z-index: 5;
+        }
+        .badge-360 svg { width: 14px; height: 14px; fill: #fff; }
+        /* Spin toggle button */
+        .spin-toggle-btn {
+            position: absolute;
+            bottom: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.13);
+            border: 1.5px solid rgba(255,255,255,0.35);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 6px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            backdrop-filter: blur(6px);
+            transition: background 0.2s, border-color 0.2s;
+            z-index: 5;
+        }
+        .spin-toggle-btn:hover {
+            background: rgba(255,255,255,0.22);
+            border-color: rgba(255,255,255,0.7);
+        }
+        /* Drag hint */
+        .drag-hint {
+            position: absolute;
+            bottom: 48px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.68rem;
+            letter-spacing: 0.5px;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+    </style>
+
     <!-- Lightbox Modal -->
     <div id="lightbox">
         <div class="lightbox-content split-layout">
             <span class="lightbox-close">&times;</span>
             <div class="lightbox-image-container" id="lightbox-image-panel" style="position:relative; background: #000;">
-                <img id="lightbox-img" src="" alt="Enlarged product image">
+                <!-- 360 badge -->
+                <div class="badge-360">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4C7.58 4 4 7.58 4 12s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm-1-9h2v4h-2z"/></svg>
+                    360°
+                </div>
+                <!-- Image wrapper for perspective/3D -->  
+                <div class="rotate-img-wrapper" id="rotate-wrapper">
+                    <img id="lightbox-img" src="" alt="Enlarged product image">
+                </div>
+                <!-- Drag hint -->
+                <div class="drag-hint" id="drag-hint">↔ Drag to rotate manually</div>
+                <!-- Spin toggle button -->
+                <button class="spin-toggle-btn" id="spin-toggle-btn">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                    <span id="spin-btn-label">Pause Spin</span>
+                </button>
                 <!-- High-Contrast SVG dimension overlay -->
                 <svg id="dim-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"
                     style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;box-sizing:border-box;">
@@ -421,23 +529,142 @@
         </div>
     </div>
     <script src="js/main.js"></script>
+    <script src="js/viewer360.js"></script>
+    <script src="js/viewer360-integration.js"></script>
     <script src="js/responsive.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const closeBtn = document.querySelector('.lightbox-close');
-            const openLightbox = (src) => {
-                lightboxImg.src = src;
-                lightbox.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            };
+            const spinToggleBtn = document.getElementById('spin-toggle-btn');
+            const spinBtnLabel = document.getElementById('spin-btn-label');
+            const dragHint = document.getElementById('drag-hint');
+            const rotateWrapper = document.getElementById('rotate-wrapper');
+
+            let isSpinning = true;
+            let manualAngle = 0;
+            let isDragging = false;
+            let dragStartX = 0;
+            let lastAngle = 0;
+
+            /* ── Start 360 auto-spin ── */
+            function startAutoSpin() {
+                isSpinning = true;
+                lightboxImg.style.animation = '';
+                lightboxImg.style.transform = '';
+                lightboxImg.classList.remove('paused');
+                void lightboxImg.offsetWidth; // reflow to restart animation
+                lightboxImg.classList.add('auto-spinning');
+                spinBtnLabel.textContent = 'Pause Spin';
+                dragHint.style.opacity = '1';
+            }
+
+            /* ── Pause 360 auto-spin ── */
+            function pauseAutoSpin() {
+                isSpinning = false;
+                lightboxImg.classList.add('paused');
+                spinBtnLabel.textContent = 'Resume Spin';
+            }
+
+            /* ── Reset and trigger entrance animation then switch to spin ── */
+            function triggerSpinOnOpen() {
+                isSpinning = true;
+                manualAngle = 0;
+                lightboxImg.classList.remove('auto-spinning', 'paused');
+                lightboxImg.style.animation = 'spinEntrance 1.2s cubic-bezier(0.4,0,0.2,1) forwards';
+                spinBtnLabel.textContent = 'Pause Spin';
+                dragHint.style.opacity = '1';
+                // After entrance animation, switch to continuous spin
+                setTimeout(() => {
+                    if (isSpinning) {
+                        lightboxImg.style.animation = '';
+                        lightboxImg.classList.add('auto-spinning');
+                    }
+                }, 1250);
+            }
+
+            /* ── Toggle spin ── */
+            spinToggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (isSpinning) {
+                    pauseAutoSpin();
+                } else {
+                    startAutoSpin();
+                }
+            });
+
+            /* ── Drag-to-rotate (mouse) ── */
+            rotateWrapper.addEventListener('mousedown', (e) => {
+                if (!lightboxImg.classList.contains('auto-spinning') && !isSpinning) {
+                    isDragging = true;
+                    dragStartX = e.clientX;
+                    lastAngle = manualAngle;
+                    rotateWrapper.style.cursor = 'grabbing';
+                } else {
+                    // Pause auto-spin and switch to manual
+                    pauseAutoSpin();
+                    isDragging = true;
+                    dragStartX = e.clientX;
+                    lastAngle = 0;
+                    manualAngle = 0;
+                    lightboxImg.classList.remove('auto-spinning');
+                    lightboxImg.style.animation = 'none';
+                    lightboxImg.style.transform = `rotateY(0deg)`;
+                    rotateWrapper.style.cursor = 'grabbing';
+                }
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const delta = e.clientX - dragStartX;
+                manualAngle = lastAngle + delta * 0.7;
+                lightboxImg.style.transform = `rotateY(${manualAngle}deg)`;
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    rotateWrapper.style.cursor = 'grab';
+                }
+            });
+
+            /* ── Drag-to-rotate (touch) ── */
+            rotateWrapper.addEventListener('touchstart', (e) => {
+                if (isSpinning) {
+                    pauseAutoSpin();
+                    lightboxImg.classList.remove('auto-spinning');
+                    lightboxImg.style.animation = 'none';
+                    lightboxImg.style.transform = `rotateY(0deg)`;
+                    manualAngle = 0;
+                    lastAngle = 0;
+                }
+                isDragging = true;
+                dragStartX = e.touches[0].clientX;
+                lastAngle = manualAngle;
+            }, { passive: true });
+
+            document.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const delta = e.touches[0].clientX - dragStartX;
+                manualAngle = lastAngle + delta * 0.7;
+                lightboxImg.style.transform = `rotateY(${manualAngle}deg)`;
+            }, { passive: true });
+
+            document.addEventListener('touchend', () => { isDragging = false; });
+
             const closeLightbox = () => {
                 lightbox.style.display = 'none';
                 document.body.style.overflow = '';
                 const dimSvg = document.getElementById('dim-svg');
                 if (dimSvg) dimSvg.style.display = 'none';
+                // Reset spin state
+                isSpinning = true;
+                lightboxImg.classList.remove('auto-spinning', 'paused');
+                lightboxImg.style.animation = '';
+                lightboxImg.style.transform = '';
             };
+
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('zoom-img') || e.target.classList.contains('lightbox-trigger')) {
                     if (e.target.closest('.promo-card') || e.target.closest('.product-card')) {
@@ -467,9 +694,7 @@
                             if (img.dataset.height || img.dataset.length) listHtml += `<li><strong>HEIGHT:</strong> ${(img.dataset.height || img.dataset.length).toUpperCase()}</li>`;
                             if (img.dataset.code) listHtml += `<li><strong>CODE:</strong> ${img.dataset.code.toUpperCase()}</li>`;
                             detailList.innerHTML = listHtml;
-                            // Show SVG dimension overlay
                             dimSvg.style.display = 'block';
-                            // Update labels from actual data attributes
                             if (img.dataset.diameter) document.getElementById('dim-h-label').textContent = 'DIAMETER ' + img.dataset.diameter.toUpperCase();
                             if (img.dataset.height || img.dataset.length) document.getElementById('dim-v-label').textContent = 'HEIGHT ' + (img.dataset.height || img.dataset.length).toUpperCase();
                         } else {
@@ -481,24 +706,24 @@
                         }
                         lightbox.style.display = 'flex';
                         document.body.style.overflow = 'hidden';
+                        // Trigger 360 spin entrance
+                        triggerSpinOnOpen();
                     }
                 }
             });
+
             closeBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 closeLightbox();
             });
             lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) {
-                    closeLightbox();
-                }
+                if (e.target === lightbox) closeLightbox();
             });
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-                    closeLightbox();
-                }
+                if (e.key === 'Escape' && lightbox.style.display === 'flex') closeLightbox();
             });
         });
     </script>
 </body>
 </html>
+

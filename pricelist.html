@@ -5,7 +5,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Price List | Radhe Industries</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modern-additions.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        .price-filter-bar {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .price-search-box {
+            position: relative;
+            flex: 1;
+            min-width: 280px;
+        }
+        .price-search-box i {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+        .price-search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3.2rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            background: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.98rem;
+            color: #0f172a;
+            transition: all 0.3s ease;
+        }
+        .price-search-input:focus {
+            outline: none;
+            border-color: #22c55e;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(34,197,94,0.15);
+        }
+        .price-category-select {
+            padding: 1rem 1.4rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            background: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: #0f172a;
+            cursor: pointer;
+            min-width: 200px;
+            transition: all 0.3s ease;
+        }
+        .price-category-select:focus {
+            outline: none;
+            border-color: #22c55e;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(34,197,94,0.15);
+        }
+        .price-badge-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .badge-hexa    { background: #dcfce7; color: #16a34a; }
+        .badge-plain   { background: #e0f2fe; color: #0284c7; }
+        .badge-square  { background: #fef3c7; color: #d97706; }
+        .badge-spiral  { background: #f3e8ff; color: #7c3aed; }
+        .badge-checks  { background: #fee2e2; color: #dc2626; }
+        .badge-tower   { background: #ffedd5; color: #ea580c; }
+        .badge-wati    { background: #ccfbf1; color: #0d9488; }
+        .badge-bowl    { background: #e0e7ff; color: #4338ca; }
+        .badge-flower  { background: #fce7f3; color: #be185d; }
+        .badge-default { background: #f1f5f9; color: #475569; }
+
+        .pricelist-table-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        .pricelist-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+        }
+        .pricelist-table thead {
+            background: linear-gradient(135deg, #0f1c14 0%, #163d27 100%);
+            color: #ffffff;
+        }
+        .pricelist-table th {
+            padding: 1.2rem 1.4rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #86efac;
+            border-bottom: 2px solid rgba(34,197,94,0.3);
+        }
+        .pricelist-table td {
+            padding: 1.1rem 1.4rem;
+            font-size: 0.95rem;
+            color: #334155;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+        .pricelist-table tbody tr {
+            transition: all 0.25s ease;
+        }
+        .pricelist-table tbody tr:hover {
+            background: #f0fdf4 !important;
+            transform: scale(1.002);
+        }
+    </style>
 </head>
 <body>
     <!-- Header Top -->
@@ -65,46 +189,80 @@
             </div>
         </div>
     </nav>
-    <!-- Page Header -->
-    <header class="page-header">
-        <div class="container">
-            <h1 class="section-title" style="color: white;">Price List</h1>
-            <p style="white-space: nowrap;">Explore our comprehensive range of products and their prices. (Last Updated: 09-03-2026)</p>
+    <!-- ── Hero Banner Section ───────────────────────────────── -->
+    <section style="background: linear-gradient(135deg, #0f1c14 0%, #163d27 50%, #0d2818 100%); color: #fff; padding: 4.5rem 0 5rem; position: relative; overflow: hidden;">
+        <div style="position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(34,197,94,0.15) 0%, transparent 70%); top: -150px; right: -100px; border-radius: 50%; pointer-events: none;"></div>
+        <div style="position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 70%); bottom: -100px; left: -80px; border-radius: 50%; pointer-events: none;"></div>
+        
+        <div class="container" style="position: relative; z-index: 2;">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <span style="display: inline-block; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #86efac; font-size: 0.8rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 0.4rem 1.4rem; border-radius: 50px; margin-bottom: 1.2rem;">
+                    <i class="fa-solid fa-tags"></i> Direct Wholesale Rates
+                </span>
+                <h1 style="font-size: 3rem; font-weight: 900; line-height: 1.15; margin-bottom: 1rem; color: #fff; letter-spacing: -0.5px;">
+                    Official Product <span style="background: linear-gradient(90deg, #22c55e, #86efac); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Price List</span>
+                </h1>
+                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 2.2rem;">
+                    Comprehensive direct factory rates for disposable plastic cups, bowls &amp; trays. Updated March 2026.
+                </p>
+
+                <!-- Quick Action Buttons -->
+                <div style="display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;">
+                    <a href="price_list.pdf" target="_blank" class="hero-btn-primary">
+                        <i class="fa-solid fa-file-pdf"></i> Download Official PDF Price List
+                    </a>
+                    <a href="place-order.html" class="hero-btn-outline">
+                        <i class="fa-solid fa-cart-shopping"></i> Place Bulk Order
+                    </a>
+                </div>
+            </div>
         </div>
-    </header>
-    <main class="container" style="padding: 4rem 2rem;">
-        <div class="pricing-controls"
-            style="margin-bottom: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;">
-            <select id="filterCategory"
-                style="padding: 0.8rem; border-radius: 8px; border: 1px solid #ddd; width: 100%; max-width: 250px;">
-                <option value="all">All Categories</option>
-                <option value="HEXA">Hexa</option>
-                <option value="PLAIN">Plain</option>
-                <option value="SQUARE">Square</option>
-                <option value="SPAIRAL">Spiral</option>
-                <option value="CHECKS">Checks</option>
-                <option value="TOWER">Tower</option>
-                <option value="WATI">Wati</option>
-                <option value="BOWL">Bowl</option>
-                <option value="FLOWER">Flower</option>
-                <option value="BRU">Bru</option>
-                <option value="OTHER">Others (Trays, Teacups)</option>
-            </select>
-            <input type="text" id="searchPrice" placeholder="Search by Code or Type..."
-                style="padding: 0.8rem; border-radius: 8px; border: 1px solid #ddd; width: 100%; max-width: 300px;">
+    </section>
+
+    <main class="container" style="padding: 4rem 1.5rem;">
+        
+        <!-- Interactive Live Filter & Search Control Panel -->
+        <div class="price-filter-bar">
+            <div class="price-search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchPrice" class="price-search-input" placeholder="Search by Product Code, Type, or Size (e.g. HX1810, Plain, 200ml)...">
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <select id="filterCategory" class="price-category-select">
+                    <option value="all">All Product Categories</option>
+                    <option value="HEXA">Hexa Pattern Cups</option>
+                    <option value="PLAIN">Plain Standard Cups</option>
+                    <option value="SQUARE">Square Dessert Cups</option>
+                    <option value="SPAIRAL">Spiral Textured Cups</option>
+                    <option value="CHECKS">Checks Pattern Cups</option>
+                    <option value="TOWER">Tower Tall Cups</option>
+                    <option value="WATI">Wati &amp; Mini Containers</option>
+                    <option value="BOWL">Ice Cream Bowls</option>
+                    <option value="FLOWER">Flower Design Cups</option>
+                    <option value="BRU">Bru Coffee Cups</option>
+                    <option value="OTHER">Others (Trays &amp; Teacups)</option>
+                </select>
+
+                <div id="resultsCounter" style="background: #f1f5f9; color: #475569; font-size: 0.85rem; font-weight: 700; padding: 0.8rem 1.2rem; border-radius: 12px; white-space: nowrap;">
+                    Showing <span id="countNum" style="color: #22c55e;">0</span> Items
+                </div>
+            </div>
         </div>
-        <div class="table-responsive"
-            style="overflow-x: auto; background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eaeaea;">
-            <table style="width: 100%; border-collapse: collapse; min-width: 800px; text-align: left;">
+
+        <!-- Table Container -->
+        <div class="pricelist-table-card table-responsive" style="overflow-x: auto;">
+            <table class="pricelist-table" style="min-width: 900px; text-align: left;">
                 <thead>
-                    <tr style="background-color: var(--color-primary); color: white;">
-                        <th style="padding: 1.2rem 1rem; font-weight: 600;">Product Code</th>
-                        <th style="padding: 1.2rem 1rem; font-weight: 600;">Type</th>
-                        <th style="padding: 1.2rem 1rem; font-weight: 600;">Size (ML)</th>
-                        <th style="padding: 1.2rem 1rem; font-weight: 600;">Pcs / Pack</th>
-                        <th style="padding: 1.2rem 1rem; font-weight: 600;">Rate / Pack (₹)</th>
-                        <th style="padding: 1.2rem 1rem; font-weight: 600;">Packs / Carton</th>
-                        <th style="padding: 1.2rem 1rem; font-weight: 600;">Rate / Carton (₹)</th>
+                    <tr>
+                        <th>Product Code</th>
+                        <th>Type / Pattern</th>
+                        <th>Size (ML)</th>
+                        <th>Pcs / Pack</th>
+                        <th>Rate / Pack (₹)</th>
+                        <th>Packs / Carton</th>
+                        <th>Rate / Carton (₹)</th>
+                        <th style="text-align: center;">Order</th>
                     </tr>
                 </thead>
                 <tbody id="priceTableBody">
@@ -795,7 +953,76 @@
     </footer>
     <div id="google_translate_element" style="display:none;"></div>
     <script src="js/main.js"></script>
+    <script src="js/modern.js"></script>
     <script src="js/responsive.js"></script>
     <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchPrice');
+            const categorySelect = document.getElementById('filterCategory');
+            const rows = document.querySelectorAll('.price-row');
+            const countNum = document.getElementById('countNum');
+
+            // Format category badge pills & order buttons for each row
+            rows.forEach(row => {
+                const cat = (row.dataset.category || '').toUpperCase();
+                const typeTd = row.querySelector('.type-col');
+                const codeTd = row.querySelector('td');
+                const code = codeTd ? codeTd.textContent.trim() : '';
+
+                if (typeTd) {
+                    let badgeClass = 'badge-default';
+                    if (cat.includes('HEXA')) badgeClass = 'badge-hexa';
+                    else if (cat.includes('PLAIN')) badgeClass = 'badge-plain';
+                    else if (cat.includes('SQUARE')) badgeClass = 'badge-square';
+                    else if (cat.includes('SPAIRAL') || cat.includes('SPIRAL')) badgeClass = 'badge-spiral';
+                    else if (cat.includes('CHECKS')) badgeClass = 'badge-checks';
+                    else if (cat.includes('TOWER')) badgeClass = 'badge-tower';
+                    else if (cat.includes('WATI')) badgeClass = 'badge-wati';
+                    else if (cat.includes('BOWL')) badgeClass = 'badge-bowl';
+                    else if (cat.includes('FLOWER')) badgeClass = 'badge-flower';
+
+                    typeTd.innerHTML = `<span class="price-badge-tag ${badgeClass}">${typeTd.textContent.trim()}</span>`;
+                }
+
+                // Append Order Action button if missing
+                if (row.children.length === 7) {
+                    const actionTd = document.createElement('td');
+                    actionTd.style.textAlign = 'center';
+                    actionTd.innerHTML = `<a href="place-order.html?code=${encodeURIComponent(code)}" style="display:inline-flex; align-items:center; gap:4px; background:linear-gradient(135deg,#22c55e,#16a34a); color:#fff; font-size:0.78rem; font-weight:700; padding:0.35rem 0.85rem; border-radius:50px; text-decoration:none; box-shadow:0 3px 10px rgba(34,197,94,0.3);"><i class="fa-solid fa-cart-shopping"></i> Order</a>`;
+                    row.appendChild(actionTd);
+                }
+            });
+
+            function filterTable() {
+                const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+                const category = categorySelect ? categorySelect.value.toUpperCase() : 'ALL';
+                let visibleCount = 0;
+
+                rows.forEach(row => {
+                    const rowCat = (row.dataset.category || '').toUpperCase();
+                    const text = row.textContent.toLowerCase();
+
+                    const catMatch = (category === 'ALL' || category === 'ALL PRODUCT CATEGORIES') || rowCat.includes(category);
+                    const textMatch = !query || text.includes(query);
+
+                    if (catMatch && textMatch) {
+                        row.style.display = '';
+                        visibleCount++;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+
+                if (countNum) countNum.textContent = visibleCount;
+            }
+
+            if (searchInput) searchInput.addEventListener('input', filterTable);
+            if (categorySelect) categorySelect.addEventListener('change', filterTable);
+
+            // Run initial count
+            filterTable();
+        });
+    </script>
 </body>
 </html>
