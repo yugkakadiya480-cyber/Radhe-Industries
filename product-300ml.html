@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -370,8 +370,8 @@
     <div id="lightbox">
         <div class="lightbox-content split-layout">
             <span class="lightbox-close">&times;</span>
-            <div class="lightbox-image-container" id="lightbox-image-panel" style="position:relative; background: #000;">
-                <img id="lightbox-img" src="" alt="Enlarged product image">
+            <div class="lightbox-image-container" id="lightbox-image-panel" style="position:relative; background: #000; display: flex; align-items: center; justify-content: center;">
+                <img id="lightbox-img" src="" alt="Enlarged product image" style="max-height: 90%; max-width: 90%; object-fit: contain;">
                 <!-- High-Contrast SVG dimension overlay -->
                 <svg id="dim-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"
                     style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;box-sizing:border-box;">
@@ -419,8 +419,6 @@
         </div>
     </div>
     <script src="js/main.js"></script>
-    <script src="js/viewer360.js"></script>
-    <script src="js/viewer360-integration.js"></script>
     <script src="js/responsive.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -432,12 +430,9 @@
                 document.body.style.overflow = '';
                 const dimSvg = document.getElementById('dim-svg');
                 if (dimSvg) dimSvg.style.display = 'none';
-                lightboxImg.parentElement.classList.remove('zoomed-container');
             };
             const openLightbox = (img) => {
                 const src = img.getAttribute('data-zoom-src') || img.src;
-                const isSpiral = img.classList.contains('spiral-image-zoom');
-                const zoomAll = img.getAttribute('data-zoom-all') === 'true';
                 const name = img.getAttribute('data-name');
                 const category = img.getAttribute('data-category') || '300ml';
                 const capacity = img.getAttribute('data-capacity');
@@ -446,27 +441,7 @@
                 const code = img.getAttribute('data-code');
                 const noArrows = img.getAttribute('data-no-arrows') === 'true';
                 lightboxImg.src = src;
-                if (isSpiral || zoomAll) {
-                    lightboxImg.classList.add('lightbox-zoom');
-                    lightboxImg.classList.remove('lightbox-zoom-md');
-                    lightboxImg.classList.remove('lightbox-zoom-lg');
-                    lightboxImg.parentElement.classList.add('zoomed-container');
-                } else if (img.getAttribute('data-zoom-large') === 'true') {
-                    lightboxImg.classList.add('lightbox-zoom-lg');
-                    lightboxImg.classList.remove('lightbox-zoom');
-                    lightboxImg.classList.remove('lightbox-zoom-md');
-                    lightboxImg.parentElement.classList.remove('zoomed-container');
-                } else if (img.getAttribute('data-zoom-medium') === 'true') {
-                    lightboxImg.classList.add('lightbox-zoom-md');
-                    lightboxImg.classList.remove('lightbox-zoom');
-                    lightboxImg.classList.remove('lightbox-zoom-lg');
-                    lightboxImg.parentElement.classList.remove('zoomed-container');
-                } else {
-                    lightboxImg.classList.remove('lightbox-zoom');
-                    lightboxImg.classList.remove('lightbox-zoom-md');
-                    lightboxImg.classList.remove('lightbox-zoom-lg');
-                    lightboxImg.parentElement.classList.remove('zoomed-container');
-                }
+
                 const titleEl = document.getElementById('lightbox-title');
                 const codeHeaderEl = document.getElementById('lightbox-code');
                 const categoryEl = document.getElementById('lightbox-category');
@@ -530,4 +505,3 @@
     </script>
 </body>
 </html>
-

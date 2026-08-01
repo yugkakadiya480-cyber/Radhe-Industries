@@ -3,284 +3,420 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Place Order | Disposable CUPS</title>
+    <title>Amazon.com Style Checkout | Radhe Industries</title>
+    <!-- Base Styles & Amazon Checkout Styles -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/amazon-checkout.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
     <style>
-        .contact-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-top: 4rem;
+        .amz-product-img {
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
         }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        .form-input,
-        .form-textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: var(--radius-sm);
-            font-family: inherit;
-            transition: var(--transition-base);
-        }
-        .form-input:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px var(--color-primary-light);
-        }
-        .contact-info-box {
-            background: var(--color-surface-alt);
-            padding: 3rem;
-            border-radius: var(--radius-md);
+        .amz-product-img:hover {
+            transform: scale(1.08);
         }
     </style>
 </head>
-<body>
-    <!-- Header Top -->
-    <header class="header-top">
-        <div class="container header-top-content">
-            <a href="index.html" class="logo"
-                style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
-                <img src="images/company-logo.png" alt="Radhe Disposable Logo" style="height: 60px; width: auto;" class="brand-logo-img">
-                <div style="line-height: 1.1;">
-                    <span class="brand-text-primary" style="display: block; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase;">RADHE</span>
-                    <span class="brand-text-secondary" style="display: block; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Disposable</span>
-                </div>
+<body class="amazon-checkout-body">
+
+    <!-- Amazon Header Bar -->
+    <header class="amz-header">
+        <div class="container amz-header-content">
+            <a href="index.html" class="amz-brand">
+                <img src="images/company-logo.png" alt="Radhe Industries" class="amz-brand-logo">
+                <div class="amz-brand-title">RADHE <span>INDUSTRIES</span></div>
             </a>
-            <div class="header-contact-info">
-                <div class="contact-block">
-                    <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
-                    <div class="contact-text">
-                        <h4>Call us</h4>
-                        <p>+91 99136 00800</p>
-                        <p>+91 94268 16321</p>
-                    </div>
-                </div>
-                <div class="contact-block">
-                    <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
-                    <div class="contact-text">
-                        <h4>Email us</h4>
-                        <p>radheindustries8@gmail.com</p>
-                        <p>radhedisposable8@gmail.com</p>
-                    </div>
-                </div>
-                <div class="header-actions">
-                    <a href="#" class="social-link-in"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
+            <div class="amz-checkout-title">
+                Checkout (<span id="header-items-count">0 Cartons</span>)
+            </div>
+            <div class="amz-secure-badge">
+                <i class="fa-solid fa-lock"></i>
+                <span>100% Secure Checkout</span>
             </div>
         </div>
     </header>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <div class="navbar-content">
-                <button class="menu-toggle" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-links">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="company-profile.html" class="nav-link">Company Profile</a></li>
-                    <li class="nav-item"><a href="products.html" class="nav-link">Products</a></li>
-                    <li class="nav-item"><a href="quality.html" class="nav-link">Quality</a></li>
-                    <li class="nav-item"><a href="material.html" class="nav-link">Material</a></li>
-                    <li class="nav-item"><a href="pricelist.html" class="nav-link">Price List</a></li>
-                    <li class="nav-item"><a href="certificate.html" class="nav-link">Certificate</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
-                    <li class="nav-item"><a href="place-order.html" class="nav-link active">Place Order</a></li>
-                </ul>
+
+    <!-- Stepper Progress Bar -->
+    <div class="amz-progress-bar">
+        <div class="container amz-steps-track">
+            <div class="amz-step-item active" id="step-indicator-1">
+                <div class="amz-step-num">1</div>
+                <span>Delivery Address</span>
             </div>
-        </div>
-    </nav>
-    <!-- Page Header -->
-    <header class="page-header">
-        <div class="container">
-            <h1 class="section-title" style="color: white;">Place Your Order</h1>
-            <p>Ready to purchase? Fill out the form below with your requirements.</p>
-        </div>
-    </header>
-    <div class="container contact-layout">
-        <!-- Order Form -->
-        <div class="contact-form-wrapper">
-            <h2>Order Details</h2>
-            <form id="contactForm">
-                <div class="form-group">
-                    <label class="form-label" for="name">Full Name</label>
-                    <input type="text" id="name" name="name" class="form-input" required placeholder="John Doe">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="email">Email Address</label>
-                    <input type="email" id="email" name="email" class="form-input" required
-                        placeholder="john@company.com">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="subject">Product Category</label>
-                    <select id="subject" name="product_category" class="form-input" required>
-                        <option value="">Select a Category</option>
-                        <option value="Plastic Cups">Plastic Cups</option>
-                        <option value="Vending Cups">Vending Cups</option>
-                        <option value="Printed Cups">Printed Cups</option>
-                        <option value="Ice Cream Cups">Ice Cream Cups</option>
-                        <option value="Customized Cups">Customized Cups</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="quantity">Approximate Quantity Needed</label>
-                    <input type="text" id="quantity" name="quantity" class="form-input" required
-                        placeholder="e.g. 50,000 pieces or 100 boxes">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="message">Additional Requirements / Specifications</label>
-                    <textarea id="message" name="message" class="form-textarea" rows="4"
-                        placeholder="Size, material preferences, delivery timeframe, etc."></textarea>
-                </div>
-                <div style="text-align: center; margin-top: 2rem;">
-                    <button type="submit" class="btn btn-primary" style="padding: 1rem 3rem;">Submit Order
-                        Request</button>
-                </div>
-            </form>
-            <div id="formStatus" style="margin-top: 1rem; display: none;"></div>
+            <i class="fa-solid fa-chevron-right" style="color: #ccc; font-size: 0.8rem;"></i>
+            <div class="amz-step-item" id="step-indicator-2">
+                <div class="amz-step-num">2</div>
+                <span>Select Cartons (Boxes)</span>
+            </div>
+            <i class="fa-solid fa-chevron-right" style="color: #ccc; font-size: 0.8rem;"></i>
+            <div class="amz-step-item" id="step-indicator-3">
+                <div class="amz-step-num">3</div>
+                <span>Delivery Options</span>
+            </div>
+            <i class="fa-solid fa-chevron-right" style="color: #ccc; font-size: 0.8rem;"></i>
+            <div class="amz-step-item" id="step-indicator-4">
+                <div class="amz-step-num">4</div>
+                <span>Payment & Review</span>
+            </div>
         </div>
     </div>
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-top">
-                <!-- Col 1: Brand -->
-                <div class="footer-col">
-                    <h3>RADHE INDUSTRIES</h3>
-                    <p class="footer-description">
-                        Radhe Industries is a leading manufacturer of high-quality disposable cups, established in 2012.
-                    </p>
-                </div>
-                <!-- Col 2: Quick Links -->
-                <div class="footer-col">
-                    <h3>QUICK LINKS</h3>
-                    <div class="links-grid">
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="products.html">Products</a></li>
-                            <li><a href="process.html">Process</a></li>
-                            <li><a href="material.html">Material</a></li>
-                <!-- Col 3: Our Products -->
-                <div class="footer-col">
-                    <h3>OUR PRODUCTS</h3>
-                    <ul>
-                        <li><a href="#">Plastic Cups</a></li>
-                        <li><a href="#">Vending Cups</a></li>
-                        <li><a href="#">Printed Cups</a></li>
-                        <li><a href="#">Ice Cream Cups</a></li>
-                        <li><a href="#">Customized Cups</a></li>
-                    </ul>
-                </div>
-                <!-- Col 4: Factory Address -->
-                <div class="footer-col factory-address">
-                    <h3>FACTORY ADDRESSES</h3>
-                    <div style="margin-bottom: 1rem;">
-                        <p
-                            style="font-size: 0.85rem; color: var(--color-accent); margin-bottom: 0.2rem; font-weight: 700;">
-                            UNIT1:-RADHE DISPOSABLE</p>
-                        <p style="margin-bottom: 0;">
-                            RADHE DISPOSABLE PLOT NUMBER:- G1972<br>
-                            ROAD K/7D METODA ALL BY THE GATE
-                        </p>
+
+    <!-- Main Checkout Container -->
+    <main class="amz-checkout-container">
+        
+        <!-- Left Column: Accordion Steps -->
+        <div class="amz-checkout-steps">
+            
+            <!-- STEP 1: Delivery Address -->
+            <div class="amz-step-card active" id="amz-step-1">
+                <div class="amz-step-header">
+                    <div class="amz-step-title-group">
+                        <span class="amz-card-step-num">1</span>
+                        <div>
+                            <h3 class="amz-step-title">Select a delivery address</h3>
+                            <span class="amz-step-summary-text" id="step-1-summary">Enter shipping address</span>
+                        </div>
                     </div>
-                    <div>
-                        <p
-                            style="font-size: 0.85rem; color: var(--color-accent); margin-bottom: 0.2rem; font-weight: 700;">
-                            UNIT2:-RADHE INDUSTRIES</p>
-                        <p>
-                            SURVEY NO 101, PLOT NO 14, AT DEVDA,<br>
-                            SHIVAM INDUSTRIAL ZONE 7A, DIST RAJKOT,<br>
-                            TALUKA LODIKA, DEVDA, RAJKOT, GUJRAT, 360021
-                        </p>
-                    </div>
-                    <a href="brochure.html" target="_blank" class="btn-brochure">Download Brochure</a>
+                    <button type="button" class="amz-btn-change" data-step="1" style="display: none;">Change</button>
+                </div>
+                <div class="amz-step-body">
+                    <form id="amz-address-form" onsubmit="return false;">
+                        <div class="amz-form-grid">
+                            <div class="amz-field">
+                                <label class="amz-label" for="full-name">Full Name / Company Name</label>
+                                <input type="text" id="full-name" class="amz-input" placeholder="e.g. Radhe Traders Pvt Ltd" required>
+                            </div>
+                            <div class="amz-field">
+                                <label class="amz-label" for="phone-number">Mobile / Phone Number</label>
+                                <input type="tel" id="phone-number" class="amz-input" placeholder="+91 98765 43210" required>
+                            </div>
+                            <div class="amz-field full-width">
+                                <label class="amz-label" for="address-line">Flat, House no., Building, Company, Apartment</label>
+                                <input type="text" id="address-line" class="amz-input" placeholder="123 Industrial Area, Phase 2" required>
+                            </div>
+                            <div class="amz-field">
+                                <label class="amz-label" for="city">City</label>
+                                <input type="text" id="city" class="amz-input" placeholder="Rajkot" required>
+                            </div>
+                            <div class="amz-field">
+                                <label class="amz-label" for="state">State</label>
+                                <select id="state" class="amz-select">
+                                    <optgroup label="--- 28 STATES ---">
+                                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                        <option value="Assam">Assam</option>
+                                        <option value="Bihar">Bihar</option>
+                                        <option value="Chhattisgarh">Chhattisgarh</option>
+                                        <option value="Goa">Goa</option>
+                                        <option value="Gujarat" selected>Gujarat</option>
+                                        <option value="Haryana">Haryana</option>
+                                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                        <option value="Jharkhand">Jharkhand</option>
+                                        <option value="Karnataka">Karnataka</option>
+                                        <option value="Kerala">Kerala</option>
+                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                        <option value="Maharashtra">Maharashtra</option>
+                                        <option value="Manipur">Manipur</option>
+                                        <option value="Meghalaya">Meghalaya</option>
+                                        <option value="Mizoram">Mizoram</option>
+                                        <option value="Nagaland">Nagaland</option>
+                                        <option value="Odisha">Odisha</option>
+                                        <option value="Punjab">Punjab</option>
+                                        <option value="Rajasthan">Rajasthan</option>
+                                        <option value="Sikkim">Sikkim</option>
+                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                        <option value="Telangana">Telangana</option>
+                                        <option value="Tripura">Tripura</option>
+                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                        <option value="Uttarakhand">Uttarakhand</option>
+                                        <option value="West Bengal">West Bengal</option>
+                                    </optgroup>
+                                    <optgroup label="--- 8 UNION TERRITORIES ---">
+                                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                        <option value="Chandigarh">Chandigarh</option>
+                                        <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                                        <option value="Delhi">Delhi (NCT)</option>
+                                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                        <option value="Ladakh">Ladakh</option>
+                                        <option value="Lakshadweep">Lakshadweep</option>
+                                        <option value="Puducherry">Puducherry</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="amz-field">
+                                <label class="amz-label" for="pincode">PIN Code / Zip</label>
+                                <input type="text" id="pincode" class="amz-input" placeholder="360021" required>
+                            </div>
+                            <div class="amz-field">
+                                <label class="amz-label" for="gstin">GSTIN (Optional for tax invoice)</label>
+                                <input type="text" id="gstin" class="amz-input" placeholder="24AAAAA0000A1Z5">
+                            </div>
+                        </div>
+                        <div style="margin-top: 16px;">
+                            <button type="button" class="amz-btn-primary" id="btn-continue-step-1" style="max-width: 320px;">Use this address & Proceed to Step 2 →</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="footer-contact-blocks">
-                <!-- Phone Block -->
-                <div class="contact-info-box">
-                    <div class="contact-info-icon">
-                        <i class="fa-solid fa-phone"></i>
+
+            <!-- STEP 2: Product & Quantity Selection (Ordered by Carton / Box) -->
+            <div class="amz-step-card" id="amz-step-2">
+                <div class="amz-step-header">
+                    <div class="amz-step-title-group">
+                        <span class="amz-card-step-num">2</span>
+                        <div>
+                            <h3 class="amz-step-title">Select Cartons (Boxes) to Order</h3>
+                            <span class="amz-step-summary-text" id="step-2-summary">Choose carton quantities per product</span>
+                        </div>
                     </div>
-                    <div class="contact-info-text">
-                        <span>Give us a call</span>
-                        <a href="tel:+919913600800">+91 99136 00800</a>
-                        <a href="tel:+919426816321">+91 94268 16321</a>
+                    <button type="button" class="amz-btn-change" data-step="2" style="display: none;">Change</button>
+                </div>
+                <div class="amz-step-body" style="display: none;">
+                    <p style="font-size: 0.9rem; color: var(--amz-text-muted); margin-bottom: 14px;">
+                        <strong>Wholesale Carton (Box) Ordering:</strong> Select the number of Cartons (Boxes) needed. Volume discounts automatically apply for bulk orders (5% off for 5+ Boxes, 10% off for 15+ Boxes). Click any product photo to view details!
+                    </p>
+
+                    <!-- Filter Tabs -->
+                    <div class="amz-category-filters" id="amz-category-filters">
+                        <!-- Loaded dynamically via js/amazon-checkout.js -->
+                    </div>
+
+                    <div class="amz-product-list" id="amz-product-list">
+                        <!-- Rendered via js/amazon-checkout.js -->
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <button type="button" class="amz-btn-primary" id="btn-continue-step-2" style="max-width: 320px;">Proceed to Delivery Options (Step 3) →</button>
                     </div>
                 </div>
-                <!-- Email Block -->
-                <div class="contact-info-box">
-                    <div class="contact-info-icon">
-                        <i class="fa-solid fa-envelope"></i>
+            </div>
+
+            <!-- STEP 3: Delivery Options -->
+            <div class="amz-step-card" id="amz-step-3">
+                <div class="amz-step-header">
+                    <div class="amz-step-title-group">
+                        <span class="amz-card-step-num">3</span>
+                        <div>
+                            <h3 class="amz-step-title">Choose delivery options</h3>
+                            <span class="amz-step-summary-text" id="step-3-summary">Select freight speed</span>
+                        </div>
                     </div>
-                    <div class="contact-info-text">
-                        <span>Drop us a line</span>
-                        <a href="mailto:radheindustries8@gmail.com">radheindustries8@gmail.com</a>
-                        <a href="mailto:radhedisposable8@gmail.com">radhedisposable8@gmail.com</a>
+                    <button type="button" class="amz-btn-change" data-step="3" style="display: none;">Change</button>
+                </div>
+                <div class="amz-step-body" style="display: none;">
+                    <div class="amz-delivery-option selected" data-fee="0">
+                        <input type="radio" name="shipping_option" checked>
+                        <div>
+                            <span class="amz-delivery-date">FREE Standard Truck Transport</span> <span class="amz-prime-tag">PRIME FREIGHT</span>
+                            <p style="font-size: 0.85rem; color: var(--amz-text-muted); margin-top: 4px;">Delivered directly from factory within 4-5 business days.</p>
+                        </div>
+                    </div>
+                    <div class="amz-delivery-option" data-fee="1500">
+                        <input type="radio" name="shipping_option">
+                        <div>
+                            <span class="amz-delivery-date">Express Air Cargo (+ ₹1,500)</span>
+                            <p style="font-size: 0.85rem; color: var(--amz-text-muted); margin-top: 4px;">Priority express dispatch. Guaranteed delivery within 1-2 business days.</p>
+                        </div>
+                    </div>
+                    <div class="amz-delivery-option" data-fee="-500">
+                        <input type="radio" name="shipping_option">
+                        <div>
+                            <span class="amz-delivery-date">Direct Factory Pickup (- ₹500 Discount)</span>
+                            <p style="font-size: 0.85rem; color: var(--amz-text-muted); margin-top: 4px;">Pick up directly from Metoda GIDC / Devda factory warehouse.</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <button type="button" class="amz-btn-primary" id="btn-continue-step-3" style="max-width: 320px;">Proceed to Payment (Step 4) →</button>
                     </div>
                 </div>
-                <!-- Social Block -->
-                <div class="social-follow-box">
-                    <div class="social-group">
-                        <span>Follow us on</span>
-                        <a href="#" class="btn-social-in"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+
+            <!-- STEP 4: Payment Method -->
+            <div class="amz-step-card" id="amz-step-4">
+                <div class="amz-step-header">
+                    <div class="amz-step-title-group">
+                        <span class="amz-card-step-num">4</span>
+                        <div>
+                            <h3 class="amz-step-title">Select payment method</h3>
+                            <span class="amz-step-summary-text" id="step-4-summary">Choose payment mode</span>
+                        </div>
                     </div>
-                    <a href="#" class="back-to-top"><i class="fa-solid fa-chevron-up"></i></a>
+                    <button type="button" class="amz-btn-change" data-step="4" style="display: none;">Change</button>
+                </div>
+                <div class="amz-step-body" style="display: none;">
+                    <div class="amz-payment-option selected">
+                        <input type="radio" name="payment_mode" checked>
+                        <div>
+                            <div class="amz-payment-title">Direct Bank Transfer (NEFT / RTGS / IMPS)</div>
+                            <div class="amz-payment-desc">Pay directly into Radhe Industries current account. Proforma invoice generated immediately.</div>
+                            <div class="amz-bank-details-box">
+                                <strong>Bank:</strong> HDFC Bank Ltd | <strong>Account Name:</strong> RADHE INDUSTRIES<br>
+                                <strong>A/C No:</strong> 50200088991234 | <strong>IFSC Code:</strong> HDFC0001234
+                            </div>
+                        </div>
+                    </div>
+                    <div class="amz-payment-option">
+                        <input type="radio" name="payment_mode">
+                        <div>
+                            <div class="amz-payment-title">Instant UPI / QR Code (GPay, PhonePe, Paytm)</div>
+                            <div class="amz-payment-desc">Scan QR code upon order placement for zero transaction fee.</div>
+                        </div>
+                    </div>
+                    <div class="amz-payment-option">
+                        <input type="radio" name="payment_mode">
+                        <div>
+                            <div class="amz-payment-title">Cash on Delivery (COD) / Pay on Factory Dispatch</div>
+                            <div class="amz-payment-desc">Pay upon truckload dispatch or delivery verification.</div>
+                        </div>
+                    </div>
+                    <div class="amz-payment-option">
+                        <input type="radio" name="payment_mode">
+                        <div>
+                            <div class="amz-payment-title">Corporate Purchase Order / 30-Day Business Credit</div>
+                            <div class="amz-payment-desc">For verified distributor & wholesale partners with active GSTIN credit terms.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Column: Sticky Amazon Order Summary Sidebar -->
+        <aside class="amz-sidebar">
+            <div class="amz-summary-card">
+                <button type="button" class="amz-btn-primary" id="amz-btn-place-order">
+                    Place Your Order
+                </button>
+                <p style="font-size: 0.75rem; color: var(--amz-text-muted); text-align: center; margin-top: 8px;">
+                    By placing your order, you agree to Radhe Industries' Privacy Notice & Conditions of Purchase.
+                </p>
+
+                <h4 class="amz-summary-header" style="margin-top: 16px;">Order Summary</h4>
+
+                <div class="amz-summary-row">
+                    <span>Items Subtotal:</span>
+                    <span id="summary-items-subtotal">₹5,200.00</span>
+                </div>
+                <div class="amz-summary-row discount" id="summary-discount-row" style="display: none;">
+                    <span>Bulk Discount:</span>
+                    <span id="summary-discount">- ₹0.00</span>
+                </div>
+                <div class="amz-summary-row">
+                    <span>Shipping & Handling:</span>
+                    <span id="summary-shipping">FREE</span>
+                </div>
+                <div class="amz-summary-row">
+                    <span>GST (18% Estimated):</span>
+                    <span id="summary-gst">₹936.00</span>
+                </div>
+                <div class="amz-summary-row total">
+                    <span>Order Total:</span>
+                    <span id="summary-total">₹6,136.00</span>
+                </div>
+
+                <div class="amz-guarantee-box">
+                    <div class="amz-guarantee-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>256-Bit SSL Encrypted & Secure Checkout</span>
+                    </div>
+                    <div class="amz-guarantee-item">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <span>Direct Factory Dispatch with Live Tracking</span>
+                    </div>
+                    <div class="amz-guarantee-item">
+                        <i class="fa-solid fa-box-open"></i>
+                        <span>Complimentary Sample Box Included</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- Lightbox Modal (Clean View) -->
+    <div id="lightbox">
+        <div class="lightbox-content split-layout">
+            <span class="lightbox-close">&times;</span>
+            <div class="lightbox-image-container" id="lightbox-image-panel" style="position:relative; background: #000; display: flex; align-items: center; justify-content: center;">
+                <img id="lightbox-img" src="" alt="Enlarged product image" style="max-height: 90%; max-width: 90%; object-fit: contain;">
+                <!-- High-Contrast SVG dimension overlay -->
+                <svg id="dim-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;box-sizing:border-box;">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="8" refY="2.5" orient="auto">
+                            <polygon points="0 0, 8 2.5, 0 5" fill="#fff" />
+                        </marker>
+                        <marker id="arrowhead-reverse" markerWidth="8" markerHeight="5" refX="0" refY="2.5" orient="auto">
+                            <polygon points="8 0, 0 2.5, 8 5" fill="#fff" />
+                        </marker>
+                    </defs>
+                    <!-- Elegant horizontal line (Diameter) -->
+                    <g id="h-spec">
+                        <line x1="80" y1="50" x2="320" y2="50" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <line x1="80" y1="45" x2="80" y2="55" stroke="#fff" stroke-width="1"/>
+                        <line x1="320" y1="45" x2="320" y2="55" stroke="#fff" stroke-width="1"/>
+                        <text id="dim-h-label" x="200" y="35" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif">DIAMETER</text>
+                    </g>
+                    <!-- Elegant vertical line (Height) -->
+                    <g id="v-spec">
+                        <line x1="380" y1="125" x2="380" y2="335" stroke="#fff" stroke-width="2" marker-start="url(#arrowhead-reverse)" marker-end="url(#arrowhead)"/>
+                        <line x1="375" y1="125" x2="385" y2="125" stroke="#fff" stroke-width="1"/>
+                        <line x1="375" y1="335" x2="385" y2="335" stroke="#fff" stroke-width="1"/>
+                        <text id="dim-v-label" x="395" y="230" text-anchor="middle" font-size="16" font-weight="900" fill="#fff" font-family="'Inter', sans-serif" transform="rotate(90, 395, 230)">HEIGHT</text>
+                    </g>
+                </svg>
+            </div>
+            <div class="lightbox-details-container">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem;">
+                    <h2 id="lightbox-title" style="margin: 0;">Premium Product</h2>
+                    <span id="lightbox-code" style="color: #ff3b30; font-weight: 800; font-size: 1.2rem; text-transform: uppercase;"></span>
+                </div>
+                <div class="lightbox-meta">
+                    <span id="lightbox-category" class="category-badge">Category</span>
+                </div>
+                <div class="lightbox-description">
+                    <h3>PRODUCT DETAILS</h3>
+                    <ul class="detail-list" id="lightbox-detail-list">
+                        <li><strong>MATERIAL:</strong> FOOD-GRADE PREMIUM QUALITY</li>
+                        <li><strong>FEATURES:</strong> ECO-FRIENDLY, DURABLE, HYGIENIC</li>
+                        <li><strong>USAGE:</strong> IDEAL FOR CAFES, EVENTS, AND DAILY USE</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </footer>
-    <div id="google_translate_element" style="display:none;"></div>
-    <script src="js/main.js"></script>
-    <script src="js/responsive.js"></script>
-    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    <script>
-        document.getElementById('contactForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const statusDiv = document.getElementById('formStatus');
-            const btn = e.target.querySelector('button');
-            btn.disabled = true;
-            btn.textContent = 'Sending...';
-            try {
-                const formData = new FormData(e.target);
-                const data = Object.fromEntries(formData.entries());
-                // Call the local backend API
-                const response = await fetch('/api/contact', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
-                if (response.ok) {
-                    statusDiv.innerHTML = '<span style="color: green;">Message sent successfully! We will get back to you soon.</span>';
-                    statusDiv.style.display = 'block';
-                    e.target.reset();
-                } else {
-                    throw new Error('Failed to send');
-                }
-            } catch (error) {
-                // Determine if it might be because the backend isn't running
-                statusDiv.innerHTML = '<span style="color: orange;">Note: message simulation successful (Backend not active).</span>';
-                statusDiv.style.display = 'block';
-                console.error(error);
-            } finally {
-                btn.disabled = false;
-                btn.textContent = 'Send Message';
-            }
-        });
-    </script>
+    </div>
+
+    <!-- Amazon Order Success Modal Overlay -->
+    <div class="amz-modal-backdrop" id="amz-success-modal">
+        <div class="amz-modal-card">
+            <div class="amz-success-icon">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--amz-text); margin-bottom: 6px;">Order Placed, Thank You!</h2>
+            <p style="font-size: 0.95rem; color: var(--amz-text-muted);">Confirmation email & WhatsApp order receipt has been sent.</p>
+            
+            <div class="amz-order-id-badge">
+                Order #: <span id="modal-order-id">RAD-408-982144</span>
+            </div>
+
+            <div style="background: #F7F8F8; border-radius: 8px; padding: 14px; margin: 16px 0; text-align: left; font-size: 0.9rem;">
+                <p style="margin-bottom: 6px;"><strong>Estimated Delivery Date:</strong> <span id="modal-delivery-date" style="color: var(--amz-green); font-weight: 700;">Wednesday, Aug 5, 2026</span></p>
+                <p style="margin-bottom: 0;"><strong>Final Order Total:</strong> <span id="modal-order-total" style="color: var(--amz-orange-dark); font-weight: 800;">₹6,136.00</span></p>
+            </div>
+
+            <div style="display: flex; gap: 12px; justify-content: center; margin-top: 20px;">
+                <button type="button" class="amz-btn-primary" id="modal-print-btn" style="max-width: 200px;">
+                    <i class="fa-solid fa-print" style="margin-right: 6px;"></i> Print Receipt
+                </button>
+                <button type="button" class="amz-btn-secondary" id="modal-close-btn" style="max-width: 200px;">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/amazon-checkout.js"></script>
 </body>
 </html>
