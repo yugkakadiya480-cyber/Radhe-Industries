@@ -248,7 +248,7 @@ module.exports = app;
 // Add this for local development
 if (require.main === module) {
     const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
         console.log(`Server is running locally at http://localhost:${PORT}`);
     });
 }

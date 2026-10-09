@@ -1,0 +1,471 @@
+/* ==========================================================================
+   RADHE INDUSTRIES — MODERN PRODUCTS SECTION & THEME
+   Glassmorphism Hero • Interactive Filter Bar • 3D Hover Cards • Spec Badges
+   ========================================================================== */
+
+/* --- Products Page Hero Banner --- */
+.prod-hero-header {
+    position: relative;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #064e3b 100%);
+    padding: 5rem 0 4rem;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.prod-hero-header::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.prod-hero-header::after {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    left: 5%;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.14) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.prod-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.prod-badge-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1.25rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #34d399;
+    margin-bottom: 1.25rem;
+    backdrop-filter: blur(8px);
+}
+
+.prod-hero-title {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+.prod-hero-title span.accent-text {
+    background: linear-gradient(135deg, #6ee7b7, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.prod-hero-subtitle {
+    font-size: 1.15rem;
+    color: #cbd5e1;
+    max-width: 680px;
+    margin: 0 auto 2.2rem;
+    line-height: 1.6;
+}
+
+.prod-stats-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+}
+
+.prod-stat-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.15rem;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    border-radius: 50px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #f8fafc;
+    backdrop-filter: blur(6px);
+}
+
+.prod-stat-pill i {
+    color: #34d399;
+}
+
+/* --- Interactive Filter & Search Bar --- */
+.prod-filter-section {
+    max-width: 1320px;
+    margin: -2.5rem auto 3rem;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.prod-filter-bar {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 1.25rem 2rem;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+}
+
+.filter-pills-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+.filter-pill-btn {
+    padding: 0.55rem 1.25rem;
+    border-radius: 50px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: #475569;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-pill-btn:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+
+.filter-pill-btn.active {
+    background: #10b981;
+    border-color: #10b981;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+}
+
+.search-input-wrap {
+    position: relative;
+    min-width: 260px;
+    flex: 1;
+    max-width: 320px;
+}
+
+.search-input-wrap i {
+    position: absolute;
+    left: 1.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 1rem;
+}
+
+.prod-search-input {
+    width: 100%;
+    padding: 0.65rem 1rem 0.65rem 2.8rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 50px;
+    background: #f8fafc;
+    color: #0f172a;
+    font-size: 0.9rem;
+    transition: all 0.25s;
+}
+
+.prod-search-input:focus {
+    outline: none;
+    border-color: #10b981;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+/* --- Products Modern Grid --- */
+.mod-products-container {
+    max-width: 1320px;
+    margin: 0 auto 5rem;
+    padding: 0 1.5rem;
+}
+
+.mod-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2.25rem;
+}
+
+/* --- Modern 3D-Lift Product Card --- */
+.mod-product-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-decoration: none;
+    color: inherit;
+}
+
+.mod-product-card:hover {
+    transform: translateY(-10px);
+    border-color: #34d399;
+    box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.2), 0 0 0 1px #34d399;
+}
+
+/* --- Card Image Stage --- */
+.mod-card-stage {
+    position: relative;
+    background: radial-gradient(circle at 50% 40%, rgba(16, 185, 129, 0.15) 0%, #f8fafc 75%);
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    overflow: hidden;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.mod-card-stage::before {
+    content: '';
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background: rgba(16, 185, 129, 0.08);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+}
+
+.mod-product-card:hover .mod-card-stage::before {
+    transform: translate(-50%, -50%) scale(1.6);
+    background: rgba(16, 185, 129, 0.16);
+}
+
+.mod-card-img {
+    position: relative;
+    z-index: 2;
+    max-height: 185px;
+    max-width: 85%;
+    object-fit: contain;
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.28));
+}
+
+.mod-product-card:hover .mod-card-img {
+    transform: translateY(-8px) scale(1.08);
+}
+
+/* --- Top Card Badges --- */
+.card-top-badges {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.prod-tag {
+    padding: 0.35rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.badge-best {
+    background: #10b981;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.35);
+}
+
+.badge-pop {
+    background: #0ea5e9;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(14, 165, 233, 0.35);
+}
+
+.badge-spec {
+    background: rgba(15, 23, 42, 0.8);
+    color: #f8fafc;
+    backdrop-filter: blur(6px);
+}
+
+/* --- Card Body & Specs --- */
+.mod-card-body {
+    padding: 1.6rem 1.75rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.prod-vol-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #10b981;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.35rem;
+}
+
+.prod-card-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 0.5rem;
+    line-height: 1.2;
+}
+
+.prod-card-desc {
+    font-size: 0.88rem;
+    color: #64748b;
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+}
+
+.prod-mini-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.mini-spec-pill {
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.mini-spec-pill i {
+    color: #10b981;
+}
+
+/* --- Card Footer Actions --- */
+.mod-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid #f1f5f9;
+    margin-top: auto;
+}
+
+.btn-view-product {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #0f172a;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.btn-view-product i {
+    color: #10b981;
+    transition: transform 0.25s ease;
+}
+
+.mod-product-card:hover .btn-view-product {
+    color: #10b981;
+}
+
+.mod-product-card:hover .btn-view-product i {
+    transform: translateX(4px);
+}
+
+.btn-quick-quote {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.95rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #334155;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    z-index: 5;
+}
+
+.btn-quick-quote:hover {
+    background: #10b981;
+    border-color: #10b981;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* --- Animated Transition for Search / Filter --- */
+.mod-product-card.hidden-by-filter {
+    display: none;
+}
+
+.mod-product-card.animate-in {
+    animation: prodFadeIn 0.35s ease-out;
+}
+
+@keyframes prodFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .prod-hero-title {
+        font-size: 2.2rem;
+    }
+
+    .prod-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-input-wrap {
+        max-width: 100%;
+    }
+
+    .mod-products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    }
+}
