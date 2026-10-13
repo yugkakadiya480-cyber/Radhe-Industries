@@ -36,13 +36,45 @@ class GlassShowcase {
         this.targetTilt = new THREE.Vector2(0, 0);
         this.currentTilt = new THREE.Vector2(0, 0);
         this.hoveredGlass = null;
+        this.isVisible = false;
+        this.animationId = null;
+        this.mouseMoved = false;
 
         this.init();
-        this.animate();
+        this.setupVisibilityObserver();
 
-        window.addEventListener('resize', this.onWindowResize.bind(this));
-        window.addEventListener('mousemove', this.onMouseMove.bind(this));
+        window.addEventListener('resize', this.onWindowResize.bind(this), { passive: true });
+        window.addEventListener('mousemove', this.onMouseMove.bind(this), { passive: true });
         window.addEventListener('click', this.onMouseClick.bind(this));
+
+        // Touch interaction for mobile
+        this.container.addEventListener('touchstart', this.onTouchStart.bind(this), { passive: true });
+        this.container.addEventListener('touchmove', this.onTouchMove.bind(this), { passive: true });
+    }
+
+    setupVisibilityObserver() {
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (!this.isVisible) {
+                            this.isVisible = true;
+                            this.animate();
+                        }
+                    } else {
+                        this.isVisible = false;
+                        if (this.animationId) {
+                            cancelAnimationFrame(this.animationId);
+                            this.animationId = null;
+                        }
+                    }
+                });
+            }, { threshold: 0.05 });
+            observer.observe(this.container);
+        } else {
+            this.isVisible = true;
+            this.animate();
+        }
     }
 
     init() {
@@ -55,14 +87,27 @@ class GlassShowcase {
         this.camera.position.set(0, 1, 9);
         this.camera.lookAt(0, 0, 0);
 
-        // Renderer Setup
-        this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        // Performance Check: low-end mobile check
+        const isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const dpr = isMobile ? 1.0 : Math.min(window.devicePixelRatio || 1, 1.5);
+
+        // Renderer Setup (efficient configuration)
+        this.renderer = new THREE.WebGLRenderer({
+            antialias: !isMobile,
+            alpha: true,
+            powerPreference: 'high-performance'
+        });
         this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.renderer.setPixelRatio(dpr);
         this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
         this.renderer.toneMappingExposure = 1.2;
-        this.renderer.shadowMap.enabled = true;
-        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+        if (isMobile) {
+            this.renderer.shadowMap.enabled = false;
+        } else {
+            this.renderer.shadowMap.enabled = true;
+            this.renderer.shadowMap.type = THREE.BasicShadowMap;
+        }
         this.container.appendChild(this.renderer.domElement);
 
         this.setupLights();
@@ -213,6 +258,7 @@ class GlassShowcase {
     }
 
     onMouseMove(event) {
+        if (!this.isVisible) return;
         const rect = this.container.getBoundingClientRect();
         this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
         this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
@@ -220,6 +266,23 @@ class GlassShowcase {
         // Target tilt based on mouse position
         this.targetTilt.x = this.mouse.y * 0.15;
         this.targetTilt.y = this.mouse.x * 0.15;
+        this.mouseMoved = true;
+    }
+
+    onTouchStart(event) {
+        if (!this.isVisible || !event.touches[0]) return;
+        this.onTouchMove(event);
+    }
+
+    onTouchMove(event) {
+        if (!this.isVisible || !event.touches[0]) return;
+        const touch = event.touches[0];
+        const rect = this.container.getBoundingClientRect();
+        this.mouse.x = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
+        this.mouse.y = -((touch.clientY - rect.top) / rect.height) * 2 + 1;
+        this.targetTilt.x = this.mouse.y * 0.15;
+        this.targetTilt.y = this.mouse.x * 0.15;
+        this.mouseMoved = true;
     }
 
     onMouseClick(event) {
@@ -230,27 +293,30 @@ class GlassShowcase {
     }
 
     animate() {
-        requestAnimationFrame(this.animate.bind(this));
+        if (!this.isVisible) return;
+        this.animationId = requestAnimationFrame(this.animate.bind(this));
 
         const time = Date.now() * 0.001;
 
-        // Update Raycaster
-        this.raycaster.setFromCamera(this.mouse, this.camera);
-        const intersects = this.raycaster.intersectObjects(this.scene.children, true);
+        // Update Raycaster only when pointer moved
+        if (this.mouseMoved) {
+            this.raycaster.setFromCamera(this.mouse, this.camera);
+            const intersects = this.raycaster.intersectObjects(this.scene.children, true);
 
-        let currentHover = null;
-        if (intersects.length > 0) {
-            // Find the top-level group
-            let obj = intersects[0].object;
-            while (obj.parent && !(obj instanceof THREE.Group && obj.userData.type)) {
-                obj = obj.parent;
+            let currentHover = null;
+            if (intersects.length > 0) {
+                // Find the top-level group
+                let obj = intersects[0].object;
+                while (obj.parent && !(obj instanceof THREE.Group && obj.userData.type)) {
+                    obj = obj.parent;
+                }
+                if (obj instanceof THREE.Group && obj.userData.type) {
+                    currentHover = obj;
+                }
             }
-            if (obj instanceof THREE.Group && obj.userData.type) {
-                currentHover = obj;
-            }
+            this.hoveredGlass = currentHover;
+            this.mouseMoved = false;
         }
-
-        this.hoveredGlass = currentHover;
 
         // Smooth Tilt Lerping
         this.currentTilt.x += (this.targetTilt.x - this.currentTilt.x) * 0.05;

@@ -156,6 +156,8 @@
   display: flex;
   width: max-content;
   animation: tickerScroll 30s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 .ticker-track:hover { animation-play-state: paused; }
 .ticker-item {
@@ -1090,10 +1092,55 @@
   div[style*="grid-template-columns: repeat(3, 1fr)"] {
     grid-template-columns: repeat(2, 1fr) !important;
   }
+  div[style*="grid-template-columns: 1fr 1.2fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+}
+@media (max-width: 768px) {
+  .reveal-left,
+  .reveal-right {
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }
 @media (max-width: 640px) {
   div[style*="grid-template-columns: repeat(3, 1fr)"],
-  div[style*="grid-template-columns: 1fr 1fr"] {
+  div[style*="grid-template-columns: 1fr 1fr"],
+  div[style*="grid-template-columns: 1fr 1.2fr"] {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ── Low-Processor Mobile & GPU Smoothing Overrides ─────────── */
+@media (max-width: 768px) {
+  /* Eliminate expensive multi-pass backdrop blur on mobile */
+  .hero-btn-outline,
+  .quick-order-bar,
+  .contact-badge-item,
+  .mod-product-card,
+  .btn-hero {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* GPU layer promotion for smoother touch scrolling */
+  .swiper-container,
+  .swiper-wrapper,
+  .mod-products-grid,
+  .promo-grid {
+    transform: translateZ(0);
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Off-screen rendering containment for low processor devices */
+.product-strip-section,
+.reach-map-section,
+.testimonials-section,
+.glass-showcase {
+  content-visibility: auto;
+  contain-intrinsic-size: 500px;
+}
+
+

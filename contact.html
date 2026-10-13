@@ -9,31 +9,390 @@
     <link rel="stylesheet" href="css/modern-additions.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
+        /* ── Reset & Overflow Protection ── */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        /* ── Hero Banner Section ── */
+        .contact-hero {
+            background: linear-gradient(135deg, #0f1c14 0%, #163d27 50%, #0d2818 100%);
+            color: #fff;
+            padding: 5rem 0 5.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-hero-glow-1 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(34,197,94,0.15) 0%, transparent 70%);
+            top: -150px;
+            right: -100px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .contact-hero-glow-2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 70%);
+            bottom: -100px;
+            left: -80px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .contact-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .contact-hero-pill {
+            display: inline-block;
+            background: rgba(34,197,94,0.15);
+            border: 1px solid rgba(34,197,94,0.3);
+            color: #86efac;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.4rem 1.4rem;
+            border-radius: 50px;
+            margin-bottom: 1.2rem;
+        }
+        .contact-hero-title {
+            font-size: clamp(1.85rem, 4vw, 3.2rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+            color: #fff;
+            letter-spacing: -0.5px;
+            word-break: break-word;
+        }
+        .contact-hero-gradient-text {
+            background: linear-gradient(90deg, #22c55e, #86efac);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .contact-hero-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            margin-bottom: 2.2rem;
+        }
+        .contact-badges-wrap {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .contact-badge-item {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            padding: 0.7rem 1.4rem;
+            border-radius: 50px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #86efac;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ── Main Contact & Form Section ── */
+        .contact-main-section {
+            padding: 5rem 0;
+            background: #ffffff;
+            width: 100%;
+            overflow: hidden;
+        }
+        .contact-main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3.5rem;
+            align-items: start;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .contact-info-col,
+        .contact-form-col {
+            width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+        .contact-info-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        /* ── Info Cards ── */
         .contact-card-modern {
             background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 20px;
-            padding: 2rem;
+            padding: 1.8rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             transition: all 0.35s ease;
             position: relative;
             overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
         }
         .contact-card-modern:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.08);
             border-color: rgba(34,197,94,0.4);
         }
+        .contact-card-phone { border-left: 5px solid #22c55e; }
+        .contact-card-email { border-left: 5px solid #0ea5e9; }
+        .contact-card-loc1 { border-left: 5px solid #f59e0b; }
+        .contact-card-loc2 { border-left: 5px solid #8b5cf6; }
+
+        .contact-card-inner {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.3rem;
+            width: 100%;
+            min-width: 0;
+        }
+        .contact-card-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .icon-phone {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            color: #16a34a;
+        }
+        .icon-email {
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            color: #0284c7;
+        }
+        .icon-loc1 {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            color: #d97706;
+        }
+        .icon-loc2 {
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            color: #7c3aed;
+        }
+
+        .contact-card-body {
+            flex: 1;
+            min-width: 0;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+        .contact-card-tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            display: inline-block;
+            margin-bottom: 0.35rem;
+        }
+        .tag-phone { color: #16a34a; }
+        .tag-email { color: #0284c7; }
+        .tag-loc1 {
+            color: #d97706;
+            background: #fef3c7;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+        .tag-loc2 {
+            color: #7c3aed;
+            background: #f3e8ff;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .contact-card-heading {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0.15rem 0 0.5rem;
+            line-height: 1.3;
+        }
+        .contact-card-links-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+        .contact-card-link {
+            color: #0f172a;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            max-width: 100%;
+        }
+        .contact-card-link:hover {
+            color: #16a34a;
+        }
+        .contact-card-link-email {
+            font-weight: 700;
+            font-size: 1rem;
+            word-break: break-all;
+            overflow-wrap: anywhere;
+        }
+        .contact-card-link-email:hover {
+            color: #0284c7;
+        }
+        .contact-card-address {
+            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.6;
+            margin: 0 0 0.75rem;
+        }
+        .contact-card-map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .contact-card-map-link:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        .link-loc1 { color: #d97706; }
+        .link-loc2 { color: #7c3aed; }
+
+        /* ── Support Vector Banner ── */
+        .contact-support-banner {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0;
+            background: #fff;
+            width: 100%;
+        }
+        .contact-support-img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            display: block;
+        }
+        .support-status-badge {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            background: #22c55e;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(34,197,94,0.4);
+        }
+        .status-pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulseDot 2s infinite ease-in-out;
+        }
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.75); }
+        }
+
+        /* ── Form Card ── */
+        .contact-form-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 2.75rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .contact-form-badge {
+            display: inline-block;
+            background: #dcfce7;
+            color: #16a34a;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 0.8rem;
+        }
+        .contact-form-title {
+            font-size: 2.1rem;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+        .contact-form-subtitle {
+            color: #64748b;
+            font-size: 0.98rem;
+            margin-bottom: 1.8rem;
+            line-height: 1.6;
+        }
+        .contact-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.3rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .form-col-half {
+            grid-column: span 1;
+            width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+        .form-col-full {
+            grid-column: span 2;
+            width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+        .contact-field-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 0.4rem;
+        }
         .contact-input-modern {
             width: 100%;
-            padding: 1.1rem 1.2rem;
+            box-sizing: border-box;
+            padding: 1rem 1.15rem;
             border: 1px solid #cbd5e1;
             border-radius: 12px;
             background: #f8fafc;
             font-family: 'Inter', sans-serif;
-            font-size: 1rem;
+            font-size: 0.98rem;
             color: #0f172a;
             transition: all 0.3s ease;
+            max-width: 100%;
         }
         .contact-input-modern:focus {
             outline: none;
@@ -56,6 +415,21 @@
             align-items: center;
             gap: 4px;
         }
+        .contact-submit-btn {
+            width: 100%;
+            justify-content: center;
+            padding: 1.1rem;
+            font-size: 1.05rem;
+            margin-top: 1.6rem;
+            cursor: pointer;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-sizing: border-box;
+            border-radius: 12px;
+        }
+
         @keyframes headShake {
             0% { transform: translateX(0); }
             20% { transform: translateX(-6px); }
@@ -63,6 +437,208 @@
             60% { transform: translateX(-4px); }
             80% { transform: translateX(4px); }
             100% { transform: translateX(0); }
+        }
+
+        /* ── RESPONSIVE MEDIA QUERIES ── */
+        @media (max-width: 992px) {
+            .contact-hero {
+                padding: 4rem 0 4.5rem;
+            }
+            .contact-main-section {
+                padding: 3.5rem 0;
+            }
+            .contact-main-grid {
+                grid-template-columns: 1fr;
+                gap: 2.8rem;
+            }
+            .contact-support-banner {
+                margin-bottom: 1.5rem;
+            }
+            .contact-support-img {
+                height: 220px;
+            }
+            .contact-form-card {
+                padding: 2.2rem 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Prevent horizontal overflow from scroll-reveal translations */
+            .reveal-left,
+            .reveal-right {
+                transform: none !important;
+                opacity: 1 !important;
+                transition: none !important;
+            }
+
+            .contact-hero {
+                padding: 3rem 0 3.5rem;
+            }
+            .contact-hero-title {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+            .contact-hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1.8rem;
+            }
+            .contact-badges-wrap {
+                gap: 0.6rem;
+            }
+            .contact-badge-item {
+                padding: 0.55rem 1rem;
+                font-size: 0.82rem;
+            }
+
+            .contact-main-section {
+                padding: 2.5rem 0;
+            }
+            .contact-main-grid {
+                gap: 2rem;
+            }
+            .contact-card-modern {
+                padding: 1.4rem;
+                border-radius: 16px;
+            }
+            .contact-card-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+                border-radius: 14px;
+            }
+            .contact-card-heading {
+                font-size: 1.15rem;
+            }
+            .contact-card-link {
+                font-size: 1rem;
+            }
+            .contact-card-link-email {
+                font-size: 0.92rem;
+            }
+
+            .contact-support-img {
+                height: 190px;
+            }
+            .contact-form-card {
+                padding: 1.8rem 1.3rem;
+                border-radius: 18px;
+            }
+            .contact-form-title {
+                font-size: 1.6rem;
+            }
+            .contact-form-subtitle {
+                font-size: 0.92rem;
+                margin-bottom: 1.5rem;
+            }
+
+            /* Single column for all inputs on mobile */
+            .contact-form-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .form-col-half,
+            .form-col-full {
+                grid-column: span 1;
+            }
+            .contact-input-modern {
+                padding: 0.85rem 1rem;
+                font-size: 0.94rem;
+            }
+            .contact-submit-btn {
+                padding: 0.95rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-hero {
+                padding: 2.5rem 0 3rem;
+            }
+            .contact-hero-pill {
+                font-size: 0.72rem;
+                padding: 0.35rem 1rem;
+            }
+            .contact-hero-title {
+                font-size: 1.7rem;
+            }
+            .contact-hero-subtitle {
+                font-size: 0.92rem;
+                line-height: 1.6;
+            }
+            .contact-badge-item {
+                width: 100%;
+                justify-content: center;
+                font-size: 0.8rem;
+                padding: 0.5rem 0.8rem;
+            }
+
+            .contact-main-section {
+                padding: 1.8rem 0;
+            }
+            .contact-main-grid {
+                gap: 1.6rem;
+            }
+            .contact-card-modern {
+                padding: 1.15rem 1rem;
+                border-radius: 14px;
+            }
+            .contact-card-inner {
+                gap: 0.9rem;
+            }
+            .contact-card-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 1.05rem;
+                border-radius: 12px;
+            }
+            .contact-card-heading {
+                font-size: 1.05rem;
+            }
+            .contact-card-link {
+                font-size: 0.94rem;
+            }
+            .contact-card-link-email {
+                font-size: 0.84rem;
+            }
+            .contact-card-address {
+                font-size: 0.86rem;
+            }
+
+            .contact-support-banner {
+                border-radius: 14px;
+                margin-bottom: 1.2rem;
+            }
+            .contact-support-img {
+                height: 160px;
+            }
+            .support-status-badge {
+                top: 0.75rem;
+                right: 0.75rem;
+                font-size: 0.68rem;
+                padding: 0.25rem 0.65rem;
+            }
+
+            .contact-form-card {
+                padding: 1.3rem 0.9rem;
+                border-radius: 14px;
+            }
+            .contact-form-title {
+                font-size: 1.4rem;
+            }
+            .contact-form-subtitle {
+                font-size: 0.86rem;
+                margin-bottom: 1.2rem;
+            }
+            .contact-input-modern {
+                padding: 0.8rem 0.85rem;
+                font-size: 0.9rem;
+                border-radius: 10px;
+            }
+            .contact-submit-btn {
+                padding: 0.85rem;
+                font-size: 0.95rem;
+                border-radius: 10px;
+            }
         }
     </style>
 </head>
@@ -72,7 +648,7 @@
     <header class="header-top">
         <div class="container header-top-content">
             <a href="index.html" class="logo" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
-                <img src="images/company-logo.png" alt="Radhe Disposable Logo" style="height: 60px; width: auto;" class="brand-logo-img">
+                <img src="images/company-logo.png" alt="Radhe Disposable Logo" style="height: 60px; width: auto;" class="brand-logo-img" decoding="async">
                 <div style="line-height: 1.1;">
                     <span class="brand-text-primary" style="display: block; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase;">RADHE</span>
                     <span class="brand-text-secondary" style="display: block; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Disposable</span>
@@ -127,31 +703,31 @@
     </nav>
 
     <!-- ── Hero Banner Section ───────────────────────────────── -->
-    <section style="background: linear-gradient(135deg, #0f1c14 0%, #163d27 50%, #0d2818 100%); color: #fff; padding: 5rem 0 6rem; position: relative; overflow: hidden;">
-        <div style="position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(34,197,94,0.15) 0%, transparent 70%); top: -150px; right: -100px; border-radius: 50%; pointer-events: none;"></div>
-        <div style="position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 70%); bottom: -100px; left: -80px; border-radius: 50%; pointer-events: none;"></div>
+    <section class="contact-hero">
+        <div class="contact-hero-glow-1"></div>
+        <div class="contact-hero-glow-2"></div>
         
         <div class="container" style="position: relative; z-index: 2;">
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <span style="display: inline-block; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #86efac; font-size: 0.8rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 0.4rem 1.4rem; border-radius: 50px; margin-bottom: 1.2rem;">
+            <div class="contact-hero-content">
+                <span class="contact-hero-pill">
                     <i class="fa-solid fa-headset"></i> Contact Sales &amp; Support
                 </span>
-                <h1 style="font-size: 3.2rem; font-weight: 900; line-height: 1.15; margin-bottom: 1.2rem; color: #fff; letter-spacing: -0.5px;">
-                    Let's Connect &amp; Grow Your <span style="background: linear-gradient(90deg, #22c55e, #86efac); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Packaging Supply</span>
+                <h1 class="contact-hero-title">
+                    Let's Connect &amp; Grow Your <span class="contact-hero-gradient-text">Packaging Supply</span>
                 </h1>
-                <p style="font-size: 1.15rem; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 2.5rem;">
+                <p class="contact-hero-subtitle">
                     Have questions about bulk orders, custom cup sizes, or factory pricing? Our sales engineering team in Rajkot is ready to assist you.
                 </p>
 
                 <!-- Quick Response Badges -->
-                <div style="display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;">
-                    <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(10px); padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 0.88rem; font-weight: 600; color: #86efac; display: flex; align-items: center; gap: 8px;">
+                <div class="contact-badges-wrap">
+                    <div class="contact-badge-item">
                         <i class="fa-solid fa-bolt" style="color: #22c55e;"></i> Fast Quote Response
                     </div>
-                    <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(10px); padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 0.88rem; font-weight: 600; color: #86efac; display: flex; align-items: center; gap: 8px;">
+                    <div class="contact-badge-item">
                         <i class="fa-solid fa-truck-fast" style="color: #22c55e;"></i> Pan-India Dispatch
                     </div>
-                    <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(10px); padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 0.88rem; font-weight: 600; color: #86efac; display: flex; align-items: center; gap: 8px;">
+                    <div class="contact-badge-item">
                         <i class="fa-solid fa-industry" style="color: #22c55e;"></i> Direct Factory Pricing
                     </div>
                 </div>
@@ -160,60 +736,68 @@
     </section>
 
     <!-- ── Main Contact & Form Section ───────────────────────── -->
-    <section style="padding: 6rem 0; background: #fff;">
+    <section class="contact-main-section">
         <div class="container">
-            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start;">
+            <div class="contact-main-grid">
                 
                 <!-- Left Column: Modern Contact Info Cards -->
-                <div class="reveal-left" style="display: flex; flex-direction: column; gap: 1.8rem;">
+                <div class="contact-info-col reveal-left">
                     
                     <!-- Phone Card -->
-                    <div class="contact-card-modern" style="border-left: 5px solid #22c55e;">
-                        <div style="display: flex; align-items: center; gap: 1.4rem;">
-                            <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #16a34a; flex-shrink: 0;">
+                    <div class="contact-card-modern contact-card-phone">
+                        <div class="contact-card-inner">
+                            <div class="contact-card-icon icon-phone">
                                 <i class="fa-solid fa-phone"></i>
                             </div>
-                            <div>
-                                <span style="font-size: 0.78rem; font-weight: 700; color: #16a34a; text-transform: uppercase; letter-spacing: 1.5px;">Call Sales Team</span>
-                                <h3 style="font-size: 1.3rem; font-weight: 800; color: #0f172a; margin: 0.2rem 0 0.5rem;">Speak Direct to Factory</h3>
-                                <div style="display: flex; flex-direction: column; gap: 0.3rem;">
-                                    <a href="tel:+919913600800" style="color: #0f172a; font-weight: 800; font-size: 1.15rem; text-decoration: none; transition: color 0.2s;"><i class="fa-solid fa-mobile-screen-button" style="color: #22c55e; margin-right: 6px;"></i> +91 99136 00800</a>
-                                    <a href="tel:+919426816321" style="color: #0f172a; font-weight: 800; font-size: 1.15rem; text-decoration: none; transition: color 0.2s;"><i class="fa-solid fa-mobile-screen-button" style="color: #22c55e; margin-right: 6px;"></i> +91 94268 16321</a>
+                            <div class="contact-card-body">
+                                <span class="contact-card-tag tag-phone">Call Sales Team</span>
+                                <h3 class="contact-card-heading">Speak Direct to Factory</h3>
+                                <div class="contact-card-links-group">
+                                    <a href="tel:+919913600800" class="contact-card-link">
+                                        <i class="fa-solid fa-mobile-screen-button" style="color: #22c55e; margin-right: 6px;"></i> +91 99136 00800
+                                    </a>
+                                    <a href="tel:+919426816321" class="contact-card-link">
+                                        <i class="fa-solid fa-mobile-screen-button" style="color: #22c55e; margin-right: 6px;"></i> +91 94268 16321
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Email Card -->
-                    <div class="contact-card-modern" style="border-left: 5px solid #0ea5e9;">
-                        <div style="display: flex; align-items: center; gap: 1.4rem;">
-                            <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #e0f2fe, #bae6fd); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #0284c7; flex-shrink: 0;">
+                    <div class="contact-card-modern contact-card-email">
+                        <div class="contact-card-inner">
+                            <div class="contact-card-icon icon-email">
                                 <i class="fa-solid fa-envelope"></i>
                             </div>
-                            <div>
-                                <span style="font-size: 0.78rem; font-weight: 700; color: #0284c7; text-transform: uppercase; letter-spacing: 1.5px;">Email Inquiries</span>
-                                <h3 style="font-size: 1.3rem; font-weight: 800; color: #0f172a; margin: 0.2rem 0 0.5rem;">Official Correspondence</h3>
-                                <div style="display: flex; flex-direction: column; gap: 0.3rem;">
-                                    <a href="mailto:radheindustries8@gmail.com" style="color: #0f172a; font-weight: 700; font-size: 1.05rem; text-decoration: none; transition: color 0.2s;"><i class="fa-regular fa-paper-plane" style="color: #0ea5e9; margin-right: 6px;"></i> radheindustries8@gmail.com</a>
-                                    <a href="mailto:radhedisposable8@gmail.com" style="color: #0f172a; font-weight: 700; font-size: 1.05rem; text-decoration: none; transition: color 0.2s;"><i class="fa-regular fa-paper-plane" style="color: #0ea5e9; margin-right: 6px;"></i> radhedisposable8@gmail.com</a>
+                            <div class="contact-card-body">
+                                <span class="contact-card-tag tag-email">Email Inquiries</span>
+                                <h3 class="contact-card-heading">Official Correspondence</h3>
+                                <div class="contact-card-links-group">
+                                    <a href="mailto:radheindustries8@gmail.com" class="contact-card-link contact-card-link-email">
+                                        <i class="fa-regular fa-paper-plane" style="color: #0ea5e9; margin-right: 6px;"></i> radheindustries8@gmail.com
+                                    </a>
+                                    <a href="mailto:radhedisposable8@gmail.com" class="contact-card-link contact-card-link-email">
+                                        <i class="fa-regular fa-paper-plane" style="color: #0ea5e9; margin-right: 6px;"></i> radhedisposable8@gmail.com
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Factory Location 1 -->
-                    <div class="contact-card-modern" style="border-left: 5px solid #f59e0b;">
-                        <div style="display: flex; align-items: flex-start; gap: 1.4rem;">
-                            <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #d97706; flex-shrink: 0; margin-top: 4px;">
+                    <div class="contact-card-modern contact-card-loc1">
+                        <div class="contact-card-inner">
+                            <div class="contact-card-icon icon-loc1">
                                 <i class="fa-solid fa-industry"></i>
                             </div>
-                            <div>
-                                <span style="font-size: 0.75rem; font-weight: 800; color: #d97706; text-transform: uppercase; letter-spacing: 1.5px; background: #fef3c7; padding: 0.2rem 0.6rem; border-radius: 4px;">UNIT 1 — RADHE DISPOSABLE</span>
-                                <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin: 0.5rem 0 0.3rem;">Metoda GIDC Plant</h3>
-                                <p style="font-size: 0.95rem; color: #475569; line-height: 1.6; margin: 0 0 0.8rem;">
+                            <div class="contact-card-body">
+                                <span class="contact-card-tag tag-loc1">UNIT 1 — RADHE DISPOSABLE</span>
+                                <h3 class="contact-card-heading">Metoda GIDC Plant</h3>
+                                <p class="contact-card-address">
                                     Plot No. G1972, Road K/7D, Metoda GIDC,<br>All By The Gate, Rajkot, Gujarat
                                 </p>
-                                <a href="https://maps.google.com/?q=Metoda+GIDC+Rajkot" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 700; color: #d97706; text-decoration: none;">
+                                <a href="https://maps.google.com/?q=Metoda+GIDC+Rajkot" target="_blank" class="contact-card-map-link link-loc1">
                                     <i class="fa-solid fa-diamond-turn-right"></i> Get Directions on Google Maps
                                 </a>
                             </div>
@@ -221,18 +805,18 @@
                     </div>
 
                     <!-- Factory Location 2 -->
-                    <div class="contact-card-modern" style="border-left: 5px solid #8b5cf6;">
-                        <div style="display: flex; align-items: flex-start; gap: 1.4rem;">
-                            <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #f3e8ff, #e9d5ff); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #7c3aed; flex-shrink: 0; margin-top: 4px;">
+                    <div class="contact-card-modern contact-card-loc2">
+                        <div class="contact-card-inner">
+                            <div class="contact-card-icon icon-loc2">
                                 <i class="fa-solid fa-building-flag"></i>
                             </div>
-                            <div>
-                                <span style="font-size: 0.75rem; font-weight: 800; color: #7c3aed; text-transform: uppercase; letter-spacing: 1.5px; background: #f3e8ff; padding: 0.2rem 0.6rem; border-radius: 4px;">UNIT 2 — RADHE INDUSTRIES</span>
-                                <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin: 0.5rem 0 0.3rem;">Shivam Industrial Zone Plant</h3>
-                                <p style="font-size: 0.95rem; color: #475569; line-height: 1.6; margin: 0 0 0.8rem;">
+                            <div class="contact-card-body">
+                                <span class="contact-card-tag tag-loc2">UNIT 2 — RADHE INDUSTRIES</span>
+                                <h3 class="contact-card-heading">Shivam Industrial Zone Plant</h3>
+                                <p class="contact-card-address">
                                     Survey No. 101, Plot No. 14, At Devda, Shivam Industrial Zone 7A, Taluka Lodhika, Dist Rajkot, Gujarat 360021
                                 </p>
-                                <a href="https://maps.google.com/?q=Shivam+Industrial+Zone+Rajkot" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 700; color: #7c3aed; text-decoration: none;">
+                                <a href="https://maps.google.com/?q=Shivam+Industrial+Zone+Rajkot" target="_blank" class="contact-card-map-link link-loc2">
                                     <i class="fa-solid fa-diamond-turn-right"></i> Get Directions on Google Maps
                                 </a>
                             </div>
@@ -242,41 +826,41 @@
                 </div>
 
                 <!-- Right Column: Image Banner + Modern Inquiry Form Container -->
-                <div class="reveal-right">
+                <div class="contact-form-col reveal-right">
                     <!-- Support Image Visual Card -->
-                    <div style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.08); margin-bottom: 2rem; border: 1px solid #e2e8f0; background: #fff;">
-                        <img src="images/support_vector.png" alt="Radhe Industries Customer Support Vector Illustration" style="width: 100%; height: 280px; object-fit: cover; display: block;">
-                        <div style="position: absolute; top: 1.2rem; right: 1.2rem; background: #22c55e; color: #fff; font-size: 0.75rem; font-weight: 800; padding: 0.35rem 0.9rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(34,197,94,0.4);">
-                            <span style="width: 8px; height: 8px; background: #fff; border-radius: 50%; display: inline-block;"></span> Sales Desk Online
+                    <div class="contact-support-banner">
+                        <img src="images/support_vector.png" alt="Radhe Industries Customer Support Vector Illustration" class="contact-support-img" loading="lazy" decoding="async">
+                        <div class="support-status-badge">
+                            <span class="status-pulse-dot"></span> Sales Desk Online
                         </div>
                     </div>
 
-                    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 24px; padding: 3rem; box-shadow: 0 10px 40px rgba(0,0,0,0.05); position: relative;">
-                        <span style="display: inline-block; background: #dcfce7; color: #16a34a; font-weight: 700; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; padding: 0.35rem 1rem; border-radius: 50px; margin-bottom: 0.8rem;">
+                    <div class="contact-form-card">
+                        <span class="contact-form-badge">
                             Direct Inquiry
                         </span>
-                        <h2 style="font-size: 2.2rem; font-weight: 900; color: #0f172a; margin-bottom: 0.5rem;">Send Us a Message</h2>
-                        <p style="color: #64748b; font-size: 1rem; margin-bottom: 2rem; line-height: 1.6;">Fill in your requirements below and our sales engineering team will reach out to you directly.</p>
+                        <h2 class="contact-form-title">Send Us a Message</h2>
+                        <p class="contact-form-subtitle">Fill in your requirements below and our sales engineering team will reach out to you directly.</p>
 
                         <form id="contactForm" novalidate>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem;">
-                                <div style="grid-column: span 1;">
-                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem;">Full Name *</label>
+                            <div class="contact-form-grid">
+                                <div class="form-col-half">
+                                    <label class="contact-field-label">Full Name *</label>
                                     <input type="text" id="name" name="name" class="contact-input-modern" placeholder="e.g. Rahul Sharma">
                                     <div class="field-error-msg" id="err-name"></div>
                                 </div>
-                                <div style="grid-column: span 1;">
-                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem;">Email Address *</label>
+                                <div class="form-col-half">
+                                    <label class="contact-field-label">Email Address *</label>
                                     <input type="email" id="email" name="email" class="contact-input-modern" placeholder="e.g. rahul@company.com">
                                     <div class="field-error-msg" id="err-email"></div>
                                 </div>
-                                <div style="grid-column: span 1;">
-                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem;">Mobile / Phone No. *</label>
+                                <div class="form-col-half">
+                                    <label class="contact-field-label">Mobile / Phone No. *</label>
                                     <input type="text" id="phone" name="phone" class="contact-input-modern" placeholder="+91 98765 43210">
                                     <div class="field-error-msg" id="err-phone"></div>
                                 </div>
-                                <div style="grid-column: span 1;">
-                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem;">Select Country *</label>
+                                <div class="form-col-half">
+                                    <label class="contact-field-label">Select Country *</label>
                                     <select id="country" name="country" class="contact-input-modern" style="cursor: pointer;">
                                         <option value="" disabled selected>Choose Country</option>
                                         <option value="India">India 🇮🇳</option>
@@ -291,8 +875,8 @@
                                     </select>
                                     <div class="field-error-msg" id="err-country"></div>
                                 </div>
-                                <div style="grid-column: span 2;">
-                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem;">Inquiry Subject / Topic *</label>
+                                <div class="form-col-full">
+                                    <label class="contact-field-label">Inquiry Subject / Topic *</label>
                                     <select id="subject" name="subject" class="contact-input-modern">
                                         <option value="" disabled selected>Select Subject / Inquiry Type</option>
                                         <option value="Wholesale Bulk Purchase">Wholesale Bulk Cup Purchase</option>
@@ -303,15 +887,15 @@
                                     </select>
                                     <div class="field-error-msg" id="err-subject"></div>
                                 </div>
-                                <div style="grid-column: span 2;">
-                                    <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem;">Detailed Message / Cup Requirements (Optional)</label>
+                                <div class="form-col-full">
+                                    <label class="contact-field-label">Detailed Message / Cup Requirements (Optional)</label>
                                     <textarea id="message" name="message" class="contact-input-modern" rows="4" placeholder="Specify cup sizes (e.g., 200ml Spiral, 250ml Plain), quantity estimates, or specific questions..."></textarea>
                                 </div>
                             </div>
 
                             <div id="formStatus" style="margin-top: 1.2rem; display: none; padding: 1rem; border-radius: 12px; font-weight: 600; font-size: 0.95rem;"></div>
 
-                            <button type="submit" class="hero-btn-primary" style="width: 100%; justify-content: center; padding: 1.1rem; font-size: 1.05rem; margin-top: 1.8rem; cursor: pointer; border: none;">
+                            <button type="submit" class="hero-btn-primary contact-submit-btn">
                                 <i class="fa-solid fa-paper-plane"></i> Send Direct Inquiry
                             </button>
                         </form>
