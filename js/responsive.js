@@ -89,4 +89,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Auto-inject Floating WhatsApp Quick Inquiry Widget
+    if (!document.getElementById('floatingWhatsAppBtn')) {
+        const waBtn = document.createElement('a');
+        waBtn.id = 'floatingWhatsAppBtn';
+        waBtn.href = 'https://wa.me/919913600800?text=Hello%20Radhe%20Industries,%20I%20would%20like%20to%20inquire%20about%20bulk%20disposable%20cups%20pricing%20and%20specifications.';
+        waBtn.target = '_blank';
+        waBtn.rel = 'noopener noreferrer';
+        waBtn.className = 'floating-whatsapp';
+        waBtn.setAttribute('aria-label', 'Chat on WhatsApp');
+        waBtn.innerHTML = `
+            <div class="whatsapp-badge-tooltip">Chat with Sales</div>
+            <div class="whatsapp-btn-circle">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+        `;
+        document.body.appendChild(waBtn);
+    }
+
+    // Auto-inject Header "Inquire Now" button
+    const navContent = document.querySelector('.navbar-content');
+    if (navContent && !navContent.querySelector('.nav-cta-btn')) {
+        const cta = document.createElement('a');
+        cta.href = 'contact.html';
+        cta.className = 'nav-cta-btn';
+        cta.innerHTML = '<i class="fa-solid fa-phone"></i> <span>Inquire Now</span>';
+        navContent.appendChild(cta);
+    }
+
 });
