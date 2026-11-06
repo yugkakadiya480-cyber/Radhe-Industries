@@ -682,6 +682,15 @@
                     closeLightbox();
                 }
             });
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const autoOpen = urlParams.get('open');
+            if (autoOpen) {
+                setTimeout(() => {
+                    const targetImg = document.querySelector(`.zoom-img[data-name*="${autoOpen}" i]`);
+                    if (targetImg) targetImg.click();
+                }, 300);
+            }
         });
     </script>
 </body>

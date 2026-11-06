@@ -60,6 +60,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (category.includes('180') && productName.includes('spiral')) {
                     // 180ml SPIRAL: shift top of arrow upward to reach the cup rim
                     y1 = 80; y2 = 370; x = 360;
+                } else if (category.includes('180') && productName.includes('check')) {
+                    if (productName.includes('cut size')) {
+                        // 180ml CHECKS CUT SIZE (CH1825): cup starts lower and shorter
+                        y1 = 145; y2 = 290; x = 285;
+                    } else {
+                        // 180ml CHECKS MEDIUM (CH1830): align top rim to base like TOWER
+                        y1 = 105; y2 = 270; x = 300;
+                    }
+                } else if (category.includes('225') && productName.includes('check')) {
+                    // 225ml CHECKS: align top rim to base
+                    y1 = 90; y2 = 330; x = 305;
                 } else if (productName.includes('mocktail')) {
                     // MOCKTAIL is centered and smaller; match its boundaries
                     y1 = 105; y2 = 295; x = 340;
@@ -189,18 +200,26 @@ document.addEventListener('DOMContentLoaded', () => {
                         hY = 25; // More upward
                     } else if (category.includes('180') && productName.includes('hexa')) {
                         hY = 30; // Slightly down from before
-                    } else if (category.includes('180') && productName.includes('checks')) {
-                        hY = 25; // More upward
+                    } else if (category.includes('180') && productName.includes('check')) {
+                        if (productName.includes('cut size')) {
+                            // 180ml CHECKS CUT SIZE: fit top rim
+                            hY = 125; hX1 = 138; hX2 = 263;
+                        } else {
+                            // 180ml CHECKS MEDIUM: fit top rim like TOWER
+                            hY = 85; hX1 = 127; hX2 = 274;
+                        }
                     } else if (category.includes('200') && productName.includes('plain')) {
                         hY = 30;
-                    } else if (category.includes('200') && (productName.includes('hexa') || productName.includes('tower') || productName.includes('checks'))) {
+                    } else if (category.includes('200') && productName.includes('check')) {
+                        hY = 85; hX1 = 127; hX2 = 274;
+                    } else if (category.includes('200') && (productName.includes('hexa') || productName.includes('tower'))) {
                         hY = 25;
                     } else if (category.includes('200') && productName.includes('spiral')) {
                         hY = 35;
                     } else if (category.includes('225') && (productName.includes('spiral') || productName.includes('tower'))) {
                         hY = 25;
-                    } else if (category.includes('225') && productName.includes('checks')) {
-                        hY = 25; hX1 = 55; hX2 = 345;
+                    } else if (category.includes('225') && productName.includes('check')) {
+                        hY = 65; hX1 = 125; hX2 = 275;
                     } else if (category.includes('250') && productName.includes('tower')) {
                         hY = 35;
                     } else if (category.includes('250') && productName.includes('spiral')) {
@@ -248,8 +267,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 hY = hY + 5; // Move DOWN slightly from center (was -10, too high)
                             } else if (productName.includes('mocktail') || productName.includes('spiral')) {
                                 hY = hY - 15; // Keep MORE UP for MOCKTAIL/SPIRAL
-                            } else if (productName.includes('checks')) {
-                                hY = 100; // Set absolute LOWER position for CHECKS 180ml on mobile
+                            } else if (productName.includes('check')) {
+                                // Kept at calibrated rim position like TOWER
                             } else {
                                 hY = hY + 10; // Stay DOWN for others
                             }
