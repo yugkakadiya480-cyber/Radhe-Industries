@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         y1 = 150; y2 = 280; x = 315;
                     }
                 } else if (category.includes('180') && productName.includes('plain')) {
-                    // 180ml PLAIN: extend arrow to full cup span (top rim → base)
-                    y1 = 85; y2 = 395; x = 360;
+                    // 180ml PLAIN (PL1818): calibrated top rim to base like TOWER
+                    y1 = 73; y2 = 336; x = 335;
                 } else if (category.includes('180') && productName.includes('spiral')) {
                     // 180ml SPIRAL: shift top of arrow upward to reach the cup rim
                     y1 = 80; y2 = 370; x = 360;
@@ -193,7 +193,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     let hY = 100; // Default baseline
 
                     if (category.includes('180') && productName.includes('plain')) {
-                        hY = 30;
+                        // 180ml PLAIN: span top rim like TOWER
+                        hY = 50; hX1 = 93; hX2 = 310;
                     } else if (category.includes('180') && productName.includes('spiral')) {
                         hY = 45;
                     } else if (category.includes('180') && productName.includes('tower')) {
@@ -202,11 +203,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         hY = 30; // Slightly down from before
                     } else if (category.includes('180') && productName.includes('check')) {
                         if (productName.includes('cut size')) {
-                            // 180ml CHECKS CUT SIZE: fit top rim
-                            hY = 120; hX1 = 142; hX2 = 258;
+                            // 180ml CHECKS CUT SIZE: fit top rim, moved upward with clear spacing
+                            hY = 95; hX1 = 142; hX2 = 258;
                         } else {
                             // 180ml CHECKS MEDIUM: fit top rim like TOWER
-                            hY = 85; hX1 = 127; hX2 = 274;
+                            hY = 80; hX1 = 127; hX2 = 274;
                         }
                     } else if (category.includes('200') && productName.includes('plain')) {
                         hY = 30;
@@ -262,13 +263,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     // MOBILE ADJUSTMENTS (All Phones/Tablets <= 768px)
                     if (window.innerWidth <= 768) {
                         if (category.includes('180')) {
-                            if (productName.includes('plain')) {
-                                hY = 25; // High up but label visible (hY-10=15 keeps label in viewBox)
-                            } else if (productName.includes('hexa')) {
+                            if (productName.includes('hexa')) {
                                 hY = hY + 5; // Move DOWN slightly from center (was -10, too high)
                             } else if (productName.includes('spiral')) {
                                 hY = hY - 15; // Keep MORE UP for SPIRAL
-                            } else if (productName.includes('check') || productName.includes('mocktail')) {
+                            } else if (productName.includes('check') || productName.includes('mocktail') || productName.includes('plain')) {
                                 // Kept at calibrated rim position like TOWER
                             } else {
                                 hY = hY + 10; // Stay DOWN for others
