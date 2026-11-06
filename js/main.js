@@ -81,14 +81,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 200ml HEXA: shift top of arrow upward and decrease from downward
                     y1 = 90; y2 = 320; x = 350;
                 } else if (category.includes('200') && productName.includes('check')) {
-                    // 200ml CHECKS: move height arrow near the glass and decrease from downward
-                    y1 = 110; y2 = 320; x = 310;
+                    // 200ml CHECKS FULL SIZE (CH1817): align top rim to base like TOWER
+                    y1 = 123; y2 = 267; x = 285;
                 } else if (category.includes('200') && productName.includes('plain')) {
-                    // 200ml PLAIN: shift top of arrow upward and decrease from downward
-                    y1 = 95; y2 = 345; x = 360;
+                    // 200ml PLAIN (2017): align top rim to base like TOWER
+                    y1 = 97; y2 = 345; x = 326;
                 } else if (category.includes('200') && productName.includes('spiral')) {
-                    // 200ml SPIRAL: shift top of arrow upward and decrease from downward
-                    y1 = 95; y2 = 355; x = 360;
+                    // 200ml SPIRAL (SP1815): align top rim to base like TOWER
+                    y1 = 130; y2 = 308; x = 315;
                 } else if (category.includes('225') && productName.includes('spiral')) {
                     // 225ml SPIRAL: shift top of arrow upward and decrease from downward
                     y1 = 80; y2 = 340; x = 360;
@@ -210,13 +210,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             hY = 80; hX1 = 127; hX2 = 274;
                         }
                     } else if (category.includes('200') && productName.includes('plain')) {
-                        hY = 30;
+                        // 200ml PLAIN: span top rim like TOWER
+                        hY = 65; hX1 = 98; hX2 = 302;
                     } else if (category.includes('200') && productName.includes('check')) {
-                        hY = 85; hX1 = 127; hX2 = 274;
+                        // 200ml CHECKS FULL SIZE: span top rim like TOWER
+                        hY = 95; hX1 = 123; hX2 = 261;
                     } else if (category.includes('200') && (productName.includes('hexa') || productName.includes('tower'))) {
                         hY = 25;
                     } else if (category.includes('200') && productName.includes('spiral')) {
-                        hY = 35;
+                        // 200ml SPIRAL: span top rim like TOWER
+                        hY = 95; hX1 = 115; hX2 = 287;
                     } else if (category.includes('225') && (productName.includes('spiral') || productName.includes('tower'))) {
                         hY = 25;
                     } else if (category.includes('225') && productName.includes('check')) {
@@ -273,7 +276,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 hY = hY + 10; // Stay DOWN for others
                             }
                         } else if (category.includes('200')) {
-                            hY = hY + 10; // Move DOWN for 200ml on mobile
+                            if (productName.includes('check') || productName.includes('plain') || productName.includes('spiral')) {
+                                // Kept at calibrated rim position like TOWER
+                            } else {
+                                hY = hY + 10; // Move DOWN for others in 200ml on mobile
+                            }
                         } else if (category.includes('225')) {
                             if (isSpiral) {
                                 hY = 20; // Moved up but label still visible on mobile
