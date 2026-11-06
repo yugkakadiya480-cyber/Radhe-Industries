@@ -56,6 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.classList.remove('active');
         menuToggle.classList.remove('open');
         body.style.overflow = '';
+        navLinks.querySelectorAll('.nav-item.dropdown.open').forEach(dd => {
+            dd.classList.remove('open');
+        });
     }
 
     if (menuToggle && navLinks) {
@@ -68,11 +71,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Close menu when clicking a link
-        // Use a slight delay to allow navigation to trigger before hiding the menu
-        navLinks.querySelectorAll('.nav-link').forEach(link => {
+        // Handle mobile dropdown toggle
+        navLinks.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 900 || navLinks.classList.contains('active')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const dropdownParent = toggle.closest('.nav-item.dropdown');
+                    if (dropdownParent) {
+                        dropdownParent.classList.toggle('open');
+                    }
+                }
+            });
+        });
+
+        // Close menu when clicking standard nav-links or dropdown category items
+        navLinks.querySelectorAll('.nav-link:not(.dropdown-toggle), .dropdown-item, .dropdown-link').forEach(link => {
             link.addEventListener('click', () => {
-                setTimeout(closeMenu, 50);
+                setTimeout(closeMenu, 150);
             });
         });
 
