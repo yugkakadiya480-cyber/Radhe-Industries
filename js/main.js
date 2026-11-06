@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     y1 = 80; y2 = 370; x = 360;
                 } else if (category.includes('180') && productName.includes('check')) {
                     if (productName.includes('cut size')) {
-                        // 180ml CHECKS CUT SIZE (CH1825): cup starts lower and shorter
-                        y1 = 145; y2 = 290; x = 285;
+                        // 180ml CHECKS CUT SIZE (CH1825): calibrated exactly to cup rim & base
+                        y1 = 140; y2 = 266; x = 282;
                     } else {
                         // 180ml CHECKS MEDIUM (CH1830): align top rim to base like TOWER
                         y1 = 105; y2 = 270; x = 300;
@@ -72,8 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 225ml CHECKS: align top rim to base
                     y1 = 90; y2 = 330; x = 305;
                 } else if (productName.includes('mocktail')) {
-                    // MOCKTAIL is centered and smaller; match its boundaries
-                    y1 = 105; y2 = 295; x = 340;
+                    // MOCKTAIL (TW1823): align top rim to base like TOWER
+                    y1 = 125; y2 = 278; x = 298;
                 } else if (category.includes('200') && productName.includes('tower')) {
                     // 200ml TOWER: shift top of arrow upward, decrease from downward, and place near glass
                     y1 = 80; y2 = 330; x = 320;
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (category.includes('180') && productName.includes('check')) {
                         if (productName.includes('cut size')) {
                             // 180ml CHECKS CUT SIZE: fit top rim
-                            hY = 125; hX1 = 138; hX2 = 263;
+                            hY = 120; hX1 = 142; hX2 = 258;
                         } else {
                             // 180ml CHECKS MEDIUM: fit top rim like TOWER
                             hY = 85; hX1 = 127; hX2 = 274;
@@ -254,7 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             hX1 = 10; hX2 = 250; // Refined centering
                         }
                     } else if (productName.includes('mocktail')) {
-                        hY = 95;
+                        // MOCKTAIL: span top rim like TOWER
+                        hY = 100; hX1 = 128; hX2 = 272;
                     }
 
                     // Global Phone/Mobile Adjustment
@@ -265,9 +266,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 hY = 25; // High up but label visible (hY-10=15 keeps label in viewBox)
                             } else if (productName.includes('hexa')) {
                                 hY = hY + 5; // Move DOWN slightly from center (was -10, too high)
-                            } else if (productName.includes('mocktail') || productName.includes('spiral')) {
-                                hY = hY - 15; // Keep MORE UP for MOCKTAIL/SPIRAL
-                            } else if (productName.includes('check')) {
+                            } else if (productName.includes('spiral')) {
+                                hY = hY - 15; // Keep MORE UP for SPIRAL
+                            } else if (productName.includes('check') || productName.includes('mocktail')) {
                                 // Kept at calibrated rim position like TOWER
                             } else {
                                 hY = hY + 10; // Stay DOWN for others
