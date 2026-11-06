@@ -90,8 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 200ml SPIRAL (SP1815): align top rim to base like TOWER
                     y1 = 130; y2 = 308; x = 315;
                 } else if (category.includes('225') && productName.includes('spiral')) {
-                    // 225ml SPIRAL: shift top of arrow upward and decrease from downward
-                    y1 = 80; y2 = 340; x = 360;
+                    if (isSpiral || (img.getAttribute('data-code') || '').toLowerCase().includes('sp2215')) {
+                        // 225ml SPIRAL (SP2215 / SPIRAL2): align top rim to base like TOWER
+                        y1 = 66; y2 = 245; x = 215;
+                    } else {
+                        // 225ml SPIRAL (SP2236): span top rim to base
+                        y1 = 60; y2 = 340; x = 345;
+                    }
                 } else if (category.includes('250') && productName.includes('tower')) {
                     // 250ml TOWER: move height arrow further right
                     y1 = 80; y2 = 340; x = 350;
@@ -164,9 +169,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // MOBILE: move height arrow closer to glass for 225ml SPIRAL
                 if (window.innerWidth <= 768 && category.includes('225') && isSpiral) {
-                    const mobileX = 290; // Closer to the glass (was 360)
-                    const mobileY1 = 60;  // Move top upward (was 80)
-                    const mobileY2 = 295; // Shorten from bottom (was 340)
+                    const mobileX = 215; // Closer to the glass
+                    const mobileY1 = 66;  // Align to top rim
+                    const mobileY2 = 245; // Align to cup base
                     lines[0].setAttribute('x1', mobileX); lines[0].setAttribute('x2', mobileX);
                     lines[0].setAttribute('y1', mobileY1); lines[0].setAttribute('y2', mobileY2);
                     lines[1].setAttribute('x1', mobileX - 5); lines[1].setAttribute('x2', mobileX + 5);
@@ -220,10 +225,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (category.includes('200') && productName.includes('spiral')) {
                         // 200ml SPIRAL: span top rim like TOWER
                         hY = 95; hX1 = 115; hX2 = 287;
-                    } else if (category.includes('225') && (productName.includes('spiral') || productName.includes('tower'))) {
+                    } else if (category.includes('225') && productName.includes('spiral')) {
+                        if (isSpiral || (img.getAttribute('data-code') || '').toLowerCase().includes('sp2215')) {
+                            // 225ml SPIRAL (SP2215 / SPIRAL2): span top rim like TOWER
+                            hY = 42; hX1 = 27; hX2 = 188;
+                        } else {
+                            // 225ml SPIRAL (SP2236): span top rim like TOWER
+                            hY = 45; hX1 = 82; hX2 = 318;
+                        }
+                    } else if (category.includes('225') && productName.includes('tower')) {
                         hY = 25;
                     } else if (category.includes('225') && productName.includes('check')) {
-                        hY = 65; hX1 = 125; hX2 = 275;
+                        // 225ml CHECKS: span top rim
+                        hY = 55; hX1 = 110; hX2 = 290;
                     } else if (category.includes('250') && productName.includes('tower')) {
                         hY = 35;
                     } else if (category.includes('250') && productName.includes('spiral')) {
@@ -283,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         } else if (category.includes('225')) {
                             if (isSpiral) {
-                                hY = 20; // Moved up but label still visible on mobile
+                                // Kept at calibrated rim position like TOWER
                             } else {
                                 hY = hY + 10; // Move DOWN for others in 225ml
                             }
