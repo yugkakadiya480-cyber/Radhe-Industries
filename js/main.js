@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 180ml PLAIN (PL1818): calibrated top rim to base like TOWER
                     y1 = 73; y2 = 336; x = 335;
                 } else if (category.includes('180') && productName.includes('spiral')) {
-                    // 180ml SPIRAL: align top rim to base like TOWER (matches 200ml SPIRAL)
-                    y1 = 130; y2 = 308; x = 315;
+                    // 180ml SPIRAL: align top rim to base like TOWER
+                    y1 = 76; y2 = 320; x = 315;
                 } else if (category.includes('180') && productName.includes('hexa')) {
                     // 180ml HEXA: align top rim to base like TOWER
                     y1 = 66; y2 = 320; x = 295;
