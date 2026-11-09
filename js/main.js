@@ -58,8 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 180ml PLAIN (PL1818): calibrated top rim to base like TOWER
                     y1 = 73; y2 = 336; x = 335;
                 } else if (category.includes('180') && productName.includes('spiral')) {
-                    // 180ml SPIRAL: shift top of arrow upward to reach the cup rim
-                    y1 = 80; y2 = 370; x = 360;
+                    // 180ml SPIRAL: align top rim to base like TOWER (matches 200ml SPIRAL)
+                    y1 = 130; y2 = 308; x = 315;
+                } else if (category.includes('180') && productName.includes('hexa')) {
+                    // 180ml HEXA: align top rim to base like TOWER
+                    y1 = 66; y2 = 320; x = 295;
                 } else if (category.includes('180') && productName.includes('check')) {
                     if (productName.includes('cut size')) {
                         // 180ml CHECKS CUT SIZE (CH1825): calibrated exactly to cup rim & base
@@ -201,11 +204,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         // 180ml PLAIN: span top rim like TOWER
                         hY = 50; hX1 = 93; hX2 = 310;
                     } else if (category.includes('180') && productName.includes('spiral')) {
-                        hY = 45;
+                        // 180ml SPIRAL: span top rim like TOWER (matches 200ml SPIRAL)
+                        hY = 95; hX1 = 115; hX2 = 287;
+                    } else if (category.includes('180') && productName.includes('hexa')) {
+                        // 180ml HEXA: span top rim like TOWER
+                        hY = 50; hX1 = 134; hX2 = 266;
                     } else if (category.includes('180') && productName.includes('tower')) {
                         hY = 25; // More upward
-                    } else if (category.includes('180') && productName.includes('hexa')) {
-                        hY = 30; // Slightly down from before
                     } else if (category.includes('180') && productName.includes('check')) {
                         if (productName.includes('cut size')) {
                             // 180ml CHECKS CUT SIZE: fit top rim, moved upward with clear spacing
@@ -280,11 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // MOBILE ADJUSTMENTS (All Phones/Tablets <= 768px)
                     if (window.innerWidth <= 768) {
                         if (category.includes('180')) {
-                            if (productName.includes('hexa')) {
-                                hY = hY + 5; // Move DOWN slightly from center (was -10, too high)
-                            } else if (productName.includes('spiral')) {
-                                hY = hY - 15; // Keep MORE UP for SPIRAL
-                            } else if (productName.includes('check') || productName.includes('mocktail') || productName.includes('plain')) {
+                            if (productName.includes('check') || productName.includes('mocktail') || productName.includes('plain') || productName.includes('spiral') || productName.includes('hexa')) {
                                 // Kept at calibrated rim position like TOWER
                             } else {
                                 hY = hY + 10; // Stay DOWN for others
@@ -312,13 +313,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         } else {
                             hY = Math.max(15, hY - 30); // Default: move UP for others
                         }
-                    }
-
-                    // Global Mobile Hexa Scaling
-                    if (window.innerWidth <= 768 && productName.includes('hexa')) {
-                        if (lightboxImg) lightboxImg.classList.add('hexa-mobile-zoom');
-                    } else {
-                        if (lightboxImg) lightboxImg.classList.remove('hexa-mobile-zoom');
                     }
 
                     // Apply all coordinates at once

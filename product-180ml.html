@@ -62,6 +62,13 @@
         .lightbox-zoom {
             transform: scale(1.4) translateY(-20px) translateX(0) !important;
         }
+        .lightbox-shift-down {
+            transform: translateY(15px) !important;
+        }
+        .lightbox-zoom.lightbox-shift-down {
+            transform: scale(1.4) translateY(15px) !important;
+        }
+        
         .lightbox-zoom-xl {
             transform: scale(1.8) translateY(-25px) translateX(-50px) !important;
         }
@@ -238,10 +245,8 @@
                     <div class="card-image-wrapper img-wrapper">
                         <div class="img-zoom-lens"></div>
                         <img src="images/uploads/hexa-180ml.jpeg" alt="HEXA Presentation" class="zoom-img lightbox-trigger"
-                            data-zoom-src="images/uploads/HX-1800.jpg"
+                            data-zoom-src="images/uploads/HX-1800-CLEAN.png"
                             data-name="HEXA CUT SIZE"
-                            data-no-arrows="true"
-                            data-zoom-medium="true"
                             data-diameter="70MM"
                             data-height="75MM"
                             data-code="HX1800"
@@ -255,13 +260,10 @@
                     <div class="card-image-wrapper img-wrapper">
                         <div class="img-zoom-lens"></div>
                         <img src="images/uploads/HEXA2 180-ML.jpeg" alt="HEXA Presentation" class="zoom-img lightbox-trigger"
-                            data-zoom-src="images/uploads/HX-1810.jpg"
+                            data-zoom-src="images/uploads/HX-1810-CLEAN.png"
                             data-name="HEXA MEDIUM SIZE"
                             data-diameter="70MM"
                             data-height="80MM"
-                            data-zoom-medium="true"
-                            data-no-diameter-arrow="true"
-                            data-no-height-arrow="true"
                             data-code="HX1810"
                             data-category="180ml" loading="lazy" decoding="async">
                     </div>
@@ -273,13 +275,10 @@
                     <div class="card-image-wrapper img-wrapper">
                         <div class="img-zoom-lens"></div>
                         <img src="images/uploads/HEXA3- 180ML.jpeg" alt="HEXA Presentation" class="zoom-img lightbox-trigger"
-                            data-zoom-src="images/uploads/HX-1812.jpg"
+                            data-zoom-src="images/uploads/HX-1812-CLEAN.png"
                             data-name="HEXA MEDIUM SIZE"
                             data-diameter="70MM"
                             data-height="80MM"
-                            data-zoom-medium="true"
-                            data-no-diameter-arrow="true"
-                            data-no-height-arrow="true"
                             data-code="HX1812"
                             data-category="180ml" loading="lazy" decoding="async">
                     </div>
@@ -330,9 +329,7 @@
                 <div class="promo-card">
                     <div class="card-image-wrapper img-wrapper">
                         <img src="images/uploads/SPIRAL2.png" alt="SPIRAL Presentation" class="zoom-img spiral-image-zoom lightbox-trigger"
-                            data-zoom-src="images/uploads/SP-1816.jpg"
                             data-name="SPIRAL"
-                            data-no-arrows="true"
                             data-diameter="70MM"
                             data-height="75MM"
                             data-code="SP1816"
@@ -601,6 +598,12 @@
 
                 if (img.getAttribute('data-mobile-scale-down') === 'true' && window.innerWidth <= 768) {
                     lightboxImg.classList.add('lightbox-mobile-scale-down');
+                }
+
+                if ((name && (name.toLowerCase().includes('plain') || name.toLowerCase().includes('spiral'))) || img.getAttribute('data-shift-down') === 'true') {
+                    lightboxImg.classList.add('lightbox-shift-down');
+                } else {
+                    lightboxImg.classList.remove('lightbox-shift-down');
                 }
 
                 if (titleEl) titleEl.textContent = name || 'Premium Product';
