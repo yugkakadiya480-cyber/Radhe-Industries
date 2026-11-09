@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         hY = 50; hX1 = 93; hX2 = 310;
                     } else if (category.includes('180') && productName.includes('spiral')) {
                         // 180ml SPIRAL: span top rim like TOWER (matches 200ml SPIRAL)
-                        hY = 95; hX1 = 115; hX2 = 287;
+                        hY = 60; hX1 = 115; hX2 = 287;
                     } else if (category.includes('180') && productName.includes('hexa')) {
                         // 180ml HEXA: span top rim like TOWER
                         hY = 50; hX1 = 134; hX2 = 266;
